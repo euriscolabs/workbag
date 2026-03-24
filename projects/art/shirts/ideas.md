@@ -1,0 +1,4 @@
+Methods
+
+- Sun bleaching
+- bleaching

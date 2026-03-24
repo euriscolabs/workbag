@@ -1,0 +1,23 @@
+# Recipe Ideas
+- Zwiebelsauce machen, wie Ketchup, vermarkten
+- Flohsamensschalen cookies
+- Flohsamen beeren konfi
+- Flohsamen Cornflakes
+- lowcal glace
+- lowcal donut
+- lowcal pouletburger
+- lowcal nutella
+- fladenbrot
+- brot
+- burgerbuns
+- gyros fleisch
+- fermented lemonade 
+- fajita rectancles
+- burger buns
+- pita bread
+- Schoggii milch Rezept 
+- Joghurt sauce
+- Zimtschnecke
+- Smores
+- high protein pita
+- high protein potato salad

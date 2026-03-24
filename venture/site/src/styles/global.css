@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+  --color-navy: #0d47a1;
+  --color-blue: #1a73e8;
+  --color-light-blue: #4fc3f7;
+  --color-orange: #ffab40;
+  --color-muted: #5a5a7a;
+}
