@@ -7,9 +7,40 @@ tags: ["Hardware", "Research", "Health"]
 published: true
 ---
 
-Lamp Design Inspo
+## Overview
 
-- [https://www.amazon.de/brightower-Schreibtischlampe-Tageslichtlampe-Fernbedienungen-Schwanenhals/dp/B0CC19JP7N/ref=sr_1_52_sspa?crid=3429LS7VHKK07&dib=eyJ2IjoiMSJ9.lEZg8TdlXjEj_nQLEmrquVT6tecOrI3En6DeTgQdbfa-nj5qzoGYZEYKcsvLDo-18JY8ieeyTDx1Xpx3aTOnmEU0qSHyPR2cvQFl3ioXrkc.n07lDjMtTgQyere0WwUT7XlZEoQItWl3K8Z6qo8vPWM&dib_tag=se&keywords=tageslichtlampe&qid=1770516195&sprefix=tagesl%2Caps%2C111&sr=8-52-spons&xpid=eHk46HX5GdjlT&aref=T7ZczK7kpE&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGZfbmV4dA&th=1]
-- [https://www.amazon.de/GAEFURY-Doppelkopf-Schreibtischlampe-Dimmbar-Dehnbare/dp/B0F5Q41KGN/ref=sr_1_19_sspa?crid=3429LS7VHKK07&dib=eyJ2IjoiMSJ9.6pECPVvu2j86FTEHZwsLpkujiDs2WjAaOwX8TptyP0KljIynlLXBQD1k4ebNsAEP4TZZNksHv0XUjeF80QcNWJGZDLSbIL0vUwbfqIUfBY9U7QFXCFlVVYXnqPAFHl6Y71ms22a4VAOcLW2FjAjpbduUbAtjmki8HCuuvGZ3emSuP3ZUrIW_btCVnzZbKmoh5KX4aEjxXt5fp50CV2qt_Ze81Suw2dNDRbAmIfqRLmLF-N97oQJrazT-Iu4hxY8RbfCdNuUIiYNLxUJP_HRtLrw_16kKsb7zhSsUh-s66gA.LJAjgQVwVmvMjh4GX82bAuuIn-MTSeGxSeP164MM6Lg&dib_tag=se&keywords=tageslichtlampe&qid=1770516158&sprefix=tagesl%2Caps%2C111&sr=8-19-spons&aref=tHmUsWCRuo&sp_csd=d2lkZ2V0TmFtZT1zcF9tdGY&th=1]
-- [https://www.amazon.de/EPABINA-Schreibtischlampe-Tageslichtlampe-Automatischer-Schreibtisch/dp/B0FGHPJ3TV/ref=sr_1_54?crid=3429LS7VHKK07&dib=eyJ2IjoiMSJ9.1XFvIVw9CzdVI9pjI1eNHOl0AF3dMRSxxQGeScgFcPouFfsk7q5YeqS6rIpxYF1fvKlxRzt7oGRW3Ygd-h-V5VNx8-tAlDZt3hbBynaDZuVXpkMR3NGleqIx60zk7ouPlnE1xGkGA5qDPOp-s_x2HPpG2-rS4qJw05YWuTHYf-ot-a33nOK5pjl9l8YMd3jbYTyCsW-oxFZCM5av7jCcOys0goq9A-kSK-tW2GMXCe8MvB8H3zYJ38YBJtkpkQIIx1SqQzYG_lLl9GRkG2Kf91Dja17u1nN2XPjRTdkZtK4.QStcetdR4Gu5egDEgJAtaRzSXq-SA5JMC31B0sDuUjE&dib_tag=se&keywords=tageslichtlampe&qid=1770516195&sprefix=tagesl%2Caps%2C111&sr=8-54&xpid=eHk46HX5GdjlT&th=1]
-- [https://yaasa.ch/en/products/lamp-essential?tw_source=google&tw_adid=794182125491&tw_campaign=23491432964&tw_kwdid=pla-2306114798564&gad_source=1&gad_campaignid=23491432964&gclid=Cj0KCQiA4pvMBhDYARIsAGfgwvyKYdym227rpAXwwAYWN8U68gnVqamXgCE_1vEs-u2e0xb-LTYTOdMaAgLcEALw_wcB]
+A DIY full-spectrum desk lamp designed around circadian science — providing bright, balanced visible light to combat seasonal affective disorder (SAD), boost mood, and regulate circadian rhythm during winter months.
+
+## Problem
+
+Winter means dramatically less sunlight (down to ~8 hours in Switzerland, mostly spent indoors). This leads to vitamin D deficiency, mood dips, fatigue, and weakened immunity. Commercial daylight lamps either misrepresent their spectrum or have impractical form factors for desk use.
+
+## Approach
+
+- Full-spectrum LED light source mimicking sunlight's visible range
+- 3D-printed housing designed for desk use (doesn't block keyboard, indirect light into eyes)
+- Adjustable brightness via dimmer
+- Adjustable positioning via hinges/rods
+- Consider adjustable color temperature (warm for long use, cooler for therapy sessions)
+
+### Design Priorities
+
+- Safe: no UV emission, indirect light positioning
+- Practical: usable while working at a desk
+- Research-backed: targeting 10,000 lux (clinical standard for SAD treatment)
+
+## Open Questions
+
+- Which specific full-spectrum LED strips/chips to source?
+- Power supply and dimmer electronics
+- Final housing design (desk clamp + articulated arm?)
+- How to measure and verify lux output at working distance?
+
+## References
+
+- [Brightower desk lamp (Amazon)](https://www.amazon.de/dp/B0CC19JP7N)
+- [GAEFURY dual-head lamp (Amazon)](https://www.amazon.de/dp/B0F5Q41KGN)
+- [EPABINA daylight lamp (Amazon)](https://www.amazon.de/dp/B0FGHPJ3TV)
+- [Yaasa Lamp Essential](https://yaasa.ch/en/products/lamp-essential)
+
+## Log

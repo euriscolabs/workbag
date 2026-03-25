@@ -7,25 +7,45 @@ tags: ["Decentralized", "Payments", "Supply Chain", "Open Source"]
 published: false
 ---
 
-- google pay alternative
-- identity provider alternative
-- decentralized digital passport
-- create an identity for yourself who you want to be perceived as
-- the system needs to be abble to contact you in some way email or phone number
-- technically the webshop doesnt need to have the deliery adress explicitly, in a zero trust environment the user would have to explicitly allow the delivery agent to access the adress
-- decentralized supply chain managment and open markets
-- open source / decentralize companies/organization
-- example clothing
-  - current: fashion companies: zara, h&m, etc... make huge profit, don't pay their artists, pay scraps to the production facilities
-  - my idea
-    - designer designs a piece of clothing, and charges a certain amount of royalty
-    - production facility charges for their labor
-      - cost of labor
-        - cost of insurance
-        - cost of
-      - cost of machine
-        - cost of electricity
-        - cost of maintanace
-    - fabric suppliers charge for the sourcing of fabric
+## Overview
 
-- create a game from this a utopia simulator
+An open-source decentralized system combining payments, digital identity, and supply chain management — designed to create fair economics by cutting out exploitative middlemen and giving control back to creators, producers, and consumers.
+
+## Problem
+
+Current payment and logistics systems are centralized and extractive. Fashion companies (Zara, H&M, etc.) make huge profits while underpaying designers and production workers. Consumers have no visibility into true costs, and personal data is controlled by platforms rather than users.
+
+## Approach
+
+### Decentralized Identity
+
+- Google Pay / identity provider alternative
+- Decentralized digital passport — create an identity for yourself, control how you're perceived
+- System needs a way to contact you (email or phone) but personal data (like delivery address) is only shared with explicit consent
+- Zero-trust: the webshop doesn't need the delivery address — the user explicitly allows the delivery agent to access it
+
+### Fair Supply Chain
+
+Using clothing as an example:
+
+- **Designer** designs a piece and charges a royalty
+- **Production facility** charges for labor (insurance, wages) and machines (electricity, maintenance)
+- **Fabric suppliers** charge for sourcing
+- All costs are transparent and fair — no middleman extracting disproportionate margins
+
+### Open Organizations
+
+- Open-source / decentralized companies and organizations
+- Transparent cost structures
+
+## Open Questions
+
+- What blockchain/protocol to build on? (Or custom?)
+- How to handle the cold-start problem — getting both merchants and users onboard?
+- Legal/regulatory implications of decentralized identity across jurisdictions?
+- How to make supply chain transparency verifiable, not just claimed?
+- Game/simulation idea: "Utopia Simulator" — turn this into a game to explore the economics
+
+## References
+
+## Log

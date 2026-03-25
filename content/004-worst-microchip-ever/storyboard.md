@@ -6,19 +6,19 @@ Use this as a beat sheet + shot list. Keep it lightweight, but specific enough t
 
 | Time | Beat | Visual | Audio | Notes |
 |------|------|--------|-------|------|
-| 0:00–0:10 | Hook | | | |
-| 0:10–0:30 | Promise / what you’ll learn | | | |
-| 0:30– | Body | | | |
+| 0:00-0:10 | Hook | | | |
+| 0:10-0:30 | Promise / what you'll learn | | | |
+| 0:30- | Body | | | |
 | End | Recap + CTA | | | |
 
 ## Shot list
 
 - A-roll:
-  - 
+  -
 - B-roll:
-  - 
+  -
 - Screen capture:
-  - 
+  -
 
 ## Assets checklist
 
@@ -26,5 +26,3 @@ Use this as a beat sheet + shot list. Keep it lightweight, but specific enough t
 - [ ] Screenshots
 - [ ] Diagrams
 - [ ] Music/SFX
-
-

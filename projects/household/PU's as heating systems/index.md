@@ -7,13 +7,30 @@ tags: ["Energy", "AI", "Sustainability", "Innovation"]
 published: false
 ---
 
-# Idea
+## Overview
 
-heating is basically just electricity running through wires, it has no specific signal but it could, one could use specialized signals instead of simple ac waves for running heating, for example one could use processing systems, LLMs, local cloud clusters, etc. to heat the air around it that way we could significantly reduce power usage, instead of having large scale factories that run LLMs which currently being built by Amazon etc. and which need a lot of power and produce a lot of heat that just gets put into the atmosphere, we could run local clusters in each home instead of a heating unit, which in itself produces enough to heat the whole build, this way we could technically completely save the energy needed for heating world wide.
+Replace traditional home heating with local compute clusters (running LLMs, AI/ML workloads, etc.) that produce heat as a byproduct — effectively making heating "free" by turning waste heat into a feature.
 
-# Storyboard
+## Problem
 
-## Hook
+Data centers (Amazon, Google, etc.) consume massive amounts of power and produce enormous heat that's simply vented into the atmosphere. Meanwhile, homes spend significant energy on heating — running electricity through wires with no useful signal. These two energy flows could be combined.
 
-V: Lying with laptop in your lap
-A: Laptop fan extremely loud. "This thing could heat a house"
+## Approach
+
+- Instead of centralized data centers, distribute compute into local clusters in each home
+- Each home cluster replaces the traditional heating unit
+- The compute generates enough heat to warm the building while doing useful work (LLM inference, cloud computing, etc.)
+- This could theoretically eliminate the energy needed for residential heating worldwide
+
+## Open Questions
+
+- What compute density is needed to heat a typical home?
+- How to distribute workloads to residential clusters reliably?
+- Noise management — compute hardware is loud
+- Heat distribution — compute heat is localized, homes need even distribution
+- Economics — who pays for the hardware, who pays for the compute?
+- Existing precedents? (Some crypto mining setups already do this)
+
+## References
+
+## Log

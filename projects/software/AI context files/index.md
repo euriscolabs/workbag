@@ -7,29 +7,42 @@ tags: ["AI", "LLM", "Knowledge Management", "Developer Tools"]
 published: false
 ---
 
-# AI Context Files
+## Overview
 
-## Core Idea
+A framework and methodology for externalizing LLM agent knowledge into structured, persistent context files — decoupling knowledge from any single conversation or agent session so it compounds over time.
 
-LLM agents are **stateless machines that run on context**. The quality of their output is directly tied to the quality of context they receive. By externalizing context into structured files, we decouple knowledge from any single conversation or agent session.
+## Problem
 
-## Key Points
+LLM agents are stateless. Every new session starts blank. Long conversations degrade quality. Context windows are limited. The real value — decisions, research, project state — is lost when the conversation ends.
 
-- **Agents are disposable, context is not** — Every new agent session starts blank. The real value lives in the accumulated context files, not in the chat history.
-- **Context files as persistent memory** — Decisions, research, ideas, and project state are stored in plain files that outlive any single conversation.
-- **Load on demand** — A fresh agent loads only the relevant context files it needs, keeping the session focused and avoiding context window bloat.
-- **Bypasses context window limits** — Instead of cramming everything into one long conversation, you segment knowledge into modular files and load what's needed per task.
-- **Fights agent degradation** — Long conversations cause LLMs to lose coherence, repeat themselves, or "get dumber." Fresh agents with clean context files avoid this entirely.
-- **Agent-agnostic** — Context files are plain text. They work with any LLM, any tool, any platform. You're never locked into one provider or product.
-- **Human-readable and version-controllable** — Because it's just files, you can read them yourself, edit them, track changes with git, and collaborate with others.
-- **Compound knowledge over time** — Each session distills its findings back into context files, so the next session starts smarter than the last.
+## Approach
 
-## The Pattern
+### Core Principle
 
-1. **Before a session** — Load relevant context files into a fresh agent.
-2. **During a session** — Work with the agent, make decisions, generate ideas.
-3. **After a session** — Distill key outputs back into context files for next time.
+Agents are disposable, context is not. The value lives in the accumulated context files, not in the chat history.
 
-## Why This Matters
+### The Pattern
 
-The bottleneck with LLMs isn't intelligence — it's memory. Context files turn ephemeral conversations into durable, compounding knowledge. The agent is just the engine; the context files are the fuel.
+1. **Before a session** — Load relevant context files into a fresh agent
+2. **During a session** — Work with the agent, make decisions, generate ideas
+3. **After a session** — Distill key outputs back into context files for next time
+
+### Key Properties
+
+- Context files as persistent memory — decisions, research, ideas, and project state stored in plain files
+- Load on demand — fresh agent loads only what's relevant, avoiding context window bloat
+- Fights agent degradation — fresh agents with clean context avoid long-conversation coherence loss
+- Agent-agnostic — plain text works with any LLM, any tool, any platform
+- Human-readable and version-controllable — git-friendly, editable, collaborative
+- Compound knowledge over time — each session distills findings back, so the next session starts smarter
+
+## Open Questions
+
+- What's the optimal structure/format for context files?
+- How to automate the "distill back" step?
+- How to handle context file discovery and relevance ranking?
+- Tooling for loading context files into different LLM platforms?
+
+## References
+
+## Log

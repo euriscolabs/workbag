@@ -1,105 +1,34 @@
 ---
 title: "Worst Microchip Ever"
-description: "Educational video project exploring what makes a microchip design fundamentally flawed."
+description: "Educational project exploring what makes a microchip design fundamentally flawed."
 status: "Planning"
 category: "Electronics"
-tags: ["Electronics", "Video", "Education"]
+tags: ["Electronics", "Education"]
 published: false
 ---
 
-# Video Plan (Main)
+## Overview
 
-Use this file to capture the first ideas and turn them into a plan.
+An educational exploration of microchip design by intentionally creating the worst possible one — teaching principles of chip design through anti-patterns and deliberate flaws.
 
-## Title ideas
+## Problem
 
--
-
-## Thumbnails design
-
-- Concepts:
-  -
-- Notes:
-  -
-- Files: store alternatives in `thumbnails/`
-
-## Tags
-
--
-
-## Goal of the video
-
--
-
-## Key points
-
--
-
-## Outline
-
-1. Hook
-2. Context
-3. Main content
-4. Recap
-5. CTA
+Chip design is abstract and hard to learn. By designing a deliberately bad microchip, the project makes the principles tangible and entertaining — showing what matters by showing what goes wrong when you ignore it.
 
 ## Approach
 
-- Format: short / long / series
-- Style: tutorial / story / review / build log
-- Assets needed:
-  -
+- Research what makes a microchip design fundamentally flawed
+- Design a "worst case" chip that violates best practices
+- Document the anti-patterns and explain why they matter
 
-## Roadmap
+## Open Questions
 
-- Pre-production:
-  -
-- Production:
-  -
-- Post:
-  -
-- Publish:
-  -
+- What level of abstraction? (Logic gates, transistor level, full ASIC?)
+- What tools to use for simulation/design?
+- What are the most instructive failure modes to showcase?
 
-## Risks
+## References
 
--
+- https://www.youtube.com/watch?v=MiUHjLxm3V0
 
-## Promotion and algorithm strategies
-
-- Packaging (title + thumbnail):
-  -
-- SEO (keywords/tags/description):
-  -
-- Retention (pacing/pattern interrupts/open loops):
-  -
-- Distribution (shorts, clips, newsletter, socials):
-  -
-
-## Social media promotion plan (TikTok / Instagram / Shorts)
-
-- Posting plan:
-  - TikTok:
-    -
-  - Instagram (Reels + Stories):
-    -
-  - YouTube Shorts:
-    -
-- Captions / copy variations:
-  -
-- Hashtags / keywords:
-  -
-- CTA and funnel (how people reach the channel / long video):
-  -
-- Comment strategy (pin, reply videos, prompts):
-  -
-
-## Short-form clips (hooks + entry points)
-
-Plan which moments become shorts/reels/tiktoks and how each one points back to your channel.
-
-| Clip | Timestamp / Source | Hook line (0–2s) | Payoff (2–10s) | CTA / Next step | Platform(s)             |
-| ---- | ------------------ | ---------------- | -------------- | --------------- | ----------------------- |
-| 1    |                    |                  |                |                 | TikTok / Reels / Shorts |
-| 2    |                    |                  |                |                 | TikTok / Reels / Shorts |
-| 3    |                    |                  |                |                 | TikTok / Reels / Shorts |
+## Log

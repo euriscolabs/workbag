@@ -1,14 +1,14 @@
-# Storyboard — Lamp: Prototype → Product + Shop Launch
+# Storyboard — Lamp: Prototype to Product + Shop Launch
 
-## Hook (0:00–0:30)
+## Hook (0:00-0:30)
 > The lamp is done. It's for sale. Here's how we got here.
 
 TODO
 
-## Cold Open (0:30–1:00)
+## Cold Open (0:30-1:00)
 TODO
 
-## Intro / Title Card (1:00–1:30)
+## Intro / Title Card (1:00-1:30)
 TODO
 
 ## Main Content

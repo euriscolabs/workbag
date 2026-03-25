@@ -93,11 +93,11 @@ V: Animated diagram — sun → skin → vitamin D3 pathway. Spectrum chart of s
 **Key points to cover:**
 
 - Sunlight contains: visible light, infrared (warmth), and ultraviolet (UV).
-- UV is split into UVA (315–400 nm), UVB (280–315 nm), and UVC (blocked by atmosphere).
-- **UVB is the one that matters for vitamin D** — specifically wavelengths around 295–300 nm.
+- UV is split into UVA (315-400 nm), UVB (280-315 nm), and UVC (blocked by atmosphere).
+- **UVB is the one that matters for vitamin D** — specifically wavelengths around 295-300 nm.
 - Mechanism: UVB hits skin → converts 7-dehydrocholesterol (already in your skin cells) → previtamin D3 → vitamin D3. Simple system, you just need to be outside.
 - Show sunlight spectrum chart with UVA/UVB/visible/infrared ranges labelled.
-- Natural sunlight at Earth's surface: ~90–95% UVA, ~5–10% UVB. That small slice of UVB is all your body needs.
+- Natural sunlight at Earth's surface: ~90-95% UVA, ~5-10% UVB. That small slice of UVB is all your body needs.
 
 ### Part 4 — So why don't tanning beds give us vitamin D?
 
@@ -107,7 +107,7 @@ V: Spectrum chart — tanning bed, heavily skewed toward UVA.
 
 - Tanning beds are designed to maximise tanning — which is primarily a UVA effect.
 - Manufacturers crank up UVA and minimise UVB (to reduce visible sunburn).
-- Result: intense UV radiation (2–3x stronger than equatorial noon sun) but almost no UVB → barely any vitamin D production.
+- Result: intense UV radiation (2-3x stronger than equatorial noon sun) but almost no UVB → barely any vitamin D production.
 - Cancer risk is real: starting before age 30 increases melanoma risk by ~75%.
 - The irony: you get the cancer risk without the vitamin D benefit. Worst of both worlds.
 
@@ -136,7 +136,7 @@ V: Graphic — two separate pathways: UV → skin → vitamin D vs. Visible ligh
   1. Vitamin D production: through skin, requires UVB.
   2. Mood / energy / circadian rhythm: through eyes, requires only bright visible light — no UV needed.
 - Full-spectrum LEDs produce light across the entire visible range (deep reds through blues), mimicking sunlight's colour profile. No dangerous UV emitted.
-- Medical backing: bright light therapy at 10,000 lux is the **first-line treatment for SAD**. Helps 60–90% of patients. Some feel improvement within 2–4 days. One study found it more effective than the antidepressant Fluoxetine alone (44% vs. 20% symptom resolution).
+- Medical backing: bright light therapy at 10,000 lux is the **first-line treatment for SAD**. Helps 60-90% of patients. Some feel improvement within 2-4 days. One study found it more effective than the antidepressant Fluoxetine alone (44% vs. 20% symptom resolution).
 - **Be honest:** a full-spectrum desk lamp won't produce vitamin D (you still need sunlight or a supplement for that). But it gives your brain the bright, balanced light signal it's been starving for all winter.
 
 ### Part 7 — What about UVB lamps?
@@ -147,7 +147,7 @@ V: Photo/graphic of a medical UVB lamp (e.g. Sperti, SOLIUS). Brief aside, not a
 
 - Anticipate the viewer's question: "If UVB is what makes vitamin D, why not just use a UVB lamp?"
 - UVB lamps do exist and they genuinely work:
-  - **Narrowband UVB lamps** (310–311 nm) are medical-grade devices used clinically for psoriasis and vitamin D deficiency.
+  - **Narrowband UVB lamps** (310-311 nm) are medical-grade devices used clinically for psoriasis and vitamin D deficiency.
   - FDA-approved consumer devices exist (e.g. Sperti lamp): one study showed ~47.5% vitamin D increase with 5-min sessions, 3x/week for 4 weeks.
   - A 2025 trial (SOLIUS system) showed +10 ng/ml in serum vitamin D over 21 weeks, no serious side effects.
   - One study found narrowband UVB 3x/week was **more effective** at treating vitamin D deficiency than 1,600 IU of daily oral vitamin D3.
@@ -155,7 +155,7 @@ V: Photo/graphic of a medical UVB lamp (e.g. Sperti, SOLIUS). Brief aside, not a
   - Must maintain specific distance (~15 inches), start at ~3 min, cap at ~5 min.
   - ~50% of users in one study had minor side effects (redness, itchiness).
   - Overuse still carries skin cancer risk.
-  - They cost $400–500+.
+  - They cost $400-500+.
 - That's why this project focuses on the visible-light side: it's safe for DIY, no dosing protocol needed, and it addresses the mood/energy problem most people actually feel day-to-day.
 
 ### Part 8 — Safety notes for full-spectrum light
@@ -166,9 +166,9 @@ V: Brief, honest segment. Graphics with key points. Disclaimer on screen.
 
 - Full-spectrum light therapy is safe for most healthy people, but not completely risk-free. Be upfront about it.
 - **Blue light and eye health:**
-  - Full-spectrum / daylight-temperature lights (5000K+) contain significant blue light (400–490 nm).
+  - Full-spectrum / daylight-temperature lights (5000K+) contain significant blue light (400-490 nm).
   - Long-term intense exposure is a concern for retinal health, especially **over age 50** (age-related macular degeneration risk).
-  - Recommendation: for extended daily use, consider soft-white LEDs (3000–4000K) or making colour temperature adjustable on the lamp.
+  - Recommendation: for extended daily use, consider soft-white LEDs (3000-4000K) or making colour temperature adjustable on the lamp.
   - **Never stare directly at the light source.** Position it above or to the side so light enters eyes indirectly.
 - **Bipolar disorder:**
   - Bright light therapy can trigger **manic episodes** in people with bipolar disorder (diagnosed or undiagnosed).
@@ -199,7 +199,7 @@ A: "Since I recently got a big 3D printer and was refreshing my 3D modelling ski
 V: Transition: Close green screen, take of jacket and sweater
 A: "Enough joking around lets, dive into
 
-## Scene 6 — Design (4:30 – 5:30)
+## Scene 6 — Design (4:30 - 5:30)
 
 **Visual:** B-roll of me sketching.
 
@@ -210,7 +210,7 @@ A: "Enough joking around lets, dive into
 
 ---
 
-## Scene 7 — Parts List (5:30 – 6:30)
+## Scene 7 — Parts List (5:30 - 6:30)
 
 **Voiceover:**
 "Now that we know what it should look like, let's look at the parts we need to make it work."
@@ -224,7 +224,7 @@ A: "Enough joking around lets, dive into
 
 ---
 
-## Scene 8 — The Build (6:30 – 10:00)
+## Scene 8 — The Build (6:30 - 10:00)
 
 **Voiceover:**
 "Now that we've planned all the steps, let's get to making."

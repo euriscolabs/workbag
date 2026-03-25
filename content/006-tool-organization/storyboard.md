@@ -1,12 +1,12 @@
 # Storyboard — Tool Organization / Inlay System
 
-## Hook (0:00–0:30)
+## Hook (0:00-0:30)
 > Show the chaos, then the result.
 
 TODO
 
-## Personal context beat (0:30–1:30)
-> This replaces a standalone channel intro. Keep it to ~60–90 seconds.
+## Personal context beat (0:30-1:30)
+> This replaces a standalone channel intro. Keep it to ~60-90 seconds.
 > Don't announce plans — show the problem and let the viewer infer the mission.
 
 Something like:

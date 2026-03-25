@@ -1,4 +1,4 @@
-# Production Checklist — Lamp: Prototype → Product + Shop Launch
+# Production Checklist — Lamp: Prototype to Product + Shop Launch
 
 ## Pre-production
 - [ ] Finalize product design (post-finishing)

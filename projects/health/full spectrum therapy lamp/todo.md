@@ -1,2 +1,0 @@
-markenschutz
-zerfizierungen
