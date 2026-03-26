@@ -19,7 +19,17 @@ Eurisco Labs
 | wordmark.svg | Text-only brand mark |
 
 ## Color Palette
-<!-- TODO: Document finalized color palette -->
+
+| Name | Hex | Usage |
+|------|-----|-------|
+| Primary Blue | `#1a73e8` | Buttons, links, primary actions |
+| Dark Blue | `#0d47a1` | Headings, emphasis |
+| Deep Blue | `#06224c` | Dark backgrounds, dark UI |
+| Light Blue | `#4fc3f7` | Secondary elements, highlights |
+| Sky Blue | `#6da6f0` | Subtle accents, gradients |
+| Accent Amber | `#ffab40` | CTAs, warmth, the "eureka" moment |
+| White | `#ffffff` | Backgrounds |
+| Near Black | `#1a1a1a` | Body text |
 
 ## Typography
 - Primary: Space Grotesk

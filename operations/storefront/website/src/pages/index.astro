@@ -7,7 +7,10 @@ const tagline =
   "We design, build, and ship products at the intersection of software, hardware, and engineering — documented openly.";
 
 const allProjects = await getCollection("projects");
-const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+// Only show project roots (index.md with a category) on the home page, not subpages
+const projects = allProjects
+  .filter((p) => p.id.endsWith("/index.md") && !!p.data.category)
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
 const values = [
   {
@@ -56,8 +59,12 @@ const links = [
 ];
 
 function slugify(id: string): string {
-  const folder = id.split("/").at(-1) ?? id;
-  return folder.replace(/\s+/g, "-").toLowerCase();
+  return id
+    .replace(/^projects\//, "")
+    .replace(/\/index\.md$/, "")
+    .replace(/\.md$/, "")
+    .replace(/\s+/g, "-")
+    .toLowerCase();
 }
 ---
 
