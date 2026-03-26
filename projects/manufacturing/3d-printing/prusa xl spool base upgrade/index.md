@@ -25,6 +25,10 @@ Use the community Sicco Box design as a starting point for a drybox spool holder
 - Desiccant strategy — silica gel pouches or rechargeable dehumidifier?
 - PTFE tube routing from drybox to extruder
 
+## Science-Informed Notes
+
+- Most common 3D printing polymers (PETG, Nylon, PVA, TPU) are hygroscopic — they absorb moisture from ambient air through diffusion into the polymer matrix. This causes hydrolysis during extrusion: water molecules break ester/amide bonds at printing temperatures, leading to steam bubbles (stringing, popping), reduced layer adhesion, and degraded mechanical properties. A drybox isn't just convenience — it's measurable print quality. Could be worth demonstrating moisture absorption rates and tensile strength degradation with/without dry storage as a video segment.
+
 ## References
 
 - [Prusa XL Series Sicco Box on Printables](https://www.printables.com/model/939432-prusa-xl-series-sicco-box-the-prusa-xl-drybox)
