@@ -1,4 +1,4 @@
-# Venture
+# Operations
 
 > Personal research notes, not legal/tax advice. Validate with a Treuhänder.
 
@@ -14,15 +14,15 @@ Solve problems we all face in daily life. In the process, educate people about t
 
 Build things that are functional, durable, repairable, and honestly yours.
 
-## What It Looks Like
+## Structure
 
-| What | Purpose |
-|------|---------|
-| **GmbH** | Legal entity, liability separation, professional structure |
-| **YouTube** | Document builds, educate, build audience, drive traffic |
-| **Webshop** | Sell products (print-on-demand, no inventory risk) |
-| **Research** | Publish findings openly, build credibility, work towards PhD |
-| **Patreon** | Community support, stable recurring revenue |
+| Area | What | Link |
+|------|------|------|
+| **Company** | GmbH, legal, brand identity | [company/](company/) |
+| **Channels** | YouTube, Instagram, TikTok, GitHub, Patreon, Newsletter | [channels/](channels/) |
+| **Storefront** | Website, Shopify webshop | [storefront/](storefront/) |
+| **Infrastructure** | Domains, hosting, DNS, accounts | [infrastructure/](infrastructure/) |
+| **Marketing** | SEO, Ads, content calendar | [marketing/](marketing/) |
 
 These aren't separate businesses — they're one thing. A project starts as research, becomes a video, produces a product for the shop, and Patreon supporters get the extras.
 
@@ -103,44 +103,6 @@ One-time formation: ~1,500-4,000 CHF + 20,000 CHF capital.
 
 ---
 
-## YouTube
-
-Document the journey. Every project is a video: research, design, prototype, test, iterate.
-
-### Content approach
-
-My questions during research guide the flow of the video. There's a problem statement at the beginning, and the video is a visual representation of the thought process that leads to interactions with the material world through the product.
-
-### Keywords / Tone
-
-- agency, direct action
-- lets build our own
-- detour, wander off point, go off on tangents
-- directed action, undirected action
-- hands on labs
-
-### Revenue
-- Ad revenue + sponsorships (long-term, once audience grows)
-- Affiliate links (short-term)
-- Drives traffic to webshop, Patreon, and research
-
-### Assets
-- [Roadmap](videos/roadmap.md)
-- [Logos](logos/)
-
----
-
-## Webshop
-
-Sell products print-on-demand to minimize upfront cost and inventory risk. Products are physical goods (3D printed, assembled) and software.
-
-### Sales model
-- Own webshop (primary channel)
-- Print-on-demand / made-to-order
-- Kit sales: curated hard-to-source parts for people who want to build it themselves
-
----
-
 ## Research
 
 Use projects as genuine academic research. Publish findings openly. Work towards a PhD by portfolio.
@@ -184,19 +146,6 @@ Submit a collection of published works + ~15,000-word commentary. Takes ~1 year 
 - Skin conditioner from tree resin
 - Non-planar origami structures
 - Cardboard recycling into wood-like boards
-
----
-
-## Patreon
-
-Principle: **knowledge is open, polish is paid.** Anyone can reproduce the work from the open research. Patrons pay for the shortcut.
-
-| Tier | What's included |
-|---|---|
-| Free (public) | Research papers, raw data, blog posts, basic STLs |
-| Supporter | Print-ready files, assembly guides, BOM with supplier links, build walkthroughs, early access |
-| Pro | Parametric CAD (STEP/F3D), slicer profiles, direct Q&A |
-| Sponsor | Vote on next projects, name in credits/papers |
 
 ---
 
@@ -285,8 +234,8 @@ Grant sources: Mozilla, Shuttleworth Foundation, NLnet, EU Horizon.
 ### Workspace
 Home-based. Needs: dedicated printing area (ventilation), workbench, storage, filming area.
 
-### Logo concepts
-- [Logos](logos/)
+### Brand Identity
+- [Brand Identity & Logos](company/identity/)
 
 ---
 
