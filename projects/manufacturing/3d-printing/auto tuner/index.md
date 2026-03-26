@@ -4,7 +4,7 @@ description: "An automatic calibration and fine-tuning system for 3D printers us
 status: "Design"
 category: "Manufacturing"
 tags: ["3D Printing", "Automation", "Hardware", "Electronics"]
-published: false
+published: true
 ---
 
 ## Overview
