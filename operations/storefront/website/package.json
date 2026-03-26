@@ -6,7 +6,7 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "copy-logos": "cp ../logos/optimized/*.svg public/",
+    "copy-logos": "cp ../../company/identity/logos/optimized/*.svg public/",
     "dev": "npm run copy-logos && astro dev",
     "build": "npm run copy-logos && astro build",
     "preview": "astro preview",
