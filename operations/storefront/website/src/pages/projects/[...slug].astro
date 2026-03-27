@@ -2,51 +2,30 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, render } from "astro:content";
 
-/**
- * Generates full-path slugs from the file's id.
- *
- * Examples:
- *   "projects/health/full spectrum therapy lamp/index.md"
- *     → slug: "health/full-spectrum-therapy-lamp"
- *
- *   "projects/manufacturing/3d-printing/auto tuner/anomalies/warping.md"
- *     → slug: "manufacturing/3d-printing/auto-tuner/anomalies/warping"
- *
- *   "projects/manufacturing/3d-printing/auto tuner/index.md"
- *     → slug: "manufacturing/3d-printing/auto-tuner"
- */
-function idToSlug(id: string): string {
-  return id
-    .replace(/^projects\//, "")   // strip "projects/" prefix
-    .replace(/\/index\.md$/, "")  // strip trailing /index.md
-    .replace(/\.md$/, "")         // strip .md extension
-    .replace(/\s+/g, "-")         // spaces to hyphens
-    .toLowerCase();
-}
-
-/**
- * Determines if this entry is a project root (index.md with category)
- * vs. a subpage (anomaly, research note, etc.)
- */
-function isProjectRoot(entry: any): boolean {
-  return entry.id.endsWith("/index.md") && !!entry.data.category;
-}
-
-/**
- * Finds the parent project for a subpage by walking up the path.
- */
-function findParent(entry: any, allEntries: any[]): any | null {
-  const parts = entry.id.split("/");
-  // Walk up directories looking for an index.md
-  for (let i = parts.length - 2; i >= 1; i--) {
-    const parentId = parts.slice(0, i + 1).join("/") + "/index.md";
-    const parent = allEntries.find((e) => e.id === parentId);
-    if (parent) return parent;
-  }
-  return null;
-}
-
 export async function getStaticPaths() {
+  function idToSlug(id: string): string {
+    return id
+      .replace(/^projects\//, "")
+      .replace(/\/index\.md$/, "")
+      .replace(/\.md$/, "")
+      .replace(/\s+/g, "-")
+      .toLowerCase();
+  }
+
+  function isProjectRoot(entry: any): boolean {
+    return entry.id.endsWith("/index.md") && !!entry.data.category;
+  }
+
+  function findParent(entry: any, allEntries: any[]): any | null {
+    const parts = entry.id.split("/");
+    for (let i = parts.length - 2; i >= 1; i--) {
+      const parentId = parts.slice(0, i + 1).join("/") + "/index.md";
+      const parent = allEntries.find((e: any) => e.id === parentId);
+      if (parent) return parent;
+    }
+    return null;
+  }
+
   const allProjects = await getCollection("projects");
 
   return allProjects.map((project) => {
