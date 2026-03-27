@@ -7,9 +7,10 @@ const tagline =
   "We design, build, and ship products at the intersection of software, hardware, and engineering — documented openly.";
 
 const allProjects = await getCollection("projects");
+
 // Only show project roots (index.md with a category) on the home page, not subpages
 const projects = allProjects
-  .filter((p) => p.id.endsWith("/index.md") && !!p.data.category)
+  .filter((p) => p.filePath?.endsWith("index.md") && !!p.data.category)
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
 const values = [
@@ -30,38 +31,10 @@ const values = [
   },
 ];
 
-const links = [
-  {
-    href: "mailto:hello@euriscolabs.com",
-    label: "Email",
-    value: "hello@euriscolabs.com",
-  },
-  {
-    href: "https://www.youtube.com/@EuriscoLabs",
-    label: "YouTube",
-    value: "@EuriscoLabs",
-  },
-  {
-    href: "https://github.com/euriscolabs",
-    label: "GitHub",
-    value: "euriscolabs",
-  },
-  {
-    href: "https://www.instagram.com/euriscolabs/",
-    label: "Instagram",
-    value: "@euriscolabs",
-  },
-  {
-    href: "https://www.tiktok.com/@euriscolabs",
-    label: "TikTok",
-    value: "@euriscolabs",
-  },
-];
-
 function slugify(id: string): string {
   return id
     .replace(/^projects\//, "")
-    .replace(/\/index\.md$/, "")
+    .replace(/\/index(\.md)?$/, "")
     .replace(/\.md$/, "")
     .replace(/\s+/g, "-")
     .toLowerCase();
@@ -70,68 +43,67 @@ function slugify(id: string): string {
 
 <BaseLayout title={title} description={tagline}>
   <!-- Hero -->
-  <header class="max-w-4xl mx-auto px-6 flex flex-col items-center pt-20 pb-16 sm:pt-28 sm:pb-20 text-center">
-    <img src="/wordmark.svg" alt="Eurisco Labs" class="w-80 sm:w-96 max-w-full h-auto" />
+  <header
+    class="max-w-4xl mx-auto px-6 flex flex-col items-center pt-20 pb-16 sm:pt-28 sm:pb-20 text-center"
+  >
+    <img
+      src="/wordmark.svg"
+      alt="Eurisco Labs"
+      class="w-80 sm:w-96 max-w-full h-auto"
+    />
     <p class="mt-8 text-lg sm:text-xl text-muted max-w-2xl leading-relaxed">
       {tagline}
     </p>
   </header>
-
   <main class="max-w-4xl mx-auto px-6">
     <!-- About -->
     <section class="py-12 sm:py-16 border-t border-gray-200">
-      <h2 class="text-sm font-medium text-muted uppercase tracking-wider mb-8">What we believe</h2>
+      <h2 class="text-sm font-medium text-muted uppercase tracking-wider mb-8">
+        What we believe
+      </h2>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12">
-        {values.map((v) => (
-          <div>
-            <h3 class="text-base font-semibold text-navy mb-2">{v.title}</h3>
-            <p class="text-sm text-muted leading-relaxed">{v.description}</p>
-          </div>
-        ))}
+        {
+          values.map((v) => (
+            <div>
+              <h3 class="text-base font-semibold text-navy mb-2">{v.title}</h3>
+              <p class="text-sm text-muted leading-relaxed">{v.description}</p>
+            </div>
+          ))
+        }
       </div>
     </section>
 
     <!-- Projects -->
     <section class="py-12 sm:py-16 border-t border-gray-200">
-      <h2 class="text-sm font-medium text-muted uppercase tracking-wider mb-8">Projects</h2>
+      <h2 class="text-sm font-medium text-muted uppercase tracking-wider mb-8">
+        Projects
+      </h2>
       <div class="flex flex-col gap-6">
-        {projects.map((p) => (
-          <a href={`/projects/${slugify(p.id)}`} class="block border border-gray-200 rounded-lg p-6 sm:p-8 no-underline transition-colors hover:border-blue">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
-              <h3 class="text-lg font-semibold text-navy">{p.data.title}</h3>
-              <span class="text-xs font-medium text-blue bg-blue/10 px-3 py-1 rounded-full w-fit">
-                {p.data.status}
-              </span>
-            </div>
-            <p class="text-sm text-muted leading-relaxed mb-4">{p.data.description}</p>
-            <div class="flex flex-wrap gap-2">
-              {p.data.tags.map((tag: string) => (
-                <span class="text-xs text-muted border border-gray-200 px-2 py-0.5 rounded">
-                  {tag}
+        {
+          projects.map((p) => (
+            <a
+              href={`/projects/${slugify(p.id)}`}
+              class="block border border-gray-200 rounded-lg p-6 sm:p-8 no-underline transition-colors hover:border-blue"
+            >
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+                <h3 class="text-lg font-semibold text-navy">{p.data.title}</h3>
+                <span class="text-xs font-medium text-blue bg-blue/10 px-3 py-1 rounded-full w-fit">
+                  {p.data.status}
                 </span>
-              ))}
-            </div>
-          </a>
-        ))}
-      </div>
-    </section>
-
-    <!-- Connect -->
-    <section class="py-12 sm:py-16 border-t border-gray-200">
-      <h2 class="text-sm font-medium text-muted uppercase tracking-wider mb-2">Get in touch</h2>
-      <p class="text-muted mb-8">We're just getting started. Follow along or say hello.</p>
-      <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 flex-wrap">
-        {links.map((l) => (
-          <a
-            href={l.href}
-            class="flex flex-col px-6 py-5 border border-gray-200 rounded-lg no-underline transition-colors hover:border-blue flex-1 min-w-[140px]"
-          >
-            <span class="text-xs font-medium text-muted uppercase tracking-wider mb-1">
-              {l.label}
-            </span>
-            <span class="text-sm font-medium text-blue">{l.value}</span>
-          </a>
-        ))}
+              </div>
+              <p class="text-sm text-muted leading-relaxed mb-4">
+                {p.data.description}
+              </p>
+              <div class="flex flex-wrap gap-2">
+                {p.data.tags.map((tag: string) => (
+                  <span class="text-xs text-muted border border-gray-200 px-2 py-0.5 rounded">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </a>
+          ))
+        }
       </div>
     </section>
   </main>
