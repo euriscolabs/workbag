@@ -57,22 +57,23 @@ export async function getStaticPaths() {
       params: { slug },
       props: {
         project,
-        parent,
+        parentTitle: parent?.data.title ?? null,
+        parentSlug: parent ? idToSlug(parent.id) : null,
         isRoot: isProjectRoot(project),
       },
     };
   });
 }
 
-const { project, parent, isRoot } = Astro.props;
+const { project, parentTitle, parentSlug, isRoot } = Astro.props;
 const { Content } = await render(project);
 
 // Breadcrumb: Home > [parent project] > current page
 const breadcrumbs = [{ label: "Home", href: "/" }];
-if (parent) {
+if (parentTitle && parentSlug) {
   breadcrumbs.push({
-    label: parent.data.title,
-    href: `/projects/${idToSlug(parent.id)}`,
+    label: parentTitle,
+    href: `/projects/${parentSlug}`,
   });
 }
 breadcrumbs.push({ label: project.data.title, href: "" });
