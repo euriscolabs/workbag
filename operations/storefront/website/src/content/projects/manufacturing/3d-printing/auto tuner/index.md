@@ -17,35 +17,36 @@ An automatic calibration and fine-tuning system for 3D printers that uses sensor
 
 ## Approach
 
-### Calibration Categories
+### What It Automates
 
-#### Printer-Specific (once / hardware changes / maintenance)
+The auto-tuner targets all [calibration variables](../calibration/e-steps.md) documented in the [3D Printing](../index.md) knowledge base — both [printer-specific](../index.md#printer-specific-once--hardware-changes) and [filament-specific](../index.md#filament-specific-per-spool) parameters.
 
-1. **E-Steps** — Roller encoder on filament path (most promising: cheap, accurate, inline permanent monitoring)
-2. **Axis Steps/mm** — Dial indicator or laser displacement sensor (low priority, rarely drifts)
-3. **PID Tuning** — Already automatable via `M303` G-code
-4. **Bed Mesh / ABL** — Already automatable via `G29`
-5. **Probe Z-Offset** — Electrical contact sensing, strain gauge, or piezo sensor
-6. **Input Shaper** — Already automatable via Klipper + ADXL345
-7. **Belt Tension** — Frequency analysis (microphone or accelerometer)
-8. **Backlash** — Dial indicator + direction reversal measurement
-9. **Skew Compensation** — Probe grid at known coordinates
-10. **Max Acceleration/Velocity** — Accelerometer or sensorless homing stall detection
+#### Automation Approach per Variable
 
-#### Filament-Specific (per spool)
-
-1. **Extrusion Temperature** — Camera + CV on temperature tower
-2. **Flow Rate** — Inline filament diameter sensor or weigh-based
-3. **Retraction** — Camera + CV on stringing test, or backlight shadow analysis
-4. **Pressure Advance** — Camera + line width analysis on PA pattern
-5. **Max Volumetric Flow** — Roller encoder monitoring actual vs. commanded rate
-6. **Bed Temperature** — Strain gauge for adhesion force or camera for warp detection
-7. **Cooling/Fan Speed** — Camera + overhang droop analysis
-8. **Speed Profile** — Per-move-type optimal speeds (perimeter, infill, bridge, overhang, top surface, first layer) via systematic test prints + camera/sensor evaluation
+| Variable | Sensor / Method |
+|---|---|
+| [E-Steps](../calibration/e-steps.md) | Roller encoder on filament path |
+| [Axis Steps/mm](../calibration/axis-steps.md) | Dial indicator or laser displacement sensor |
+| [PID Tuning](../calibration/pid-tuning.md) | Already automatable via `M303` G-code |
+| [Bed Mesh / ABL](../calibration/bed-mesh.md) | Already automatable via `G29` |
+| [Probe Z-Offset](../calibration/z-offset.md) | Electrical contact sensing, strain gauge, or piezo |
+| [Input Shaper](../calibration/input-shaper.md) | Already automatable via Klipper + ADXL345 |
+| [Belt Tension](../calibration/belt-tension.md) | Frequency analysis (microphone or accelerometer) |
+| [Backlash](../calibration/backlash.md) | Dial indicator + direction reversal measurement |
+| [Skew Compensation](../calibration/skew-compensation.md) | Probe grid at known coordinates |
+| [Max Accel/Velocity](../calibration/max-acceleration.md) | Accelerometer or sensorless homing stall detection |
+| [Extrusion Temperature](../calibration/extrusion-temperature.md) | Camera + CV on temperature tower |
+| [Flow Rate](../calibration/flow-rate.md) | Inline filament diameter sensor or weigh-based |
+| [Retraction](../calibration/retraction.md) | Camera + CV on stringing test |
+| [Pressure Advance](../calibration/pressure-advance.md) | Camera + line width analysis on PA pattern |
+| [Max Volumetric Flow](../calibration/max-volumetric-flow.md) | Roller encoder monitoring actual vs. commanded |
+| [Bed Temperature](../calibration/bed-temperature.md) | Strain gauge for adhesion or camera for warp detection |
+| [Cooling/Fan Speed](../calibration/cooling.md) | Camera + overhang droop analysis |
+| [Speed Profile](../calibration/speed-profile.md) | Systematic test prints + camera/sensor evaluation |
 
 #### Live Tuning (during print)
 
-1. **Adaptive Speed** — Real-time speed adjustment per move type based on sensor feedback (overhang droop → slow down, flow limit hit → reduce speed, cooling insufficient → pause/slow)
+1. **Adaptive Speed** — Real-time speed adjustment per move type based on sensor feedback
 2. **Temperature Compensation** — Real-time adjustments based on sensor feedback
 3. **Flow Compensation** — Adaptive extrusion rate based on roller encoder feedback
 4. **Anomaly Detection** — Detect failures, stringing, warping, layer shifts; pause or adjust
@@ -102,39 +103,7 @@ Package as a kit to sell: BOM, assembly guide, software install, documentation. 
 
 ## Anomalies
 
-Common 3D printing defects — what they are, how they form, and which calibration variables cause them. Each anomaly has its own page with a Remotion animation.
-
-### Extrusion Anomalies
-- [Under-extrusion](./anomalies/under-extrusion.md)
-- [Over-extrusion](./anomalies/over-extrusion.md)
-- [Stringing / Oozing](./anomalies/stringing.md)
-- [Blobs / Zits](./anomalies/blobs.md)
-- [Grinding / Stripping](./anomalies/grinding.md)
-
-### Adhesion Anomalies
-- [Warping](./anomalies/warping.md)
-- [Elephant Foot](./anomalies/elephant-foot.md)
-- [First Layer Adhesion Failure](./anomalies/adhesion-failure.md)
-
-### Motion Anomalies
-- [Ghosting / Ringing](./anomalies/ghosting.md)
-- [Layer Shift](./anomalies/layer-shift.md)
-- [Z-Banding / Z-Wobble](./anomalies/z-banding.md)
-- [Backlash Artifacts](./anomalies/backlash-artifacts.md)
-
-### Surface Anomalies
-- [Layer Separation / Delamination](./anomalies/delamination.md)
-- [Pillowing](./anomalies/pillowing.md)
-- [Scarring / Nozzle Marks](./anomalies/scarring.md)
-- [Rough Overhangs](./anomalies/rough-overhangs.md)
-- [Bridge Sag](./anomalies/bridge-sag.md)
-
-### Structural Anomalies
-- [Spaghetti](./anomalies/spaghetti.md)
-- [Heat Creep](./anomalies/heat-creep.md)
-- [Clogging / Partial Clog](./anomalies/clogging.md)
-- [Wet Filament Artifacts](./anomalies/wet-filament.md)
-- [Thermal Shock Cracking](./anomalies/thermal-cracking.md)
+See the full [anomalies reference](../anomalies/under-extrusion.md) in the [3D Printing](../index.md#anomalies) knowledge base. The auto-tuner's anomaly detection system targets these defects during live tuning.
 
 ## Open Questions
 
