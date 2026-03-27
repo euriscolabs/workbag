@@ -16,8 +16,8 @@ import { glob } from "astro/loaders";
  */
 const projects = defineCollection({
   loader: glob({
-    pattern: "projects/**/*.md",
-    base: "../../",
+    pattern: ["projects/**/*.md", "!projects/**/animations/**", "!projects/**/node_modules/**"],
+    base: "../../../",
   }),
   schema: z.object({
     title: z.string(),
