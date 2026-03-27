@@ -3,12 +3,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-  // Astro's glob loader strips .md and may strip /index from IDs
   function idToSlug(id: string): string {
     return id
-      .replace(/^projects\//, "")
-      .replace(/\/index(\.md)?$/, "")
-      .replace(/\.md$/, "")
+      .replace(/\/index$/, "")
       .replace(/\s+/g, "-")
       .toLowerCase();
   }
@@ -18,13 +15,12 @@ export async function getStaticPaths() {
   }
 
   function findParent(entry: any, allEntries: any[]): any | null {
-    // Walk up the ID path looking for a project root
-    const parts = entry.id.replace(/\.md$/, "").split("/");
+    const parts = entry.id.split("/");
     for (let i = parts.length - 2; i >= 1; i--) {
       const prefix = parts.slice(0, i + 1).join("/");
       const parent = allEntries.find((e: any) =>
         e.filePath?.endsWith("index.md") &&
-        (e.id === prefix || e.id === prefix + "/index" || e.id === prefix + "/index.md") &&
+        (e.id === prefix || e.id === prefix + "/index") &&
         !!e.data.category
       );
       if (parent) return parent;

@@ -33,9 +33,7 @@ const values = [
 
 function slugify(id: string): string {
   return id
-    .replace(/^projects\//, "")
-    .replace(/\/index(\.md)?$/, "")
-    .replace(/\.md$/, "")
+    .replace(/\/index$/, "")
     .replace(/\s+/g, "-")
     .toLowerCase();
 }

@@ -6,15 +6,15 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "copy-logos": "cp ../../company/identity/logos/optimized/*.svg public/",
     "dev": "npm run astro dev",
-    "build": "npm run copy-logos && astro build",
+    "build": "npm run astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.0.8",
+    "astro-rehype-relative-markdown-links": "^0.19.0",
     "tailwindcss": "^4.2.2"
   }
 }
