@@ -22,6 +22,8 @@ Research and documentation for 3D printing — from understanding print defects 
 ## Projects
 
 - [3D Printer Auto-Tuner](./auto%20tuner/index.md) — Automatic calibration system using sensors, CV, and G-code automation
+- [Filament Spool Holder](./filament%20spool%20holder/index.md) — All-in-one drybox, inline cleaner, and jam-safety cutter
+- [Filament Recycler](./filament%20recycler/index.md) — Recycle failed prints into usable filament with closed-loop quality control
 
 ## Calibration Variables
 
