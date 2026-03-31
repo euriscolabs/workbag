@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Bed Mesh / ABL"
 category: "Printer-Specific"
 priority: "High"

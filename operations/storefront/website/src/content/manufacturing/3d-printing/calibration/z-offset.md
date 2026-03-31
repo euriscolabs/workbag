@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Probe Z-Offset"
 category: "Printer-Specific"
 priority: "High"

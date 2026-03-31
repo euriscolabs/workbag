@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Spaghetti"
 category: "Structural"
 severity: "Critical"

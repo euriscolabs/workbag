@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Backlash Compensation"
 category: "Printer-Specific"
 priority: "Low"

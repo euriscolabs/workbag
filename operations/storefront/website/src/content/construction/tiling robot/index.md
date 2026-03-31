@@ -1,4 +1,5 @@
 ---
+type: "project"
 title: "Tiling Robot"
 description: "Autonomous floor-tiling robot that maps rooms and lays tiles like a vacuum robot navigates floors."
 status: "Idea"

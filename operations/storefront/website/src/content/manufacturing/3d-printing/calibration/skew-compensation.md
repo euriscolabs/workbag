@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Skew Compensation"
 category: "Printer-Specific"
 priority: "Low"

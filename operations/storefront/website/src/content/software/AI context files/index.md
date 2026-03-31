@@ -1,4 +1,5 @@
 ---
+type: "project"
 title: "AI Context Files"
 description: "Framework for externalizing LLM agent knowledge into persistent, reusable context files that outlive conversations."
 status: "In Progress"

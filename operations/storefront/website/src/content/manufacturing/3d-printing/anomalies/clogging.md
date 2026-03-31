@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Clogging / Partial Clog"
 category: "Structural"
 severity: "Critical"

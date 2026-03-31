@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Ghosting / Ringing"
 category: "Motion"
 severity: "Medium"

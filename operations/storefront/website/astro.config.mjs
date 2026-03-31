@@ -7,7 +7,7 @@ import rehypeAstroRelativeMarkdownLinks from 'astro-rehype-relative-markdown-lin
 export default defineConfig({
   site: 'https://euriscolabs.com',
   markdown: {
-    rehypePlugins: [rehypeAstroRelativeMarkdownLinks],
+    rehypePlugins: [[rehypeAstroRelativeMarkdownLinks, { collectionBase: false }]],
   },
   vite: {
     plugins: [tailwindcss()]

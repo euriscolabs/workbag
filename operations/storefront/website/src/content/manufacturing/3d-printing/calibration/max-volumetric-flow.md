@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Max Volumetric Flow"
 category: "Filament-Specific"
 priority: "High"

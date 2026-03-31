@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Axis Steps/mm"
 category: "Printer-Specific"
 priority: "Low"

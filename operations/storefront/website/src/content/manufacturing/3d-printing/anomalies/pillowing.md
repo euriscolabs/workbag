@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Pillowing"
 category: "Surface"
 severity: "Low"

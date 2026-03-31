@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Warping"
 category: "Adhesion"
 severity: "High"

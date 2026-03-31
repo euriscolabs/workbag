@@ -1,4 +1,5 @@
 ---
+type: "project"
 title: "Automated Terraforming"
 description: "System to automatically terraform land into livable structures using environmental data and computational design."
 status: "Idea"

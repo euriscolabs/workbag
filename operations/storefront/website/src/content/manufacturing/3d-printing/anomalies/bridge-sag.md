@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Bridge Sag"
 category: "Surface"
 severity: "Medium"

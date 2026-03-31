@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Max Acceleration / Velocity"
 category: "Printer-Specific"
 priority: "Medium"

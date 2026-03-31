@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Heat Creep"
 category: "Structural"
 severity: "High"

@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "E-Steps"
 category: "Printer-Specific"
 priority: "Critical"

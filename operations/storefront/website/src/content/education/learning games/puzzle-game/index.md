@@ -1,4 +1,5 @@
 ---
+type: "project"
 title: "Exit-Style Puzzle Game"
 description: "Cross-platform escape room puzzle game inspired by the Exit tabletop series, built in Unity."
 status: "Planning"

@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Thermal Shock Cracking"
 category: "Structural"
 severity: "High"

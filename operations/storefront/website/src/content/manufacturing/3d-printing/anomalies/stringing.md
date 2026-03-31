@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Stringing / Oozing"
 category: "Extrusion"
 severity: "Medium"

@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Belt Tension"
 category: "Printer-Specific"
 priority: "Medium"

@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Layer Shift"
 category: "Motion"
 severity: "Critical"

@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "PID Tuning"
 category: "Printer-Specific"
 priority: "Medium"

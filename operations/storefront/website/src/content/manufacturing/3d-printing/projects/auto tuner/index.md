@@ -1,4 +1,5 @@
 ---
+type: "project"
 title: "3D Printer Auto-Tuner"
 description: "An automatic calibration and fine-tuning system for 3D printers using sensors, computer vision, and G-code automation."
 status: "Design"

@@ -1,4 +1,5 @@
 ---
+type: "project"
 title: "Decentralized Payment & Logistics"
 description: "Open-source decentralized payment system with digital identity, zero-trust architecture, and fair supply chain economics."
 status: "Idea"

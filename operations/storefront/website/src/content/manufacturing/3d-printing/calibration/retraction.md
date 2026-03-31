@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Retraction"
 category: "Filament-Specific"
 priority: "High"

@@ -29,11 +29,11 @@ workbag/
 Located at `operations/storefront/website/`.
 
 - **Content collections**: Category folders live directly in `src/content/` (e.g., `src/content/manufacturing/`, `src/content/software/`)
-- **Routing**: `src/pages/projects/[...slug].astro` renders all project pages
-- **Links**: `astro-rehype-relative-markdown-links` plugin handles relative `.md` link transformation
+- **Content types**: Frontmatter `type` field determines rendering: `"hub"` (category pages), `"project"` (projects with status/tags), `"article"` (knowledge base with severity/priority), or omitted (default minimal)
+- **Routing**: `src/pages/[...slug].astro` renders all content pages at root URLs (no `/projects/` prefix)
+- **Links**: `astro-rehype-relative-markdown-links` plugin with `collectionBase: false` handles relative `.md` link transformation
 - **Slug generation**: `idToSlug()` strips `/index`, replaces spaces with hyphens, lowercases
-- **Home page**: `src/pages/index.astro` shows category cards grouped by `category` frontmatter field
-- **Stack**: Astro + Tailwind CSS v4, static output, deployed to euriscolabs.com
+- **Home page**: `src/pages/index.astro` shows category cards grouped by `category` field, filtered by `type: "project"` or `type: "hub"`- **Stack**: Astro + Tailwind CSS v4, static output, deployed to euriscolabs.com
 
 ## Content / Video Pipeline
 

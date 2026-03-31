@@ -1,0 +1,169 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  function idToSlug(id: string): string {
+    return id
+      .replace(/\/index$/, "")
+      .replace(/\s+/g, "-")
+      .toLowerCase();
+  }
+
+  function findParent(entry: any, allEntries: any[]): any | null {
+    const parts = entry.id.split("/");
+    for (let i = parts.length - 2; i >= 1; i--) {
+      const prefix = parts.slice(0, i + 1).join("/");
+      const parent = allEntries.find((e: any) =>
+        e.filePath?.endsWith("index.md") &&
+        (e.id === prefix || e.id === prefix + "/index") &&
+        (e.data.type === "hub" || e.data.type === "project")
+      );
+      if (parent) return parent;
+    }
+    return null;
+  }
+
+  const allEntries = await getCollection("projects");
+
+  return allEntries.map((entry) => {
+    const slug = idToSlug(entry.id);
+    const type = entry.data.type ?? null;
+    const isTopLevel = type === "hub" || type === "project";
+    const parent = isTopLevel ? null : findParent(entry, allEntries);
+
+    return {
+      params: { slug },
+      props: {
+        entry,
+        type,
+        parentTitle: parent?.data.title ?? null,
+        parentSlug: parent ? idToSlug(parent.id) : null,
+      },
+    };
+  });
+}
+
+const { entry, type, parentTitle, parentSlug } = Astro.props;
+const { Content } = await render(entry);
+
+const breadcrumbs = [{ label: "Home", href: "/" }];
+if (parentTitle && parentSlug) {
+  breadcrumbs.push({ label: parentTitle, href: `/${parentSlug}` });
+}
+breadcrumbs.push({ label: entry.data.title, href: "" });
+
+function badgeColor(level: string): string {
+  switch (level) {
+    case "Critical": return "text-red-700 bg-red-100";
+    case "High": return "text-orange-700 bg-orange-100";
+    case "Medium": return "text-yellow-700 bg-yellow-100";
+    default: return "text-gray-700 bg-gray-100";
+  }
+}
+---
+
+<BaseLayout title={`${entry.data.title} — Eurisco Labs`} description={entry.data.description}>
+  <main class="max-w-3xl mx-auto px-6 py-16 sm:py-24">
+    {/* Breadcrumb navigation */}
+    <nav class="text-sm text-muted mb-8 flex items-center gap-1.5 flex-wrap">
+      {breadcrumbs.map((crumb, i) => (
+        <>
+          {i > 0 && <span class="text-gray-300">/</span>}
+          {crumb.href ? (
+            <a href={crumb.href} class="hover:text-blue transition-colors no-underline">
+              {crumb.label}
+            </a>
+          ) : (
+            <span class="text-navy font-medium">{crumb.label}</span>
+          )}
+        </>
+      ))}
+    </nav>
+
+    {/* Hub rendering — clean, no badges */}
+    {type === "hub" && (
+      <>
+        <h1 class="text-2xl sm:text-3xl font-bold text-navy mb-4">{entry.data.title}</h1>
+        <p class="text-muted leading-relaxed mb-6">{entry.data.description}</p>
+      </>
+    )}
+
+    {/* Project rendering — status badge + tags */}
+    {type === "project" && (
+      <>
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+          <h1 class="text-2xl sm:text-3xl font-bold text-navy">{entry.data.title}</h1>
+          {entry.data.status && (
+            <span class="text-xs font-medium text-blue bg-blue/10 px-3 py-1 rounded-full w-fit">
+              {entry.data.status}
+            </span>
+          )}
+        </div>
+        <p class="text-muted leading-relaxed mb-6">{entry.data.description}</p>
+        {entry.data.tags?.length > 0 && (
+          <div class="flex flex-wrap gap-2 mb-8">
+            {entry.data.category && (
+              <span class="text-xs font-medium text-navy bg-navy/10 px-2 py-0.5 rounded">
+                {entry.data.category}
+              </span>
+            )}
+            {entry.data.tags.map((tag: string) => (
+              <span class="text-xs text-muted border border-gray-200 px-2 py-0.5 rounded">{tag}</span>
+            ))}
+          </div>
+        )}
+      </>
+    )}
+
+    {/* Article rendering — severity/priority badge */}
+    {type === "article" && (
+      <>
+        <h1 class="text-2xl sm:text-3xl font-bold text-navy mb-4">{entry.data.title}</h1>
+        <p class="text-muted leading-relaxed mb-4">{entry.data.description}</p>
+        <div class="flex flex-wrap gap-2 mb-8">
+          {entry.data.severity && (
+            <span class={`text-xs font-medium px-2 py-0.5 rounded ${badgeColor(entry.data.severity)}`}>
+              {entry.data.severity} severity
+            </span>
+          )}
+          {entry.data.priority && (
+            <span class={`text-xs font-medium px-2 py-0.5 rounded ${badgeColor(entry.data.priority)}`}>
+              {entry.data.priority} priority
+            </span>
+          )}
+          {entry.data.category && (
+            <span class="text-xs text-muted border border-gray-200 px-2 py-0.5 rounded">
+              {entry.data.category}
+            </span>
+          )}
+        </div>
+      </>
+    )}
+
+    {/* Default rendering — minimal */}
+    {!type && (
+      <>
+        <h1 class="text-2xl sm:text-3xl font-bold text-navy mb-4">{entry.data.title}</h1>
+        {entry.data.description && (
+          <p class="text-muted leading-relaxed mb-6">{entry.data.description}</p>
+        )}
+      </>
+    )}
+
+    <div class="border-t border-gray-200 pt-8 prose prose-slate max-w-none
+      [&_h1]:text-xl [&_h1]:font-semibold [&_h1]:text-navy [&_h1]:mt-8 [&_h1]:mb-4
+      [&_h2]:text-lg [&_h2]:font-semibold [&_h2]:text-navy [&_h2]:mt-6 [&_h2]:mb-3
+      [&_h3]:text-base [&_h3]:font-semibold [&_h3]:text-navy [&_h3]:mt-4 [&_h3]:mb-2
+      [&_p]:text-sm [&_p]:text-muted [&_p]:leading-relaxed [&_p]:mb-4
+      [&_ul]:text-sm [&_ul]:text-muted [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-5
+      [&_li]:mb-1
+      [&_a]:text-blue [&_a]:underline
+      [&_code]:text-sm [&_code]:bg-gray-100 [&_code]:px-1 [&_code]:rounded
+      [&_table]:text-sm [&_table]:w-full [&_table]:mb-4
+      [&_th]:text-left [&_th]:text-navy [&_th]:font-medium [&_th]:pb-2 [&_th]:border-b [&_th]:border-gray-200
+      [&_td]:py-1.5 [&_td]:text-muted [&_td]:border-b [&_td]:border-gray-100">
+      <Content />
+    </div>
+  </main>
+</BaseLayout>

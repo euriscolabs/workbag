@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Wet Filament Artifacts"
 category: "Structural"
 severity: "Medium"

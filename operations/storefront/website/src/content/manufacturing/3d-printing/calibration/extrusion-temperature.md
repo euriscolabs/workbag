@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Extrusion Temperature"
 category: "Filament-Specific"
 priority: "Critical"

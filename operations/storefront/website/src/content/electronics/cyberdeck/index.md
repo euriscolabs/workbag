@@ -1,4 +1,5 @@
 ---
+type: "project"
 title: "Cyberdeck"
 description: "A modular DIY laptop with detachable keyboard, mousepad, tri-screen setup, and kickstand."
 status: "Design"

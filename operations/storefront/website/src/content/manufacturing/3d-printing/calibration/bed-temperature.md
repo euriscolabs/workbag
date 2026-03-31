@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Bed Temperature"
 category: "Filament-Specific"
 priority: "Medium"

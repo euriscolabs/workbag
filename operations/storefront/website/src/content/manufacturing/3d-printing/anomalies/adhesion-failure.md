@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "First Layer Adhesion Failure"
 category: "Adhesion"
 severity: "Critical"

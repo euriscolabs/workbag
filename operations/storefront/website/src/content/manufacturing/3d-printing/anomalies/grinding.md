@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Grinding / Stripping"
 category: "Extrusion"
 severity: "Critical"

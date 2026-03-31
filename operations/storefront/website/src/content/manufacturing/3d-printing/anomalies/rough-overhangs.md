@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Rough Overhangs"
 category: "Surface"
 severity: "Medium"

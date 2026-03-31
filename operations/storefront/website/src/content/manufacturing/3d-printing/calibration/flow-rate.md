@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Flow Rate"
 category: "Filament-Specific"
 priority: "Critical"

@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Scarring / Nozzle Marks"
 category: "Surface"
 severity: "Low"

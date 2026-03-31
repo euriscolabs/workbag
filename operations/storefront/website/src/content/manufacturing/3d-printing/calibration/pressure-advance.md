@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Pressure Advance"
 category: "Filament-Specific"
 priority: "High"

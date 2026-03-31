@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Layer Separation / Delamination"
 category: "Surface"
 severity: "High"

@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Backlash Artifacts"
 category: "Motion"
 severity: "Low"

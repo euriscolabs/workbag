@@ -1,4 +1,5 @@
 ---
+type: "project"
 title: "Dual-Phase 3D Printing"
 description: "Advanced printing method using laser reheating to remelt layers, increasing mechanical strength and inter-layer bonding."
 status: "Idea"

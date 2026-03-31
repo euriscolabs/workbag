@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Elephant Foot"
 category: "Adhesion"
 severity: "Medium"

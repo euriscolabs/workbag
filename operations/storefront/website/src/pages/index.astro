@@ -8,9 +8,9 @@ const tagline =
 
 const allEntries = await getCollection("projects");
 
-// Find project roots (index.md with a category)
+// Find projects and hubs to display on the home page
 const projectRoots = allEntries
-  .filter((p) => p.filePath?.endsWith("index.md") && !!p.data.category)
+  .filter((p) => p.data.type === "project" || p.data.type === "hub")
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
 // Group by category
@@ -153,7 +153,7 @@ function slugify(id: string): string {
                 <div class="flex flex-col gap-3 mt-4 pt-4 border-t border-gray-100">
                   {projects.map((p) => (
                     <a
-                      href={`/projects/${slugify(p.id)}`}
+                      href={`/${slugify(p.id)}`}
                       class="flex items-center justify-between gap-4 no-underline group"
                     >
                       <div class="flex-1 min-w-0">

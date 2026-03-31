@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Input Shaper"
 category: "Printer-Specific"
 priority: "Medium"

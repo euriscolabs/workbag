@@ -11,6 +11,7 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    type: z.enum(["hub", "project", "article"]).optional(),
     status: z
       .enum(["Idea", "Planning", "Design", "In Progress", "Complete"])
       .optional(),
@@ -18,8 +19,8 @@ const projects = defineCollection({
     tags: z.array(z.string()).default([]),
     order: z.number().optional(),
     image: z.string().optional(),
-    // Subpage fields
     severity: z.string().optional(),
+    priority: z.string().optional(),
     published: z.boolean().optional(),
   }),
 });

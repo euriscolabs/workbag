@@ -1,4 +1,5 @@
 ---
+type: "project"
 title: "GABROS"
 description: "Custom operating system with graph-based filesystem, native versioning, and a custom orchestration language."
 status: "Idea"

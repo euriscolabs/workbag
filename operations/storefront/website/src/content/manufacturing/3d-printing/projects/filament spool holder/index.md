@@ -1,4 +1,5 @@
 ---
+type: "project"
 title: "Filament Spool Holder"
 description: "An all-in-one filament management system — dry storage, inline cleaning, and jam-safety cutter in a single spool holder."
 status: "Design"

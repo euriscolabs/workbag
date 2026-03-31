@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Over-extrusion"
 category: "Extrusion"
 severity: "Medium"

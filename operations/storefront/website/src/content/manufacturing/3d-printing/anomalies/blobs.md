@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Blobs / Zits"
 category: "Extrusion"
 severity: "Low"

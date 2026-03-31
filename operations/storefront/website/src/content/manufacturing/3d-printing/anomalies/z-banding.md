@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Z-Banding / Z-Wobble"
 category: "Motion"
 severity: "Medium"

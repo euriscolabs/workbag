@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Speed Profile"
 category: "Filament-Specific"
 priority: "Medium"

@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Under-extrusion"
 category: "Extrusion"
 severity: "High"

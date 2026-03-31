@@ -1,4 +1,5 @@
 ---
+type: "article"
 title: "Cooling / Fan Speed"
 category: "Filament-Specific"
 priority: "Medium"
