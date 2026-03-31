@@ -28,11 +28,11 @@ workbag/
 
 Located at `operations/storefront/website/`.
 
-- **Content collections**: Project markdown lives in `src/content/projects/` (moved from root `projects/` folder)
+- **Content collections**: Category folders live directly in `src/content/` (e.g., `src/content/manufacturing/`, `src/content/software/`)
 - **Routing**: `src/pages/projects/[...slug].astro` renders all project pages
 - **Links**: `astro-rehype-relative-markdown-links` plugin handles relative `.md` link transformation
 - **Slug generation**: `idToSlug()` strips `/index`, replaces spaces with hyphens, lowercases
-- **Home page**: `src/pages/index.astro` lists project roots (index.md files with a `category` field)
+- **Home page**: `src/pages/index.astro` shows category cards grouped by `category` frontmatter field
 - **Stack**: Astro + Tailwind CSS v4, static output, deployed to euriscolabs.com
 
 ## Content / Video Pipeline
@@ -54,4 +54,4 @@ Located at `operations/storefront/website/`.
 
 - Project markdown uses YAML frontmatter: title, description, status, category, tags
 - Folder names may contain spaces in content/; the website slugifies them to hyphens
-- Do not create files in the old root `projects/` folder — project content now lives in `operations/storefront/website/src/content/projects/`
+- Do not create files in the old `projects/` folder — content now lives directly in `operations/storefront/website/src/content/<category>/`
