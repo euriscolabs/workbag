@@ -2,10 +2,11 @@ import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 
+// Content collection: categories contain knowledge bases and projects
 const projects = defineCollection({
   loader: glob({
     pattern: "**/*.md",
-    base: "src/content/projects",
+    base: "src/content",
   }),
   schema: z.object({
     title: z.string(),
