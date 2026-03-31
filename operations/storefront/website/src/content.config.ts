@@ -2,20 +2,20 @@ import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 
-// Content collection: categories contain knowledge bases and projects
-const projects = defineCollection({
+const content = defineCollection({
   loader: glob({
     pattern: "**/*.md",
     base: "src/content",
   }),
   schema: z.object({
     title: z.string(),
-    description: z.string(),
+    description: z.string().default(""),
     type: z.enum(["hub", "project", "article"]).optional(),
     status: z
       .enum(["Idea", "Planning", "Design", "In Progress", "Complete"])
       .optional(),
     category: z.string().optional(),
+    categories: z.array(z.string()).optional(),
     tags: z.array(z.string()).default([]),
     order: z.number().optional(),
     image: z.string().optional(),
@@ -25,4 +25,4 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { projects };
+export const collections = { content };

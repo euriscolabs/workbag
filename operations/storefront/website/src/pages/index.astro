@@ -1,71 +1,15 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import DirectoryListing from "../components/DirectoryListing.astro";
 import { getCollection } from "astro:content";
+import { buildContentTree } from "../lib/content-tree";
 
 const title = "Eurisco Labs";
 const tagline =
   "We design, build, and ship products at the intersection of software, hardware, and engineering — documented openly.";
 
-const allEntries = await getCollection("projects");
-
-// Find projects and hubs to display on the home page
-const projectRoots = allEntries
-  .filter((p) => p.data.type === "project" || p.data.type === "hub")
-  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
-
-// Group by category
-const categoryMap = new Map<string, typeof projectRoots>();
-for (const project of projectRoots) {
-  const cat = project.data.category!;
-  if (!categoryMap.has(cat)) categoryMap.set(cat, []);
-  categoryMap.get(cat)!.push(project);
-}
-
-// Category metadata — description and optional hub page
-const categoryMeta: Record<string, { description: string; icon: string }> = {
-  Manufacturing: {
-    description: "3D printing, calibration, filament management, and production automation.",
-    icon: "⚙",
-  },
-  Software: {
-    description: "Developer tools, operating systems, compilers, and AI applications.",
-    icon: "◇",
-  },
-  Electronics: {
-    description: "Custom hardware, modular devices, and educational electronics.",
-    icon: "△",
-  },
-  Health: {
-    description: "Light therapy, photobiomodulation, and research-backed wellness devices.",
-    icon: "○",
-  },
-  Household: {
-    description: "Water filtration, sustainable heating, and home infrastructure.",
-    icon: "□",
-  },
-  Construction: {
-    description: "Automation in building — from terraforming to tiling robots.",
-    icon: "▽",
-  },
-  Workshop: {
-    description: "Tool organization and maker workspace systems.",
-    icon: "◆",
-  },
-  Art: {
-    description: "3D modeling, textile experiments, and creative projects.",
-    icon: "✦",
-  },
-  Education: {
-    description: "Learning games and educational tools.",
-    icon: "▷",
-  },
-};
-
-// Sort categories: those with most projects first, then alphabetical
-const categories = [...categoryMap.entries()].sort((a, b) => {
-  const diff = b[1].length - a[1].length;
-  return diff !== 0 ? diff : a[0].localeCompare(b[0]);
-});
+const allEntries = await getCollection("content");
+const tree = buildContentTree(allEntries);
 
 const values = [
   {
@@ -84,13 +28,6 @@ const values = [
       "Functional, durable, repairable. No planned obsolescence, no dark patterns.",
   },
 ];
-
-function slugify(id: string): string {
-  return id
-    .replace(/\/index$/, "")
-    .replace(/\s+/g, "-")
-    .toLowerCase();
-}
 ---
 
 <BaseLayout title={title} description={tagline}>
@@ -125,56 +62,12 @@ function slugify(id: string): string {
       </div>
     </section>
 
-    <!-- Categories -->
+    <!-- Content tree -->
     <section class="py-12 sm:py-16 border-t border-gray-200">
       <h2 class="text-sm font-medium text-muted uppercase tracking-wider mb-8">
         What we're working on
       </h2>
-      <div class="flex flex-col gap-8">
-        {
-          categories.map(([category, projects]) => {
-            const meta = categoryMeta[category];
-            return (
-              <div class="border border-gray-200 rounded-lg p-6 sm:p-8">
-                <div class="flex items-start gap-4 mb-4">
-                  {meta?.icon && (
-                    <span class="text-2xl text-blue leading-none mt-0.5">{meta.icon}</span>
-                  )}
-                  <div class="flex-1">
-                    <div class="flex items-center gap-3 mb-1">
-                      <h3 class="text-lg font-semibold text-navy">{category}</h3>
-                      <span class="text-xs text-muted">{projects.length} {projects.length === 1 ? 'project' : 'projects'}</span>
-                    </div>
-                    {meta?.description && (
-                      <p class="text-sm text-muted leading-relaxed">{meta.description}</p>
-                    )}
-                  </div>
-                </div>
-                <div class="flex flex-col gap-3 mt-4 pt-4 border-t border-gray-100">
-                  {projects.map((p) => (
-                    <a
-                      href={`/${slugify(p.id)}`}
-                      class="flex items-center justify-between gap-4 no-underline group"
-                    >
-                      <div class="flex-1 min-w-0">
-                        <span class="text-sm font-medium text-navy group-hover:text-blue transition-colors">
-                          {p.data.title}
-                        </span>
-                        <p class="text-xs text-muted truncate mt-0.5">{p.data.description}</p>
-                      </div>
-                      {p.data.status && (
-                        <span class="text-xs font-medium text-blue bg-blue/10 px-2.5 py-0.5 rounded-full whitespace-nowrap">
-                          {p.data.status}
-                        </span>
-                      )}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            );
-          })
-        }
-      </div>
+      <DirectoryListing nodes={tree} />
     </section>
   </main>
 </BaseLayout>

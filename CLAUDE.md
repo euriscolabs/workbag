@@ -28,12 +28,14 @@ workbag/
 
 Located at `operations/storefront/website/`.
 
-- **Content collections**: Category folders live directly in `src/content/` (e.g., `src/content/manufacturing/`, `src/content/software/`)
-- **Content types**: Frontmatter `type` field determines rendering: `"hub"` (category pages), `"project"` (projects with status/tags), `"article"` (knowledge base with severity/priority), or omitted (default minimal)
-- **Routing**: `src/pages/[...slug].astro` renders all content pages at root URLs (no `/projects/` prefix)
-- **Links**: `astro-rehype-relative-markdown-links` plugin with `collectionBase: false` handles relative `.md` link transformation
-- **Slug generation**: `idToSlug()` strips `/index`, replaces spaces with hyphens, lowercases
-- **Home page**: `src/pages/index.astro` shows category cards grouped by `category` field, filtered by `type: "project"` or `type: "hub"`- **Stack**: Astro + Tailwind CSS v4, static output, deployed to euriscolabs.com
+- **Content collection**: `"content"` collection loads `**/*.md` from `src/content/`. Category folders live directly there (e.g., `manufacturing/`, `software/`)
+- **Content types**: Frontmatter `type` field determines rendering (`"hub"`, `"project"`, `"article"`). Type is auto-inferred when not set: folders with children → hub, files in `anomalies/`/`calibration/` → article, standalone `.md` → article, else → project
+- **Content tree**: `src/lib/content-tree.ts` builds a tree from the filesystem at build time. Auto-generates virtual hub pages for folders without `index.md`. No manual category maintenance needed.
+- **Routing**: `src/pages/[...slug].astro` renders all content pages at root URLs. Routes are generated from the content tree.
+- **Links**: `astro-rehype-relative-markdown-links` plugin with `collectionBase: false`
+- **Slug generation**: `idToSlug()` in `src/lib/content-tree.ts` — replaces spaces with hyphens, lowercases
+- **Home page**: `src/pages/index.astro` renders a directory listing from the computed content tree — no hardcoded categories
+- **Stack**: Astro + Tailwind CSS v4, static output, deployed to euriscolabs.com
 
 ## Content / Video Pipeline
 

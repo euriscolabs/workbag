@@ -1,0 +1,60 @@
+---
+import type { ContentNode } from "../lib/content-tree";
+
+interface Props {
+  nodes: ContentNode[];
+  depth?: number;
+}
+
+const { nodes, depth = 0 } = Astro.props;
+---
+
+<div class={depth > 0 ? "ml-4 border-l border-gray-200 pl-4" : ""}>
+  {nodes.map((node) => (
+    <div class="py-0.5">
+      <a
+        href={`/${node.slug}`}
+        class="flex items-center gap-3 group no-underline hover:bg-gray-50 px-2 py-1.5 -mx-2 rounded transition-colors"
+      >
+        <span
+          class={`flex-1 min-w-0 truncate font-mono text-sm ${
+            node.type === "hub"
+              ? "text-navy font-medium"
+              : "text-slate-700 group-hover:text-blue"
+          }`}
+        >
+          {node.title}{node.type === "hub" ? "/" : ""}
+        </span>
+
+        {/* Counts for hubs */}
+        {node.type === "hub" && node.projectCount > 0 && (
+          <span class="text-xs text-muted whitespace-nowrap">
+            {node.projectCount} {node.projectCount === 1 ? "project" : "projects"}
+          </span>
+        )}
+        {node.type === "hub" && node.articleCount > 0 && (
+          <span class="text-xs text-muted whitespace-nowrap">
+            {node.articleCount} {node.articleCount === 1 ? "article" : "articles"}
+          </span>
+        )}
+
+        {/* Type label for non-hubs */}
+        {node.type !== "hub" && (
+          <span class="text-xs text-muted whitespace-nowrap">{node.type}</span>
+        )}
+
+        {/* Status badge */}
+        {node.status && (
+          <span class="text-xs font-medium text-blue bg-blue/10 px-2 py-0.5 rounded-full whitespace-nowrap">
+            {node.status}
+          </span>
+        )}
+      </a>
+
+      {/* Recurse into children */}
+      {node.children.length > 0 && (
+        <Astro.self nodes={node.children} depth={depth + 1} />
+      )}
+    </div>
+  ))}
+</div>
