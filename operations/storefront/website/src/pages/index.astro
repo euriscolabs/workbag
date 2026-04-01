@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import DirectoryListing from "../components/DirectoryListing.astro";
 import { getCollection } from "astro:content";
 import { buildContentTree } from "../lib/content-tree";
 
@@ -62,12 +61,42 @@ const values = [
       </div>
     </section>
 
-    <!-- Content tree -->
+    <!-- Top-level categories -->
     <section class="py-12 sm:py-16 border-t border-gray-200">
       <h2 class="text-sm font-medium text-muted uppercase tracking-wider mb-8">
         What we're working on
       </h2>
-      <DirectoryListing nodes={tree} />
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {
+          tree.map((node) => (
+            <a
+              href={`/${node.slug}`}
+              class="block border border-gray-200 rounded-lg p-6 no-underline transition-colors hover:border-blue group"
+            >
+              <h3 class="text-lg font-semibold text-navy group-hover:text-blue transition-colors mb-2">
+                {node.title}
+              </h3>
+              {node.description && (
+                <p class="text-sm text-muted leading-relaxed mb-3">
+                  {node.description}
+                </p>
+              )}
+              <div class="flex flex-wrap gap-2">
+                {node.projectCount > 0 && (
+                  <span class="text-xs text-muted">
+                    {node.projectCount} {node.projectCount === 1 ? "project" : "projects"}
+                  </span>
+                )}
+                {node.articleCount > 0 && (
+                  <span class="text-xs text-muted">
+                    {node.articleCount} {node.articleCount === 1 ? "article" : "articles"}
+                  </span>
+                )}
+              </div>
+            </a>
+          ))
+        }
+      </div>
     </section>
   </main>
 </BaseLayout>
