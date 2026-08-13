@@ -1,0 +1,4 @@
+- build a furniture 3d printer, extremely thick nozzle(+2mm), and create a origami inspired chair.
+  - then make design line with recycled plastic called it deep clear ocean or something like that
+- build a modular sofa with me
+- 

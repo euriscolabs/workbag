@@ -1,5 +1,5 @@
 ---
-type: "hub"
+type: "moc"
 title: "3D Printing"
 description: "3D printing research, calibration knowledge, and projects — anomalies, calibration variables, and automation."
 status: "In Progress"

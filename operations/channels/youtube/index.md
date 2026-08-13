@@ -37,6 +37,7 @@ My questions during research guide the flow of the video. There's a problem stat
 
 ## Assets
 - [Video Roadmap](roadmap.md)
+- [Intro Playbook](intro-playbook.md) — the 30-second intro grammar, fill-in template, and ritual closers
 
 ## Optimization
 - SEO-friendly titles and descriptions

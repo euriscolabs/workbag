@@ -4,13 +4,16 @@ import { glob } from "astro/loaders";
 
 const content = defineCollection({
   loader: glob({
-    pattern: "**/*.md",
+    pattern: "**/*.{md,mdx}",
     base: "src/content",
   }),
   schema: z.object({
-    title: z.string(),
+    // Optional, Obsidian-style: files without frontmatter get a title
+    // derived from their filename (see entryTitle in lib/content.ts)
+    title: z.string().optional(),
     description: z.string().default(""),
-    type: z.enum(["hub", "project", "article"]).optional(),
+    // "hub" is a legacy alias for "moc"
+    type: z.enum(["moc", "hub", "project", "article"]).optional(),
     status: z
       .enum(["Idea", "Planning", "Design", "In Progress", "Complete"])
       .optional(),

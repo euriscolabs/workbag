@@ -1,14 +1,19 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
-import { buildContentTree } from "../lib/content-tree";
+import { getCollection, render } from "astro:content";
 
 const title = "Eurisco Labs";
 const tagline =
   "We design, build, and ship products at the intersection of software, hardware, and engineering — documented openly.";
 
+// The home page renders the root MOC (src/content/index.md) — the top of
+// the map-of-content hierarchy. Structure is managed by editing that file.
 const allEntries = await getCollection("content");
-const tree = buildContentTree(allEntries);
+const rootMoc = allEntries.find((e) => e.id === "index");
+let RootContent: any = null;
+if (rootMoc?.body?.trim()) {
+  ({ Content: RootContent } = await render(rootMoc));
+}
 
 const values = [
   {
@@ -61,42 +66,26 @@ const values = [
       </div>
     </section>
 
-    <!-- Top-level categories -->
-    <section class="py-12 sm:py-16 border-t border-gray-200">
-      <h2 class="text-sm font-medium text-muted uppercase tracking-wider mb-8">
-        What we're working on
-      </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {
-          tree.map((node) => (
-            <a
-              href={`/${node.slug}`}
-              class="block border border-gray-200 rounded-lg p-6 no-underline transition-colors hover:border-blue group"
-            >
-              <h3 class="text-lg font-semibold text-navy group-hover:text-blue transition-colors mb-2">
-                {node.title}
-              </h3>
-              {node.description && (
-                <p class="text-sm text-muted leading-relaxed mb-3">
-                  {node.description}
-                </p>
-              )}
-              <div class="flex flex-wrap gap-2">
-                {node.projectCount > 0 && (
-                  <span class="text-xs text-muted">
-                    {node.projectCount} {node.projectCount === 1 ? "project" : "projects"}
-                  </span>
-                )}
-                {node.articleCount > 0 && (
-                  <span class="text-xs text-muted">
-                    {node.articleCount} {node.articleCount === 1 ? "article" : "articles"}
-                  </span>
-                )}
-              </div>
-            </a>
-          ))
-        }
-      </div>
-    </section>
+    <!-- Root map of content -->
+    {
+      RootContent && (
+        <section class="py-12 sm:py-16 border-t border-gray-200">
+          <h2 class="text-sm font-medium text-muted uppercase tracking-wider mb-8">
+            What we're working on
+          </h2>
+          <div
+            class="prose prose-slate max-w-none
+      [&_h1]:text-xl [&_h1]:font-semibold [&_h1]:text-navy [&_h1]:mt-8 [&_h1]:mb-4
+      [&_h2]:text-lg [&_h2]:font-semibold [&_h2]:text-navy [&_h2]:mt-6 [&_h2]:mb-3
+      [&_p]:text-base [&_p]:text-muted [&_p]:leading-relaxed [&_p]:mb-4
+      [&_ul]:text-base [&_ul]:text-muted [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-5
+      [&_li]:mb-2
+      [&_a]:text-blue [&_a]:underline [&_a]:font-medium"
+          >
+            <RootContent />
+          </div>
+        </section>
+      )
+    }
   </main>
 </BaseLayout>

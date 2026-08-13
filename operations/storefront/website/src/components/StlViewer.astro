@@ -1,0 +1,114 @@
+---
+interface Props {
+  src: string;
+  height?: string;
+}
+
+const { src, height = "400px" } = Astro.props;
+const viewerId = `stl-viewer-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div
+  id={viewerId}
+  class="stl-viewer w-full rounded-lg border border-gray-200 bg-gray-50 relative"
+  style={`height: ${height}`}
+  data-src={src}
+>
+  <div class="absolute inset-0 flex items-center justify-center text-sm text-muted">
+    Loading 3D model...
+  </div>
+</div>
+
+<script>
+  import * as THREE from "three";
+  import { STLLoader } from "three/addons/loaders/STLLoader.js";
+  import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+  function initViewer(container: HTMLElement) {
+    const src = container.dataset.src;
+    if (!src) return;
+
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    // Scene
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf9fafb);
+
+    // Camera
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+
+    // Renderer
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    container.innerHTML = "";
+    container.appendChild(renderer.domElement);
+
+    // Controls
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.1;
+
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+
+    const dirLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
+    dirLight1.position.set(1, 1, 1);
+    scene.add(dirLight1);
+
+    const dirLight2 = new THREE.DirectionalLight(0xffffff, 0.4);
+    dirLight2.position.set(-1, -0.5, -1);
+    scene.add(dirLight2);
+
+    // Load STL
+    const loader = new STLLoader();
+    loader.load(src, (geometry) => {
+      const material = new THREE.MeshPhongMaterial({
+        color: 0x1a73e8,
+        specular: 0x444444,
+        shininess: 30,
+      });
+      const mesh = new THREE.Mesh(geometry, material);
+
+      // Center the model
+      geometry.computeBoundingBox();
+      const box = geometry.boundingBox!;
+      const center = new THREE.Vector3();
+      box.getCenter(center);
+      mesh.position.sub(center);
+
+      scene.add(mesh);
+
+      // Position camera to fit model
+      const size = new THREE.Vector3();
+      box.getSize(size);
+      const maxDim = Math.max(size.x, size.y, size.z);
+      camera.position.set(maxDim, maxDim * 0.8, maxDim);
+      controls.target.set(0, 0, 0);
+      controls.update();
+    });
+
+    // Animate
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Resize
+    const resizeObserver = new ResizeObserver(() => {
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    });
+    resizeObserver.observe(container);
+  }
+
+  // Init all viewers on page
+  document.querySelectorAll<HTMLElement>(".stl-viewer").forEach(initViewer);
+</script>

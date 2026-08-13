@@ -188,3 +188,9 @@ Phases 2–5 (auto-tuner software, thermal camera, productization, kit sales) ar
 - [Prusa XL Series Sicco Box on Printables](https://www.printables.com/model/939432-prusa-xl-series-sicco-box-the-prusa-xl-drybox)
 
 ## Log
+
+
+## Map
+
+- [Research](research.md)
+- [Script](script.md)

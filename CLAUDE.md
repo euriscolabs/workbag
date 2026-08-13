@@ -28,13 +28,13 @@ workbag/
 
 Located at `operations/storefront/website/`.
 
-- **Content collection**: `"content"` collection loads `**/*.md` from `src/content/`. Category folders live directly there (e.g., `manufacturing/`, `software/`)
-- **Content types**: Frontmatter `type` field determines rendering (`"hub"`, `"project"`, `"article"`). Type is auto-inferred when not set: folders with children → hub, files in `anomalies/`/`calibration/` → article, standalone `.md` → article, else → project
-- **Content tree**: `src/lib/content-tree.ts` builds a tree from the filesystem at build time. Auto-generates virtual hub pages for folders without `index.md`. No manual category maintenance needed.
-- **Routing**: `src/pages/[...slug].astro` renders all content pages at root URLs. Routes are generated from the content tree.
-- **Links**: `astro-rehype-relative-markdown-links` plugin with `collectionBase: false`
-- **Slug generation**: `idToSlug()` in `src/lib/content-tree.ts` — replaces spaces with hyphens, lowercases
-- **Home page**: `src/pages/index.astro` renders a directory listing from the computed content tree — no hardcoded categories
+- **MOC navigation (Obsidian-style)**: site structure is managed by Maps of Content, not computed from the filesystem. A MOC is a markdown page whose body links onward to further pages (which may themselves be MOCs — unlimited depth). The root MOC is `src/content/index.md`, rendered on the home page. To make a new page reachable, add a link to it in the relevant map — there are no auto-generated listings or virtual pages.
+- **Content collection**: `"content"` collection loads `**/*.{md,mdx}` from `src/content/`. Category folders live directly there (e.g., `manufacturing/`, `software/`)
+- **Routing**: `src/pages/[...slug].astro` builds one route per entry at the entry's id (Astro's glob loader github-slugs each path segment, so `kitchen garden/index.md` → `/kitchen-garden`). `published: false` in frontmatter hides a page and everything beneath it.
+- **Links between pages**: plain relative markdown links to the target file, e.g. `[Auto-Tuner](projects/auto%20tuner/index.md)`. The custom rehype plugin `src/lib/markdown-links.mjs` rewrites them to final URLs using the same slug algorithm as the loader. Links to non-existent files are left untouched.
+- **Content types**: Frontmatter `type` field determines rendering (`"moc"`, `"project"`, `"article"`; `"hub"` is a legacy alias for moc). Auto-inferred when not set: entries with entries beneath them → moc, files in `anomalies/`/`calibration/` → article, standalone `.md` → article, else → project (see `src/lib/content.ts`)
+- **Frontmatter is optional**: files without a `title` get one derived from their filename, Obsidian-style
+- **Home page**: `src/pages/index.astro` renders hero + values + the root MOC's markdown body
 - **Stack**: Astro + Tailwind CSS v4, static output, deployed to euriscolabs.com
 
 ## Content / Video Pipeline
@@ -56,4 +56,5 @@ Located at `operations/storefront/website/`.
 
 - Project markdown uses YAML frontmatter: title, description, status, category, tags
 - Folder names may contain spaces in content/; the website slugifies them to hyphens
+- New website pages must be linked from a MOC (usually the parent folder's `index.md`) to be discoverable — publishing a page = flipping `published` + adding it to a map
 - Do not create files in the old `projects/` folder — content now lives directly in `operations/storefront/website/src/content/<category>/`
