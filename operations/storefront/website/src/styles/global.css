@@ -8,3 +8,132 @@
   --color-orange: #ffab40;
   --color-muted: #5a5a7a;
 }
+
+/* Home page — the root MOC (src/content/index.md) rendered as a full page
+   from plain markdown: a lone image paragraph is the hero, the paragraph
+   after it the tagline, a bold-led list becomes the values grid, and h2
+   headings render as bordered section labels. The map list itself is
+   handled by the .moc-body card rules below. */
+.home-body {
+  /* hero: paragraph containing only the wordmark image */
+  > p:has(> img:only-child) {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+
+    img {
+      width: 24rem;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  /* tagline: the paragraph right after the hero image */
+  > p:has(> img:only-child) + p {
+    text-align: center;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--color-muted);
+    max-width: 42rem;
+    margin: 2rem auto 4rem;
+  }
+
+  /* section labels */
+  > h2 {
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-muted);
+    border-top: 1px solid #e5e7eb;
+    padding-top: 3rem;
+    margin: 0 0 2rem;
+  }
+
+  /* values grid: a list whose items lead with bold text */
+  > ul:has(> li > strong:first-child) {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 3rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+
+    > li {
+      font-size: 0.875rem;
+      line-height: 1.625;
+      color: var(--color-muted);
+
+      > strong:first-child {
+        display: block;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--color-navy);
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}
+
+/* MOC card tiles — CSS-only styling of plain markdown link lists.
+   Applies inside .moc-body (MOC pages and the home map). A <ul> whose
+   items lead with a link becomes a responsive card grid: the link is the
+   card title and stretches over the whole tile, trailing "— description"
+   text flows beneath it. Plain bullet lists (no links) and ordered lists
+   are unaffected. These rules are unlayered author CSS, so they win over
+   the page templates' prose utilities (which live in Tailwind's layer). */
+.moc-body ul:has(> li > a:first-child) {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+
+  > li {
+    position: relative;
+    margin: 0;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--color-muted);
+    transition:
+      border-color 0.2s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &:hover {
+      border-color: var(--color-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.07);
+    }
+
+    > a:first-child {
+      display: block;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-navy);
+      text-decoration: none;
+      margin-bottom: 0.3rem;
+      transition: color 0.2s ease;
+
+      /* stretch the link over the whole card */
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+      }
+    }
+
+    &:hover > a:first-child {
+      color: var(--color-blue);
+    }
+  }
+}

@@ -6,23 +6,22 @@ import { slug as githubSlug } from "github-slugger";
 const MARKDOWN_EXT = /\.(md|mdx)$/i;
 
 /**
- * Rehype plugin: rewrite relative links between files in src/content/ to
- * their final page URLs.
+ * Rehype plugin: rewrite relative links between markdown files in
+ * src/pages/ to their final page URLs.
  *
  * MOC pages manage all site structure through plain markdown links like
- * `[Auto-Tuner](projects/auto%20tuner/index.md)`, so this plugin is what
- * turns vault-style file links into routes. It must produce exactly the
- * same slugs as Astro's glob loader (github-slugger per path segment,
- * trailing "/index" stripped), because [...slug].astro routes pages at
- * their entry IDs.
+ * `[Auto-Tuner](projects/auto-tuner/index.md)` or the extensionless
+ * `[Auto-Tuner](projects/auto-tuner/index)`, so this plugin is what turns
+ * vault-style file links into routes. Since src/pages is natively routed,
+ * folder names ARE the URL segments (github-slugger is applied as a
+ * safety net and is a no-op for slug-form names).
  *
- * Frontmatter `slug:` overrides are not supported — pages are addressed by
- * file path only. Links to files that don't exist are left untouched.
+ * Links to files that don't exist are left untouched.
  *
- * @param {{ contentDir: string }} options absolute path of src/content
+ * @param {{ rootDir: string }} options absolute path of src/pages
  */
-export default function rehypeContentLinks({ contentDir }) {
-  const contentRoot = path.resolve(contentDir);
+export default function rehypeContentLinks({ rootDir }) {
+  const contentRoot = path.resolve(rootDir);
 
   return (tree, file) => {
     const currentFile = file.history[0];
@@ -41,15 +40,43 @@ export default function rehypeContentLinks({ contentDir }) {
       const splitAt = href.search(/[?#]/);
       const pathPart = splitAt === -1 ? href : href.slice(0, splitAt);
       const suffix = splitAt === -1 ? "" : href.slice(splitAt);
-      if (!MARKDOWN_EXT.test(pathPart)) return;
+      if (!pathPart) return;
 
-      let targetFile;
+      let decoded;
       try {
-        targetFile = path.resolve(path.dirname(currentFile), decodeURI(pathPart));
-        if (!statSync(targetFile).isFile()) return;
+        decoded = decodeURI(pathPart);
       } catch {
         return;
       }
+
+      // Obsidian-style resolution, mirroring what VS Code's markdown tooling
+      // does in the editor: explicit .md/.mdx paths are taken as-is;
+      // extensionless paths (and folder/ paths) try .md, .mdx, then the
+      // folder's index file. Paths with any other extension are assets —
+      // leave them alone.
+      const literal = path.resolve(path.dirname(currentFile), decoded);
+      let candidates;
+      if (MARKDOWN_EXT.test(decoded)) {
+        candidates = [literal];
+      } else if (path.extname(decoded) === "") {
+        candidates = [
+          literal + ".md",
+          literal + ".mdx",
+          path.join(literal, "index.md"),
+          path.join(literal, "index.mdx"),
+        ];
+      } else {
+        return;
+      }
+
+      const targetFile = candidates.find((c) => {
+        try {
+          return statSync(c).isFile();
+        } catch {
+          return false;
+        }
+      });
+      if (!targetFile) return;
 
       const relative = path.relative(contentRoot, targetFile);
       if (relative.startsWith("..") || path.isAbsolute(relative)) return;

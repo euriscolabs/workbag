@@ -1,0 +1,14 @@
+---
+// Layout for the home page (src/pages/index.md). The whole page is the
+// markdown body: wordmark hero, tagline, values list, and the map —
+// positional CSS in global.css (.home-body/.moc-body) does the look.
+import BaseLayout from "./BaseLayout.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout title="Eurisco Labs" description={frontmatter.description}>
+  <main class="home-body moc-body max-w-4xl mx-auto px-6 pt-20 sm:pt-28 pb-16">
+    <slot />
+  </main>
+</BaseLayout>

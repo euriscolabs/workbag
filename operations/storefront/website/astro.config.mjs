@@ -13,7 +13,7 @@ export default defineConfig({
     rehypePlugins: [
       [
         rehypeContentLinks,
-        { contentDir: fileURLToPath(new URL('./src/content', import.meta.url)) },
+        { rootDir: fileURLToPath(new URL('./src/pages', import.meta.url)) },
       ],
     ],
   },

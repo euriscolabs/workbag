@@ -1,0 +1,30 @@
+---
+// Layout for map-of-content pages: title + description, then the map
+// itself as the body. Link lists render as card tiles via the .moc-body
+// rules in global.css. Used natively via frontmatter, e.g.:
+//   layout: ../../layouts/MocLayout.astro
+import BaseLayout from "./BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { breadcrumbsFor, titleFromSegment } from "../lib/content";
+import { proseClasses } from "../lib/prose";
+
+const { frontmatter } = Astro.props;
+const url = frontmatter.url || Astro.url.pathname;
+const title =
+  frontmatter.title ?? titleFromSegment(url.split("/").filter(Boolean).pop() ?? "");
+const description = frontmatter.description || "";
+const breadcrumbs = breadcrumbsFor(url, title);
+---
+
+<BaseLayout title={`${title} — Eurisco Labs`} description={description}>
+  <main class="max-w-3xl mx-auto px-6 py-16 sm:py-24">
+    <Breadcrumbs crumbs={breadcrumbs} />
+
+    <h1 class="text-2xl sm:text-3xl font-bold text-navy mb-4">{title}</h1>
+    {description && <p class="text-muted leading-relaxed mb-6">{description}</p>}
+
+    <div class:list={["moc-body", proseClasses]}>
+      <slot />
+    </div>
+  </main>
+</BaseLayout>
