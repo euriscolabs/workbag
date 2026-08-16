@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Under-extrusion"
 category: "Extrusion"
 severity: "High"

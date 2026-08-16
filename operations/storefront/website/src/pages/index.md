@@ -1,6 +1,6 @@
 ---
 title: "Home"
-layout: ../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 description: "We design, build, and ship products at the intersection of software, hardware, and engineering — documented openly."
 ---
 
@@ -13,6 +13,9 @@ We design, build, and ship products at the intersection of software, hardware, a
 - **Build openly** Every project is documented from first sketch to final product — process, mistakes, and all.
 - **Research first** We start with the science. Open lab notebooks, preprints, and accessible explanations.
 - **Made to last** Functional, durable, repairable. No planned obsolescence, no dark patterns.
+
+## Current Projects
+- [Smart Filament Box](projects/filament-spool-holder/index.md)
 
 ## What we're working on
 

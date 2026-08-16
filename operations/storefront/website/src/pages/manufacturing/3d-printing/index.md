@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 cards: true
 title: "3D Printing"
 description: "3D printing research, calibration knowledge, and projects — anomalies, calibration variables, and automation."
@@ -22,9 +22,9 @@ Research and documentation for 3D printing — from understanding print defects 
 
 ## Projects
 
-- [3D Printer Auto-Tuner](./projects/auto-tuner/index.md) — Automatic calibration system using sensors, CV, and G-code automation
-- [Filament Spool Holder](./projects/filament-spool-holder/index.md) — All-in-one drybox, inline cleaner, and jam-safety cutter
-- [Filament Recycler](./projects/filament-recycler/index.md) — Recycle failed prints into usable filament with closed-loop quality control
+- [3D Printer Auto-Tuner](../../projects/auto-tuner/index.md) — Automatic calibration system using sensors, CV, and G-code automation
+- [Filament Spool Holder](../../projects/filament-spool-holder/index.md) — All-in-one drybox, inline cleaner, and jam-safety cutter
+- [Filament Recycler](../../projects/filament-recycler/index.md) — Recycle failed prints into usable filament with closed-loop quality control
 
 ## Calibration Variables
 

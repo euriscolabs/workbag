@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Scarring / Nozzle Marks"
 category: "Surface"
 severity: "Low"

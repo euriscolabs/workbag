@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Living Hinge"
 description: "A thin flexible section that acts as a hinge — one piece, no assembly, but material choice and print orientation are critical."
 category: "Engineering"

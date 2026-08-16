@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Annular Snap Fit"
 description: "A circular snap-fit where a ring or lip deflects over a mating cylinder — used for caps, lids, and cylindrical enclosures."
 category: "Engineering"

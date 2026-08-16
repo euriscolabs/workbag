@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Z-Banding / Z-Wobble"
 category: "Motion"
 severity: "Medium"

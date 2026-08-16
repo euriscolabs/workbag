@@ -1,5 +1,5 @@
 ---
-layout: ../../../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 ---
 
 [A rant about filament dryers...](https://www.youtube.com/watch?v=3ihlYxKbGUs&pp=ygUTZmlsYW1lbnQgZHJ5ZXIgIGRpeQ%3D%3D)

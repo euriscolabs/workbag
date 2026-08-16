@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Backlash Compensation"
 category: "Printer-Specific"
 priority: "Low"

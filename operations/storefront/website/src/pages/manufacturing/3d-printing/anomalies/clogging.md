@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Clogging / Partial Clog"
 category: "Structural"
 severity: "Critical"

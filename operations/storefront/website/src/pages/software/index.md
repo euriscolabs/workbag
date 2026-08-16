@@ -1,6 +1,6 @@
 ---
 title: "Software"
-layout: ../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 cards: true
 ---
 

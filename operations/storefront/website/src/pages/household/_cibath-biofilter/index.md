@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "CIBATH Biofilter"
 description: "DIY biofilter to remove micro- and nanoplastics from tap water using biological filtration media."
 status: "Planning"

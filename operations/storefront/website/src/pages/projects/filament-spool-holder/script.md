@@ -1,5 +1,5 @@
 ---
-layout: ../../../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 ---
 
 Ah 3d printing, who doesn't love it, buying a 3000 dollar machine only to spend 100s of hours troubleshooting prints, tweaking variables buying expensive filament, only to end up printing the same ai slop articulated dragons over and over again and selling them on etsy jusat to cover the losses.

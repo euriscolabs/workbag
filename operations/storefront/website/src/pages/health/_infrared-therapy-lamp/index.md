@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Infrared Therapy Lamp"
 description: "DIY red/near-infrared light therapy panel for recovery, pain relief, and skin health — sequel to the full-spectrum lamp."
 status: "Idea"

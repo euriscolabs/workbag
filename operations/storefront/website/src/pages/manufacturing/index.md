@@ -1,6 +1,6 @@
 ---
 title: "Manufacturing"
-layout: ../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 cards: true
 description: "How things get made — and how the making gets better. Research, calibration knowledge, and machines that improve the process itself."
 ---

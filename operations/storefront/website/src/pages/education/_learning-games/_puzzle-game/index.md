@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Exit-Style Puzzle Game"
 description: "Cross-platform escape room puzzle game inspired by the Exit tabletop series, built in Unity."
 status: "Planning"

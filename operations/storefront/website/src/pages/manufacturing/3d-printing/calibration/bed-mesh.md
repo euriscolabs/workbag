@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Bed Mesh / ABL"
 category: "Printer-Specific"
 priority: "High"

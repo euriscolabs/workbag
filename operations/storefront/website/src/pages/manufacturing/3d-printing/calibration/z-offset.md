@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Probe Z-Offset"
 category: "Printer-Specific"
 priority: "High"

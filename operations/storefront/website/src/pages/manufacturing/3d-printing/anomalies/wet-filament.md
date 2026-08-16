@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Wet Filament Artifacts"
 category: "Structural"
 severity: "Medium"

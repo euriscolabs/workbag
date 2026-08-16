@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Cooling / Fan Speed"
 category: "Filament-Specific"
 priority: "Medium"

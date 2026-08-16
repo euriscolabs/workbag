@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Cyberdeck"
 description: "A modular DIY laptop with detachable keyboard, mousepad, tri-screen setup, and kickstand."
 status: "Design"

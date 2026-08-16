@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Worst Microchip Ever"
 description: "Educational project exploring what makes a microchip design fundamentally flawed."
 status: "Planning"

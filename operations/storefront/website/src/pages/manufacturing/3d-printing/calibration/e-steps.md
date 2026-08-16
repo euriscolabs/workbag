@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "E-Steps"
 category: "Printer-Specific"
 priority: "Critical"

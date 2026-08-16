@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Max Volumetric Flow"
 category: "Filament-Specific"
 priority: "High"

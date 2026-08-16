@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "System Specification Compiler"
 description: "A DSL compiler that translates system specifications into end-to-end tests using actors, resources, actions, and workflows."
 status: "Design"

@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Oat Bar (ESN-Style, Sugar-Free)"
 description: "Homemade protein oat bar inspired by ESN Designer Bar, with psyllium husk and sugar-free binding syrup"
 ---

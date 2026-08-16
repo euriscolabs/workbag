@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Processing Units as Heating Systems"
 description: "Using computational heat from local AI/ML clusters as home heating, replacing traditional heating infrastructure."
 status: "Idea"

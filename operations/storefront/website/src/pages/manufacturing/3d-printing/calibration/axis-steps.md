@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Axis Steps/mm"
 category: "Printer-Specific"
 priority: "Low"

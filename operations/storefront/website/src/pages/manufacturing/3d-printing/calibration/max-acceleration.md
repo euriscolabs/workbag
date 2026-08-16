@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Max Acceleration / Velocity"
 category: "Printer-Specific"
 priority: "Medium"

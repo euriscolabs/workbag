@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "Input Shaper"
 category: "Printer-Specific"
 priority: "Medium"

@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/PageLayout.astro
+layout: /src/layouts/PageLayout.astro
 title: "CodexPM"
 description: "Formal specification language for computer systems enabling automated verification and standards compliance."
 status: "Idea"
