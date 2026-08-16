@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/ProjectLayout.astro
+layout: ../../../layouts/PageLayout.astro
 title: "FitMe (Lift-Pal)"
 description: "Fitness app for coaches and athletes — workout plan creation, distribution, progress tracking, and AI-powered recommendations."
 status: "Planning"

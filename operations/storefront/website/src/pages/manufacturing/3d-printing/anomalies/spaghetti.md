@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/ArticleLayout.astro
+layout: ../../../../layouts/PageLayout.astro
 title: "Spaghetti"
 category: "Structural"
 severity: "Critical"

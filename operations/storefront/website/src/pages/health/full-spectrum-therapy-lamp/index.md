@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/ProjectLayout.astro
+layout: ../../../layouts/PageLayout.astro
 title: "Full-Spectrum Therapy Lamp"
 description: "A research-backed light therapy lamp designed around circadian science, vitamin D synthesis, and seasonal wellness."
 status: "In Progress"

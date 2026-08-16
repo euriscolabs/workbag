@@ -1,5 +1,5 @@
 ---
-layout: ../../../../../layouts/ProjectLayout.astro
+layout: ../../../../../layouts/PageLayout.astro
 title: "Filament Spool Holder"
 description: "An all-in-one filament management system — dry storage, inline cleaning, and jam-safety cutter in a single spool holder."
 status: "Design"

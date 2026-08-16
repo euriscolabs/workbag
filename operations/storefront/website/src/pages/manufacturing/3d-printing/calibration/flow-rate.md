@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/ArticleLayout.astro
+layout: ../../../../layouts/PageLayout.astro
 title: "Flow Rate"
 category: "Filament-Specific"
 priority: "Critical"

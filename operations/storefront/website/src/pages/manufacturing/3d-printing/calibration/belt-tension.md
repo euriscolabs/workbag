@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/ArticleLayout.astro
+layout: ../../../../layouts/PageLayout.astro
 title: "Belt Tension"
 category: "Printer-Specific"
 priority: "Medium"

@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/ArticleLayout.astro
+layout: ../../../../layouts/PageLayout.astro
 title: "Grinding / Stripping"
 category: "Extrusion"
 severity: "Critical"

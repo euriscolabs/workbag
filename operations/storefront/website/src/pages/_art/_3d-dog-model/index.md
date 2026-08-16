@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/ProjectLayout.astro
+layout: ../../../layouts/PageLayout.astro
 title: "3D Dog Model"
 description: "3D character modeling project — a stylized dog model for animation or rendering."
 status: "Idea"

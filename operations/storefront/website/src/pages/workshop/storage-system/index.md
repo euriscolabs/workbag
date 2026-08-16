@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/ProjectLayout.astro
+layout: ../../../layouts/PageLayout.astro
 title: "Modular Storage System"
 description: "A parametric, 3D-printable modular storage system with interchangeable inserts for cases, drawers, and tool inlays — built on a 25mm grid."
 status: "In Progress"

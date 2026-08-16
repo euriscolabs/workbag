@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/ProjectLayout.astro
+layout: ../../../layouts/PageLayout.astro
 title: "Shirt Designs"
 description: "Custom shirt design experiments — bleaching, sun bleaching, and other textile techniques."
 status: "Idea"

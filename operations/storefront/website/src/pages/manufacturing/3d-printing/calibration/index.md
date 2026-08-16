@@ -1,6 +1,7 @@
 ---
 title: "Calibration"
-layout: ../../../../layouts/MocLayout.astro
+layout: ../../../../layouts/PageLayout.astro
+cards: true
 ---
 
 - [Axis Steps/mm](axis-steps.md) — Steps per millimeter for X, Y, and Z axes — determines positional accuracy of the print head and bed.

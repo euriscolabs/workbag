@@ -1,6 +1,7 @@
 ---
 title: "Electronics"
-layout: ../../layouts/MocLayout.astro
+layout: ../../layouts/PageLayout.astro
+cards: true
 ---
 
 - [Cyberdeck](cyberdeck/index.md) — A modular DIY laptop with detachable keyboard, mousepad, tri-screen setup, and kickstand.

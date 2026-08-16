@@ -1,6 +1,7 @@
 ---
 title: "Food"
-layout: ../../layouts/MocLayout.astro
+layout: ../../layouts/PageLayout.astro
+cards: true
 ---
 
 - [Food Processing](food-processing/index.md)

@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/ArticleLayout.astro
+layout: ../../../../layouts/PageLayout.astro
 title: "Cantilever Snap Fit"
 description: "The most common snap-fit type — a flexible beam with a hook that deflects during assembly and locks behind a mating surface."
 category: "Engineering"

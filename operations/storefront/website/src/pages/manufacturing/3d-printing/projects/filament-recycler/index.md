@@ -1,5 +1,5 @@
 ---
-layout: ../../../../../layouts/ProjectLayout.astro
+layout: ../../../../../layouts/PageLayout.astro
 title: "Filament Recycler"
 description: "A system to recycle failed prints and support material back into usable filament — shredding, extruding, and spooling with closed-loop quality control."
 status: "Idea"

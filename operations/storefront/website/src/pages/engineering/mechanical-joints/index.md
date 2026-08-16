@@ -1,5 +1,6 @@
 ---
-layout: ../../../layouts/MocLayout.astro
+layout: ../../../layouts/PageLayout.astro
+cards: true
 title: "Mechanical Joints"
 description: "Reference library of mechanical joint types for plastic parts — snap-fits, press-fits, hinges, and interlocking joints with design guidelines for FDM 3D printing."
 category: "Engineering"

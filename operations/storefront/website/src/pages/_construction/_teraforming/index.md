@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/ProjectLayout.astro
+layout: ../../../layouts/PageLayout.astro
 title: "Automated Terraforming"
 description: "System to automatically terraform land into livable structures using environmental data and computational design."
 status: "Idea"

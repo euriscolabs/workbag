@@ -1,0 +1,99 @@
+---
+// The single page layout for every markdown/MDX page on the site.
+// Rendering is driven entirely by frontmatter data:
+//   - the root page ("/") renders the home shell: no breadcrumbs or title
+//     header, the markdown body is the whole page (.home-body CSS)
+//   - cards: true styles link lists as card tiles (map/MOC pages)
+//   - status, severity, priority, category, tags render as badges/chips
+//     whenever present
+import BaseLayout from "./BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { breadcrumbsFor, titleFromSegment } from "../lib/content";
+import { proseClasses } from "../lib/prose";
+
+const { frontmatter } = Astro.props;
+const url = frontmatter.url || Astro.url.pathname;
+const isHome = url === "/";
+const title =
+  frontmatter.title ?? titleFromSegment(url.split("/").filter(Boolean).pop() ?? "");
+const description = frontmatter.description || "";
+const breadcrumbs = breadcrumbsFor(url, title);
+const hasChips =
+  frontmatter.severity ||
+  frontmatter.priority ||
+  frontmatter.category ||
+  frontmatter.tags?.length > 0;
+
+function badgeColor(level: string): string {
+  switch (level) {
+    case "Critical":
+      return "text-red-700 bg-red-100";
+    case "High":
+      return "text-orange-700 bg-orange-100";
+    case "Medium":
+      return "text-yellow-700 bg-yellow-100";
+    default:
+      return "text-gray-700 bg-gray-100";
+  }
+}
+---
+
+{
+  isHome ? (
+    <BaseLayout title="Eurisco Labs" description={description}>
+      <main class="home-body moc-body max-w-4xl mx-auto px-6 pt-20 sm:pt-28 pb-16">
+        <slot />
+      </main>
+    </BaseLayout>
+  ) : (
+    <BaseLayout title={`${title} — Eurisco Labs`} description={description}>
+      <main class="max-w-3xl mx-auto px-6 py-16 sm:py-24">
+        <Breadcrumbs crumbs={breadcrumbs} />
+
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+          <h1 class="text-2xl sm:text-3xl font-bold text-navy">{title}</h1>
+          {frontmatter.status && (
+            <span class="text-xs font-medium text-blue bg-blue/10 px-3 py-1 rounded-full w-fit">
+              {frontmatter.status}
+            </span>
+          )}
+        </div>
+        {description && (
+          <p class="text-muted leading-relaxed mb-6">{description}</p>
+        )}
+        {hasChips && (
+          <div class="flex flex-wrap gap-2 mb-8">
+            {frontmatter.severity && (
+              <span
+                class={`text-xs font-medium px-2 py-0.5 rounded ${badgeColor(frontmatter.severity)}`}
+              >
+                {frontmatter.severity} severity
+              </span>
+            )}
+            {frontmatter.priority && (
+              <span
+                class={`text-xs font-medium px-2 py-0.5 rounded ${badgeColor(frontmatter.priority)}`}
+              >
+                {frontmatter.priority} priority
+              </span>
+            )}
+            {frontmatter.category && (
+              <span class="text-xs font-medium text-navy bg-navy/10 px-2 py-0.5 rounded">
+                {frontmatter.category}
+              </span>
+            )}
+            {frontmatter.tags?.map((tag: string) => (
+              <span class="text-xs text-muted border border-gray-200 px-2 py-0.5 rounded">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <div class:list={[frontmatter.cards && "moc-body", proseClasses]}>
+          <slot />
+        </div>
+      </main>
+    </BaseLayout>
+  )
+}

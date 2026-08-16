@@ -1,4 +1,4 @@
 ---
-layout: ../../../layouts/ArticleLayout.astro
+layout: ../../../layouts/PageLayout.astro
 ---
 

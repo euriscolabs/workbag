@@ -1,6 +1,7 @@
 ---
 title: "Anomalies"
-layout: ../../../../layouts/MocLayout.astro
+layout: ../../../../layouts/PageLayout.astro
+cards: true
 ---
 
 - [First Layer Adhesion Failure](adhesion-failure.md) — The part detaches from the build plate during printing. Leads to spaghetti if undetected.

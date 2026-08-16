@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/ArticleLayout.astro
+layout: ../../../../layouts/PageLayout.astro
 title: "Press Fit"
 description: "An interference fit where a shaft or pin is forced into a slightly undersized hole — simple, permanent, no moving parts."
 category: "Engineering"

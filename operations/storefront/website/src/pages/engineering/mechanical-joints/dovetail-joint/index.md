@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/ArticleLayout.astro
+layout: ../../../../layouts/PageLayout.astro
 title: "Dovetail Joint"
 description: "A trapezoidal interlocking slide joint — strong, self-aligning, and easy to print for sliding connections and rail systems."
 category: "Engineering"

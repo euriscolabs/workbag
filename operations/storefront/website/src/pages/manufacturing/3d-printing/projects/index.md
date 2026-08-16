@@ -1,6 +1,7 @@
 ---
 title: "Projects"
-layout: ../../../../layouts/MocLayout.astro
+layout: ../../../../layouts/PageLayout.astro
+cards: true
 ---
 
 - [3D Printer Auto-Tuner](auto-tuner/index.md) — An automatic calibration and fine-tuning system for 3D printers using sensors, computer vision, and G-code automation.

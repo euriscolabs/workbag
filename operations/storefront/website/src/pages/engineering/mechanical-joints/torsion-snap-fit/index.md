@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/ArticleLayout.astro
+layout: ../../../../layouts/PageLayout.astro
 title: "Torsion Snap Fit"
 description: "A snap-fit that uses twisting deflection instead of bending — higher strain capacity and more compact than cantilever designs."
 category: "Engineering"

@@ -1,6 +1,6 @@
 ---
 title: "Home"
-layout: ../layouts/HomeLayout.astro
+layout: ../layouts/PageLayout.astro
 description: "We design, build, and ship products at the intersection of software, hardware, and engineering — documented openly."
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "Food Processing"
-layout: ../../../layouts/MocLayout.astro
+layout: ../../../layouts/PageLayout.astro
+cards: true
 ---
 
 - [Kitchen Labs](kitchen-labs/index.md)

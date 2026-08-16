@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/ArticleLayout.astro
+layout: ../../../../layouts/PageLayout.astro
 title: "Max Volumetric Flow"
 category: "Filament-Specific"
 priority: "High"

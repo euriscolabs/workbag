@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/ProjectLayout.astro
+layout: ../../../../layouts/PageLayout.astro
 ---
 
 induction heat plate with magnetic mixer

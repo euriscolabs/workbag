@@ -1,6 +1,7 @@
 ---
 title: "Software"
-layout: ../../layouts/MocLayout.astro
+layout: ../../layouts/PageLayout.astro
+cards: true
 ---
 
 - [The Platonic Representation Hypothesis](the-platonic-representation-hypothesis.md)

@@ -1,5 +1,5 @@
 ---
-layout: ../../../../layouts/ArticleLayout.astro
+layout: ../../../../layouts/PageLayout.astro
 title: "First Layer Adhesion Failure"
 category: "Adhesion"
 severity: "Critical"

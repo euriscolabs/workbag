@@ -1,5 +1,6 @@
 ---
-layout: ../../../layouts/MocLayout.astro
+layout: ../../../layouts/PageLayout.astro
+cards: true
 title: "Recipe Ideas"
 description: ""
 ---

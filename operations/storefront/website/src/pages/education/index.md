@@ -1,6 +1,7 @@
 ---
 title: "Education"
-layout: ../../layouts/MocLayout.astro
+layout: ../../layouts/PageLayout.astro
+cards: true
 ---
 
 - [Feynman Technique](feynman-technique.md)
