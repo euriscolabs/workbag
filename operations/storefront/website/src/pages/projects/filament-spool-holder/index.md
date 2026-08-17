@@ -5,7 +5,9 @@ description: "An all-in-one filament management system — dry storage, inline c
 status: "Design"
 category: "Manufacturing"
 tags: ["3D Printing", "Hardware", "Filament Management"]
+reasons: ["increase parts quality"]
 ---
+
 
 ## Overview
 

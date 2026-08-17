@@ -7,6 +7,9 @@ category: "Manufacturing"
 tags: ["3D Printing", "Automation", "Hardware", "Electronics"]
 ---
 
+# why
+increase parts quality
+
 ## Overview
 
 An automatic calibration and fine-tuning system for 3D printers that uses sensors, computer vision, and G-code automation to eliminate the tedious manual calibration process.

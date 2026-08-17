@@ -9,6 +9,8 @@
   --color-muted: #5a5a7a;
 }
 
+/* (semibold 600 / regular 400)*/
+
 /* Home page — the root MOC (src/content/index.md) rendered as a full page
    from plain markdown: a lone image paragraph is the hero, the paragraph
    after it the tagline, a bold-led list becomes the values grid, and h2

@@ -5,6 +5,7 @@ description: "Advanced printing method using laser reheating to remelt layers, i
 status: "Idea"
 category: "Manufacturing"
 tags: ["3D Printing", "Research", "Materials Science"]
+reasons: ["increase parts quality", "increase parts strength"]
 ---
 
 ## Overview
