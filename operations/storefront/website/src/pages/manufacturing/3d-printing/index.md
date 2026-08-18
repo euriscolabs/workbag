@@ -34,7 +34,7 @@ The parameters that control print quality. Each one documented with what it does
 
 Calibrate in this order — each step depends on the previous:
 
-1. [E-Steps](./calibration/e-steps.md) — Extruder steps/mm, foundation of extrusion accuracy
+1. [E-Steps](./calibration/e-steps.mdx) — Extruder steps/mm, foundation of extrusion accuracy
 2. [Axis Steps/mm](./calibration/axis-steps.md) — Positional accuracy per axis
 3. [PID Tuning](./calibration/pid-tuning.md) — Temperature control stability
 4. [Bed Mesh / ABL](./calibration/bed-mesh.md) — Bed surface compensation

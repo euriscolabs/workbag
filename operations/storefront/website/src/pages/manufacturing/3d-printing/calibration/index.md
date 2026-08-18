@@ -10,7 +10,7 @@ cards: true
 - [Bed Temperature](bed-temperature.md) — Heated bed temperature for a given filament — controls first layer adhesion, warping tendency, and part release.
 - [Belt Tension](belt-tension.md) — Tension of the motion system belts — affects positional accuracy, resonance frequency, and print quality.
 - [Cooling / Fan Speed](cooling.md) — Part cooling fan speed — controls how fast extruded plastic solidifies, affecting overhang quality, bridging, and layer bonding.
-- [E-Steps](e-steps.md) — Extruder steps per millimeter — how many motor steps the extruder needs to push exactly 1mm of filament. The foundation of all extrusion accuracy.
+- [E-Steps](e-steps.mdx) — Extruder steps per millimeter — how many motor steps the extruder needs to push exactly 1mm of filament. The foundation of all extrusion accuracy.
 - [Extrusion Temperature](extrusion-temperature.md) — Nozzle temperature for a given filament — controls melt viscosity, layer adhesion, stringing, and surface finish.
 - [Flow Rate](flow-rate.md) — Extrusion multiplier — fine-tunes the volume of plastic deposited after E-steps are calibrated. Compensates for filament diameter variation and material compressibility.
 - [Input Shaper](input-shaper.md) — Vibration compensation — measures the printer's resonant frequencies and applies counter-signals to cancel ringing artifacts at corners and direction changes.

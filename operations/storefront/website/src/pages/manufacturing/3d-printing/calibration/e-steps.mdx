@@ -6,6 +6,10 @@ priority: "Critical"
 description: "Extruder steps per millimeter — how many motor steps the extruder needs to push exactly 1mm of filament. The foundation of all extrusion accuracy."
 ---
 
+import AnimationPlayer from "../../../../components/AnimationPlayer";
+
+<AnimationPlayer name="e-steps" client:visible />
+
 ## What It Is
 
 E-steps (extruder steps/mm) defines how many stepper motor steps are needed to advance exactly 1mm of filament. If this value is wrong, every print over- or under-extrudes regardless of all other settings.

@@ -3,12 +3,13 @@ import { defineConfig } from 'astro/config';
 import { fileURLToPath } from 'node:url';
 import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
+import react from '@astrojs/react';
 import rehypeContentLinks from './src/lib/markdown-links.mjs';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://euriscolabs.com',
-  integrations: [mdx()],
+  integrations: [react(), mdx()],
   markdown: {
     rehypePlugins: [
       [

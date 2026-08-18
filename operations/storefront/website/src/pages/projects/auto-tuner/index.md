@@ -26,13 +26,13 @@ An automatic calibration and fine-tuning system for 3D printers that uses sensor
 
 ### What It Automates
 
-The auto-tuner targets all [calibration variables](../../manufacturing/3d-printing/calibration/e-steps.md) documented in the [3D Printing](../../manufacturing/3d-printing/index.md) knowledge base — both [printer-specific](../../manufacturing/3d-printing/index.md#printer-specific-once--hardware-changes) and [filament-specific](../../manufacturing/3d-printing/index.md#filament-specific-per-spool) parameters.
+The auto-tuner targets all [calibration variables](../../manufacturing/3d-printing/calibration/e-steps.mdx) documented in the [3D Printing](../../manufacturing/3d-printing/index.md) knowledge base — both [printer-specific](../../manufacturing/3d-printing/index.md#printer-specific-once--hardware-changes) and [filament-specific](../../manufacturing/3d-printing/index.md#filament-specific-per-spool) parameters.
 
 #### Automation Approach per Variable
 
 | Variable | Sensor / Method |
 |---|---|
-| [E-Steps](../../manufacturing/3d-printing/calibration/e-steps.md) | Roller encoder on filament path |
+| [E-Steps](../../manufacturing/3d-printing/calibration/e-steps.mdx) | Roller encoder on filament path |
 | [Axis Steps/mm](../../manufacturing/3d-printing/calibration/axis-steps.md) | Dial indicator or laser displacement sensor |
 | [PID Tuning](../../manufacturing/3d-printing/calibration/pid-tuning.md) | Already automatable via `M303` G-code |
 | [Bed Mesh / ABL](../../manufacturing/3d-printing/calibration/bed-mesh.md) | Already automatable via `G29` |
