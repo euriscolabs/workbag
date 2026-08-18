@@ -4,6 +4,6 @@ layout: /src/layouts/PageLayout.astro
 cards: true
 ---
 
-- [Cyberdeck](cyberdeck/index.md) — A modular DIY laptop with detachable keyboard, mousepad, tri-screen setup, and kickstand.
-- [Ev Battery](ev-battery/index.md)
-- [Storage Phonecase](storage-phonecase/index.md)
+- [Cyberdeck](../projects/cyberdeck/index.md) — A modular DIY laptop with detachable keyboard, mousepad, tri-screen setup, and kickstand.
+- [Ev Battery](../projects/ev-battery/index.md)
+- [Storage Phonecase](../projects/storage-phonecase/index.md)

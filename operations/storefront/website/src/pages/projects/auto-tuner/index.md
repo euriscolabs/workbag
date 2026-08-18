@@ -26,30 +26,30 @@ An automatic calibration and fine-tuning system for 3D printers that uses sensor
 
 ### What It Automates
 
-The auto-tuner targets all [calibration variables](../../calibration/e-steps.md) documented in the [3D Printing](../../index.md) knowledge base — both [printer-specific](../../index.md#printer-specific-once--hardware-changes) and [filament-specific](../../index.md#filament-specific-per-spool) parameters.
+The auto-tuner targets all [calibration variables](../../manufacturing/3d-printing/calibration/e-steps.md) documented in the [3D Printing](../../manufacturing/3d-printing/index.md) knowledge base — both [printer-specific](../../manufacturing/3d-printing/index.md#printer-specific-once--hardware-changes) and [filament-specific](../../manufacturing/3d-printing/index.md#filament-specific-per-spool) parameters.
 
 #### Automation Approach per Variable
 
 | Variable | Sensor / Method |
 |---|---|
-| [E-Steps](../../calibration/e-steps.md) | Roller encoder on filament path |
-| [Axis Steps/mm](../../calibration/axis-steps.md) | Dial indicator or laser displacement sensor |
-| [PID Tuning](../../calibration/pid-tuning.md) | Already automatable via `M303` G-code |
-| [Bed Mesh / ABL](../../calibration/bed-mesh.md) | Already automatable via `G29` |
-| [Probe Z-Offset](../../calibration/z-offset.md) | Electrical contact sensing, strain gauge, or piezo |
-| [Input Shaper](../../calibration/input-shaper.md) | Already automatable via Klipper + ADXL345 |
-| [Belt Tension](../../calibration/belt-tension.md) | Frequency analysis (microphone or accelerometer) |
-| [Backlash](../../calibration/backlash.md) | Dial indicator + direction reversal measurement |
-| [Skew Compensation](../../calibration/skew-compensation.md) | Probe grid at known coordinates |
-| [Max Accel/Velocity](../../calibration/max-acceleration.md) | Accelerometer or sensorless homing stall detection |
-| [Extrusion Temperature](../../calibration/extrusion-temperature.md) | Camera + CV on temperature tower |
-| [Flow Rate](../../calibration/flow-rate.md) | Inline filament diameter sensor or weigh-based |
-| [Retraction](../../calibration/retraction.md) | Camera + CV on stringing test |
-| [Pressure Advance](../../calibration/pressure-advance.md) | Camera + line width analysis on PA pattern |
-| [Max Volumetric Flow](../../calibration/max-volumetric-flow.md) | Roller encoder monitoring actual vs. commanded |
-| [Bed Temperature](../../calibration/bed-temperature.md) | Strain gauge for adhesion or camera for warp detection |
-| [Cooling/Fan Speed](../../calibration/cooling.md) | Camera + overhang droop analysis |
-| [Speed Profile](../../calibration/speed-profile.md) | Systematic test prints + camera/sensor evaluation |
+| [E-Steps](../../manufacturing/3d-printing/calibration/e-steps.md) | Roller encoder on filament path |
+| [Axis Steps/mm](../../manufacturing/3d-printing/calibration/axis-steps.md) | Dial indicator or laser displacement sensor |
+| [PID Tuning](../../manufacturing/3d-printing/calibration/pid-tuning.md) | Already automatable via `M303` G-code |
+| [Bed Mesh / ABL](../../manufacturing/3d-printing/calibration/bed-mesh.md) | Already automatable via `G29` |
+| [Probe Z-Offset](../../manufacturing/3d-printing/calibration/z-offset.md) | Electrical contact sensing, strain gauge, or piezo |
+| [Input Shaper](../../manufacturing/3d-printing/calibration/input-shaper.md) | Already automatable via Klipper + ADXL345 |
+| [Belt Tension](../../manufacturing/3d-printing/calibration/belt-tension.md) | Frequency analysis (microphone or accelerometer) |
+| [Backlash](../../manufacturing/3d-printing/calibration/backlash.md) | Dial indicator + direction reversal measurement |
+| [Skew Compensation](../../manufacturing/3d-printing/calibration/skew-compensation.md) | Probe grid at known coordinates |
+| [Max Accel/Velocity](../../manufacturing/3d-printing/calibration/max-acceleration.md) | Accelerometer or sensorless homing stall detection |
+| [Extrusion Temperature](../../manufacturing/3d-printing/calibration/extrusion-temperature.md) | Camera + CV on temperature tower |
+| [Flow Rate](../../manufacturing/3d-printing/calibration/flow-rate.md) | Inline filament diameter sensor or weigh-based |
+| [Retraction](../../manufacturing/3d-printing/calibration/retraction.md) | Camera + CV on stringing test |
+| [Pressure Advance](../../manufacturing/3d-printing/calibration/pressure-advance.md) | Camera + line width analysis on PA pattern |
+| [Max Volumetric Flow](../../manufacturing/3d-printing/calibration/max-volumetric-flow.md) | Roller encoder monitoring actual vs. commanded |
+| [Bed Temperature](../../manufacturing/3d-printing/calibration/bed-temperature.md) | Strain gauge for adhesion or camera for warp detection |
+| [Cooling/Fan Speed](../../manufacturing/3d-printing/calibration/cooling.md) | Camera + overhang droop analysis |
+| [Speed Profile](../../manufacturing/3d-printing/calibration/speed-profile.md) | Systematic test prints + camera/sensor evaluation |
 
 #### Live Tuning (during print)
 
@@ -201,7 +201,7 @@ Package as a kit: BOM, assembly guide, software install, documentation. Sell thr
 
 ## Anomalies
 
-See the full [anomalies reference](../../anomalies/under-extrusion.md) in the [3D Printing](../../index.md#anomalies) knowledge base. The auto-tuner's anomaly detection system targets these defects during live tuning.
+See the full [anomalies reference](../../manufacturing/3d-printing/anomalies/under-extrusion.md) in the [3D Printing](../../manufacturing/3d-printing/index.md#anomalies) knowledge base. The auto-tuner's anomaly detection system targets these defects during live tuning.
 
 ## Open Questions
 

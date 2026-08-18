@@ -11,3 +11,8 @@ inline dryer vs box dryer
 [ Are filament dryers a scam? ](https://www.youtube.com/watch?v=_Yujnhu5Bw8)
 conclusion: drying depends heavily on the material, for example PLA is not as affected by humidity as PETG.
 
+
+
+https://www.youtube.com/watch?v=8kIDLIXILKo
+
+https://www.youtube.com/watch?v=c1hrP0gduRU
