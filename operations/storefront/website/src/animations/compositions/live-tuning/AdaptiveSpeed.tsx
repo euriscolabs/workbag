@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate, useCurrentFrame } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: Live print view with real-time speed adjustments.
@@ -27,7 +27,7 @@ const AdaptiveSpeedDiagram: React.FC<{ value: number }> = ({ value }) => {
 
   // Print path segments with different move types
   const segments = [
-    { type: "Infill", optimalSpeed: 250, x1: 80, x2: 200, y: 200, color: colors.muted },
+    { type: "Infill", optimalSpeed: 250, x1: 80, x2: 200, y: 200, color: colors.skyBlue },
     { type: "Inner perim.", optimalSpeed: 150, x1: 200, x2: 300, y: 200, color: colors.lightBlue },
     { type: "Overhang", optimalSpeed: 40, x1: 300, x2: 400, y: 200, color: colors.accentAmber },
     { type: "Bridge", optimalSpeed: 120, x1: 400, x2: 500, y: 200, color: colors.skyBlue },
@@ -46,7 +46,7 @@ const AdaptiveSpeedDiagram: React.FC<{ value: number }> = ({ value }) => {
     <svg width="700" height="580" viewBox="0 0 700 580">
       {/* Title */}
       <g transform="translate(350, 25)">
-        <text x="0" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="0" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           ADAPTIVE SPEED
         </text>
         <text x="0" y="28" textAnchor="middle" fill={zoneColor} fontSize="28" fontWeight="bold" fontFamily="Space Grotesk">
@@ -56,7 +56,7 @@ const AdaptiveSpeedDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Print path with segments */}
       <g>
-        <text x="350" y="80" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="350" y="80" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Current print layer — move types
         </text>
 
@@ -74,7 +74,7 @@ const AdaptiveSpeedDiagram: React.FC<{ value: number }> = ({ value }) => {
 
           // Quality indicator — how far from optimal
           const qualityDiff = Math.abs(actualSpeed - seg.optimalSpeed) / seg.optimalSpeed;
-          const qualityColor = qualityDiff < 0.15 ? colors.correct : qualityDiff < 0.4 ? colors.accentAmber : colors.tooLow;
+          const qualityColor = qualityDiff < 0.15 ? calibration.correct : qualityDiff < 0.4 ? colors.accentAmber : calibration.tooLow;
 
           return (
             <g key={i}>
@@ -90,7 +90,7 @@ const AdaptiveSpeedDiagram: React.FC<{ value: number }> = ({ value }) => {
               <line
                 x1={seg.x1 + (seg.x2 - seg.x1) * segProgress} y1={seg.y}
                 x2={seg.x2} y2={seg.y}
-                stroke={colors.muted + "22"}
+                stroke={colors.skyBlue + "22"}
                 strokeWidth="3"
                 strokeLinecap="round"
               />
@@ -100,7 +100,7 @@ const AdaptiveSpeedDiagram: React.FC<{ value: number }> = ({ value }) => {
                 x={(seg.x1 + seg.x2) / 2}
                 y={seg.y - 15}
                 textAnchor="middle"
-                fill={isActive ? colors.text : colors.muted + "66"}
+                fill={isActive ? colors.white : colors.skyBlue + "66"}
                 fontSize="12"
                 fontWeight={isActive ? "bold" : "normal"}
                 fontFamily="Space Grotesk"
@@ -113,7 +113,7 @@ const AdaptiveSpeedDiagram: React.FC<{ value: number }> = ({ value }) => {
                 x={(seg.x1 + seg.x2) / 2}
                 y={seg.y + 25}
                 textAnchor="middle"
-                fill={isActive ? qualityColor : colors.muted + "44"}
+                fill={isActive ? qualityColor : colors.skyBlue + "44"}
                 fontSize="11"
                 fontFamily="Space Grotesk"
               >
@@ -138,7 +138,7 @@ const AdaptiveSpeedDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Speed over time graph */}
       <g>
-        <text x={graphX + graphWidth / 2} y={graphY - 10} textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x={graphX + graphWidth / 2} y={graphY - 10} textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Speed over time
         </text>
 
@@ -150,7 +150,7 @@ const AdaptiveSpeedDiagram: React.FC<{ value: number }> = ({ value }) => {
           const x2 = graphX + (seg.x2 - 80) / 540 * graphWidth;
           const y = graphY + graphHeight - (seg.optimalSpeed / 300) * graphHeight;
           return (
-            <line key={i} x1={x1} y1={y} x2={x2} y2={y} stroke={colors.correct + "44"} strokeWidth="2" strokeDasharray="4,4" />
+            <line key={i} x1={x1} y1={y} x2={x2} y2={y} stroke={calibration.correct + "44"} strokeWidth="2" strokeDasharray="4,4" />
           );
         })}
 
@@ -194,7 +194,7 @@ const AdaptiveSpeedDiagram: React.FC<{ value: number }> = ({ value }) => {
 
         {/* Y axis labels */}
         {[0, 100, 200, 300].map((v) => (
-          <text key={v} x={graphX - 8} y={graphY + graphHeight - (v / 300) * graphHeight + 4} textAnchor="end" fill={colors.muted + "66"} fontSize="10" fontFamily="Space Grotesk">
+          <text key={v} x={graphX - 8} y={graphY + graphHeight - (v / 300) * graphHeight + 4} textAnchor="end" fill={colors.skyBlue + "66"} fontSize="10" fontFamily="Space Grotesk">
             {v}
           </text>
         ))}
@@ -202,7 +202,7 @@ const AdaptiveSpeedDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Sensor feedback panel */}
       <g transform="translate(80, 430)">
-        <text x="270" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="270" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Sensor feedback loop
         </text>
 
@@ -216,22 +216,22 @@ const AdaptiveSpeedDiagram: React.FC<{ value: number }> = ({ value }) => {
           <g key={i}>
             <rect x={item.x} y="15" width="120" height="45" rx="6"
               fill={adaptiveness > 0.3 ? zoneColor + "18" : colors.deepBlue}
-              stroke={adaptiveness > 0.3 ? zoneColor + "44" : colors.muted + "22"}
+              stroke={adaptiveness > 0.3 ? zoneColor + "44" : colors.skyBlue + "22"}
               strokeWidth="1.5"
             />
-            <text x={item.x + 60} y="33" textAnchor="middle" fill={colors.text} fontSize="13" fontWeight="600" fontFamily="Space Grotesk">
+            <text x={item.x + 60} y="33" textAnchor="middle" fill={colors.white} fontSize="13" fontWeight="600" fontFamily="Space Grotesk">
               {item.label}
             </text>
-            <text x={item.x + 60} y="50" textAnchor="middle" fill={colors.muted} fontSize="10" fontFamily="Space Grotesk">
+            <text x={item.x + 60} y="50" textAnchor="middle" fill={colors.skyBlue} fontSize="10" fontFamily="Space Grotesk">
               {item.detail}
             </text>
             {i < 3 && (
-              <polygon points={`${item.x + 128},37 ${item.x + 142},37 ${item.x + 135},37`} fill={colors.muted + "66"}>
-                <line x1={item.x + 120} y1="37" x2={item.x + 150} y2="37" stroke={colors.muted + "44"} strokeWidth="1.5" />
+              <polygon points={`${item.x + 128},37 ${item.x + 142},37 ${item.x + 135},37`} fill={colors.skyBlue + "66"}>
+                <line x1={item.x + 120} y1="37" x2={item.x + 150} y2="37" stroke={colors.skyBlue + "44"} strokeWidth="1.5" />
               </polygon>
             )}
             {i < 3 && (
-              <line x1={item.x + 120} y1="37" x2={item.x + 150} y2="37" stroke={adaptiveness > 0.3 ? zoneColor + "66" : colors.muted + "22"} strokeWidth="1.5" />
+              <line x1={item.x + 120} y1="37" x2={item.x + 150} y2="37" stroke={adaptiveness > 0.3 ? zoneColor + "66" : colors.skyBlue + "22"} strokeWidth="1.5" />
             )}
           </g>
         ))}

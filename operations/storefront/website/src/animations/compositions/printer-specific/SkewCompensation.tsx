@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: X/Y axes shown from above.
@@ -48,14 +48,14 @@ const SkewDiagram: React.FC<{ value: number }> = ({ value }) => {
   return (
     <svg width="700" height="550" viewBox="0 0 700 550">
       {/* Axes */}
-      <text x="350" y="35" textAnchor="middle" fill={colors.muted} fontSize="16" fontFamily="Space Grotesk">
+      <text x="350" y="35" textAnchor="middle" fill={colors.skyBlue} fontSize="16" fontFamily="Space Grotesk">
         X/Y axis alignment — top view
       </text>
 
       {/* X axis */}
-      <line x1="100" y1={oy + squareSize / 2 + 40} x2="600" y2={oy + squareSize / 2 + 40} stroke={colors.muted + "44"} strokeWidth="2" />
-      <polygon points={`600,${oy + squareSize / 2 + 35} 610,${oy + squareSize / 2 + 40} 600,${oy + squareSize / 2 + 45}`} fill={colors.muted + "44"} />
-      <text x="620" y={oy + squareSize / 2 + 45} fill={colors.muted} fontSize="16" fontWeight="bold" fontFamily="Space Grotesk">
+      <line x1="100" y1={oy + squareSize / 2 + 40} x2="600" y2={oy + squareSize / 2 + 40} stroke={colors.skyBlue + "44"} strokeWidth="2" />
+      <polygon points={`600,${oy + squareSize / 2 + 35} 610,${oy + squareSize / 2 + 40} 600,${oy + squareSize / 2 + 45}`} fill={colors.skyBlue + "44"} />
+      <text x="620" y={oy + squareSize / 2 + 45} fill={colors.skyBlue} fontSize="16" fontWeight="bold" fontFamily="Space Grotesk">
         X
       </text>
 
@@ -84,7 +84,7 @@ const SkewDiagram: React.FC<{ value: number }> = ({ value }) => {
       })()}
 
       {/* Ideal Y axis (dashed, for reference) */}
-      <line x1={ox} y1={oy + squareSize / 2 + 40} x2={ox} y2={oy - squareSize / 2 - 40} stroke={colors.correct + "33"} strokeWidth="1.5" strokeDasharray="6,4" />
+      <line x1={ox} y1={oy + squareSize / 2 + 40} x2={ox} y2={oy - squareSize / 2 - 40} stroke={calibration.correct + "33"} strokeWidth="1.5" strokeDasharray="6,4" />
 
       {/* Angle arc */}
       <path
@@ -105,7 +105,7 @@ const SkewDiagram: React.FC<{ value: number }> = ({ value }) => {
       </text>
 
       {/* Target square (ideal 90°) */}
-      <polygon points={idealPath} fill="none" stroke={colors.correct + "33"} strokeWidth="2" strokeDasharray="6,4" />
+      <polygon points={idealPath} fill="none" stroke={calibration.correct + "33"} strokeWidth="2" strokeDasharray="6,4" />
 
       {/* Actual printed shape (skewed) */}
       <polygon points={skewedPath} fill={zoneColor + "18"} stroke={zoneColor} strokeWidth="2.5" />
@@ -115,7 +115,7 @@ const SkewDiagram: React.FC<{ value: number }> = ({ value }) => {
         x={(skewedCorners[0][0] + skewedCorners[1][0]) / 2}
         y={skewedCorners[0][1] - 10}
         textAnchor="middle"
-        fill={colors.muted}
+        fill={colors.skyBlue}
         fontSize="13"
         fontFamily="Space Grotesk"
       >
@@ -124,14 +124,14 @@ const SkewDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Assembly test — two parts that should fit */}
       <g transform="translate(200, 410)">
-        <text x="150" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="150" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Part assembly test
         </text>
 
         {/* Part A (pocket) */}
-        <rect x="50" y="20" width="80" height="60" fill="none" stroke={colors.muted} strokeWidth="2" rx="2" />
-        <rect x="65" y="30" width="50" height="40" fill={colors.deepBlue} stroke={colors.muted + "66"} strokeWidth="1" rx="1" />
-        <text x="90" y="82" textAnchor="middle" fill={colors.muted} fontSize="11" fontFamily="Space Grotesk">pocket</text>
+        <rect x="50" y="20" width="80" height="60" fill="none" stroke={colors.skyBlue} strokeWidth="2" rx="2" />
+        <rect x="65" y="30" width="50" height="40" fill={colors.deepBlue} stroke={colors.skyBlue + "66"} strokeWidth="1" rx="1" />
+        <text x="90" y="82" textAnchor="middle" fill={colors.skyBlue} fontSize="11" fontFamily="Space Grotesk">pocket</text>
 
         {/* Part B (tab) — skewed */}
         {(() => {
@@ -152,7 +152,7 @@ const SkewDiagram: React.FC<{ value: number }> = ({ value }) => {
                 stroke={zoneColor}
                 strokeWidth="2"
               />
-              <text x={tabX + tabWidth / 2} y="82" textAnchor="middle" fill={colors.muted} fontSize="11" fontFamily="Space Grotesk">tab</text>
+              <text x={tabX + tabWidth / 2} y="82" textAnchor="middle" fill={colors.skyBlue} fontSize="11" fontFamily="Space Grotesk">tab</text>
 
               {/* Fit indicator */}
               <text

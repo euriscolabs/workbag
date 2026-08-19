@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate, useCurrentFrame } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: Part with overhangs showing cooling effect.
@@ -29,7 +29,7 @@ const CoolingFanDiagram: React.FC<{ value: number }> = ({ value }) => {
     <svg width="700" height="580" viewBox="0 0 700 580">
       {/* Fan speed display */}
       <g transform="translate(350, 25)">
-        <text x="0" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="0" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           PART COOLING FAN
         </text>
         <text x="0" y="32" textAnchor="middle" fill={zoneColor} fontSize="36" fontWeight="bold" fontFamily="Space Grotesk">
@@ -50,7 +50,7 @@ const CoolingFanDiagram: React.FC<{ value: number }> = ({ value }) => {
         ))}
         <circle r="6" fill={colors.darkBlue} />
       </g>
-      <text x="580" y="240" textAnchor="middle" fill={colors.muted} fontSize="11" fontFamily="Space Grotesk">FAN</text>
+      <text x="580" y="240" textAnchor="middle" fill={colors.skyBlue} fontSize="11" fontFamily="Space Grotesk">FAN</text>
 
       {/* Airflow lines */}
       {fanSpeed > 10 && Array.from({ length: 4 }, (_, i) => (
@@ -68,12 +68,12 @@ const CoolingFanDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Overhang test — graduated angles */}
       <g transform="translate(80, 80)">
-        <text x="200" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="200" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Overhang test
         </text>
 
         {/* Base */}
-        <rect x="50" y="200" width="300" height="16" rx="3" fill={colors.muted + "33"} stroke={colors.muted + "66"} strokeWidth="1.5" />
+        <rect x="50" y="200" width="300" height="16" rx="3" fill={colors.skyBlue + "33"} stroke={colors.skyBlue + "66"} strokeWidth="1.5" />
 
         {/* Overhang steps at 20°, 35°, 50°, 65°, 80° */}
         {[20, 35, 50, 65, 80].map((angle, i) => {
@@ -95,7 +95,7 @@ const CoolingFanDiagram: React.FC<{ value: number }> = ({ value }) => {
               <path
                 d={`M ${stepX},${130} L ${stepX - dx},${130 - dy + stepDroop}`}
                 fill="none"
-                stroke={stepDroop > 5 ? colors.tooLow : zoneColor}
+                stroke={stepDroop > 5 ? calibration.tooLow : zoneColor}
                 strokeWidth="4"
                 strokeLinecap="round"
               />
@@ -104,13 +104,13 @@ const CoolingFanDiagram: React.FC<{ value: number }> = ({ value }) => {
               <path
                 d={`M ${stepX},${130} L ${stepX - dx},${130 - dy}`}
                 fill="none"
-                stroke={colors.correct + "33"}
+                stroke={calibration.correct + "33"}
                 strokeWidth="1.5"
                 strokeDasharray="4,4"
               />
 
               {/* Angle label */}
-              <text x={stepX} y="218" textAnchor="middle" fill={colors.muted} fontSize="11" fontFamily="Space Grotesk">{angle}°</text>
+              <text x={stepX} y="218" textAnchor="middle" fill={colors.skyBlue} fontSize="11" fontFamily="Space Grotesk">{angle}°</text>
             </g>
           );
         })}
@@ -118,7 +118,7 @@ const CoolingFanDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Bridge test */}
       <g transform="translate(80, 340)">
-        <text x="200" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="200" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Bridge test
         </text>
 
@@ -130,15 +130,15 @@ const CoolingFanDiagram: React.FC<{ value: number }> = ({ value }) => {
         <path
           d={`M 110,30 Q 200,${30 + bridgeSag} 290,30`}
           fill="none"
-          stroke={bridgeSag > 5 ? colors.tooLow : zoneColor}
+          stroke={bridgeSag > 5 ? calibration.tooLow : zoneColor}
           strokeWidth="4"
         />
 
         {/* Ideal bridge line */}
-        <line x1="110" y1="30" x2="290" y2="30" stroke={colors.correct + "33"} strokeWidth="1.5" strokeDasharray="4,4" />
+        <line x1="110" y1="30" x2="290" y2="30" stroke={calibration.correct + "33"} strokeWidth="1.5" strokeDasharray="4,4" />
 
         {bridgeSag > 10 && (
-          <text x="200" y={40 + bridgeSag} textAnchor="middle" fill={colors.tooLow} fontSize="12" fontFamily="Space Grotesk">
+          <text x="200" y={40 + bridgeSag} textAnchor="middle" fill={calibration.tooLow} fontSize="12" fontFamily="Space Grotesk">
             sagging
           </text>
         )}
@@ -146,7 +146,7 @@ const CoolingFanDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Layer adhesion / delamination for too much cooling */}
       <g transform="translate(420, 340)">
-        <text x="100" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="100" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Layer adhesion
         </text>
 
@@ -160,8 +160,8 @@ const CoolingFanDiagram: React.FC<{ value: number }> = ({ value }) => {
               width="140"
               height="14"
               rx="3"
-              fill={gap > 2 ? colors.tooHigh + "44" : zoneColor + "44"}
-              stroke={gap > 2 ? colors.tooHigh : zoneColor + "66"}
+              fill={gap > 2 ? calibration.tooHigh + "44" : zoneColor + "44"}
+              stroke={gap > 2 ? calibration.tooHigh : zoneColor + "66"}
               strokeWidth="1.5"
             />
           );
@@ -169,10 +169,10 @@ const CoolingFanDiagram: React.FC<{ value: number }> = ({ value }) => {
 
         {delamination > 3 && (
           <>
-            <text x="100" y="130" textAnchor="middle" fill={colors.tooHigh} fontSize="12" fontFamily="Space Grotesk">
+            <text x="100" y="130" textAnchor="middle" fill={calibration.tooHigh} fontSize="12" fontFamily="Space Grotesk">
               delamination
             </text>
-            <text x="100" y="146" textAnchor="middle" fill={colors.tooHigh} fontSize="11" fontFamily="Space Grotesk">
+            <text x="100" y="146" textAnchor="middle" fill={calibration.tooHigh} fontSize="11" fontFamily="Space Grotesk">
               (layers don't bond)
             </text>
           </>
@@ -182,7 +182,7 @@ const CoolingFanDiagram: React.FC<{ value: number }> = ({ value }) => {
   );
 };
 
-export const CoolingFan: React.FC = () => (
+export const Cooling: React.FC = () => (
   <CalibrationVar
     index={7}
     category="Filament-Specific"

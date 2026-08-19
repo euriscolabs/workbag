@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: Single-wall calibration cube with wall thickness measurement.
@@ -28,7 +28,7 @@ const FlowRateDiagram: React.FC<{ value: number }> = ({ value }) => {
     <svg width="700" height="580" viewBox="0 0 700 580">
       {/* Flow multiplier display */}
       <g transform="translate(350, 30)">
-        <text x="0" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="0" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           EXTRUSION MULTIPLIER
         </text>
         <text x="0" y="32" textAnchor="middle" fill={zoneColor} fontSize="36" fontWeight="bold" fontFamily="Space Grotesk">
@@ -38,12 +38,12 @@ const FlowRateDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Calibration cube — top-down cross-section */}
       <g transform="translate(100, 90)">
-        <text x="250" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="250" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Single-wall cube — top-down view
         </text>
 
         {/* Outer target square (dashed) */}
-        <rect x="100" y="20" width="300" height="200" fill="none" stroke={colors.correct + "33"} strokeWidth="1.5" strokeDasharray="6,4" rx="2" />
+        <rect x="100" y="20" width="300" height="200" fill="none" stroke={calibration.correct + "33"} strokeWidth="1.5" strokeDasharray="6,4" rx="2" />
 
         {/* Actual printed walls */}
         {/* Top wall */}
@@ -63,7 +63,7 @@ const FlowRateDiagram: React.FC<{ value: number }> = ({ value }) => {
           <text x="-35" y={25 + actualPx / 2} textAnchor="end" fill={zoneColor} fontSize="14" fontWeight="bold" fontFamily="Space Grotesk">
             {actualWall.toFixed(2)}mm
           </text>
-          <text x="-35" y={25 + actualPx / 2 + 16} textAnchor="end" fill={colors.muted} fontSize="11" fontFamily="Space Grotesk">
+          <text x="-35" y={25 + actualPx / 2 + 16} textAnchor="end" fill={colors.skyBlue} fontSize="11" fontFamily="Space Grotesk">
             (target: {targetWall.toFixed(2)}mm)
           </text>
         </g>
@@ -78,11 +78,11 @@ const FlowRateDiagram: React.FC<{ value: number }> = ({ value }) => {
                 y1="50"
                 x2={140 + i * 30}
                 y2="190"
-                stroke={colors.tooLow + "33"}
+                stroke={calibration.tooLow + "33"}
                 strokeWidth="2"
               />
             ))}
-            <text x="250" y="130" textAnchor="middle" fill={colors.tooLow} fontSize="13" fontFamily="Space Grotesk">
+            <text x="250" y="130" textAnchor="middle" fill={calibration.tooLow} fontSize="13" fontFamily="Space Grotesk">
               infill visible through walls
             </text>
           </g>
@@ -91,7 +91,7 @@ const FlowRateDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Double-wall cross-section detail */}
       <g transform="translate(100, 360)">
-        <text x="250" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="250" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Wall cross-section (2 perimeters)
         </text>
 
@@ -105,8 +105,8 @@ const FlowRateDiagram: React.FC<{ value: number }> = ({ value }) => {
           {/* Gap indicator */}
           {perimeterGap > 2 && (
             <g>
-              <line x1={actualPx * 3} y1="50" x2={actualPx * 3 + perimeterGap} y2="50" stroke={colors.tooLow} strokeWidth="1.5" />
-              <text x={actualPx * 3 + perimeterGap / 2} y="42" textAnchor="middle" fill={colors.tooLow} fontSize="11" fontFamily="Space Grotesk">
+              <line x1={actualPx * 3} y1="50" x2={actualPx * 3 + perimeterGap} y2="50" stroke={calibration.tooLow} strokeWidth="1.5" />
+              <text x={actualPx * 3 + perimeterGap / 2} y="42" textAnchor="middle" fill={calibration.tooLow} fontSize="11" fontFamily="Space Grotesk">
                 gap
               </text>
             </g>
@@ -114,7 +114,7 @@ const FlowRateDiagram: React.FC<{ value: number }> = ({ value }) => {
 
           {/* Overlap indicator */}
           {perimeterGap < -2 && (
-            <text x={actualPx * 3} y="-8" textAnchor="middle" fill={colors.tooHigh} fontSize="11" fontFamily="Space Grotesk">
+            <text x={actualPx * 3} y="-8" textAnchor="middle" fill={calibration.tooHigh} fontSize="11" fontFamily="Space Grotesk">
               overlap (bulge)
             </text>
           )}
@@ -124,17 +124,17 @@ const FlowRateDiagram: React.FC<{ value: number }> = ({ value }) => {
           <rect x={(actualPx * 3 + perimeterGap) * 3} y="0" width={actualPx * 3} height="100" rx={actualPx * 1.5} fill={zoneColor + "22"} stroke={zoneColor + "44"} strokeWidth="1" />
 
           {/* Labels */}
-          <text x={actualPx * 1.5} y="130" textAnchor="middle" fill={colors.muted} fontSize="11" fontFamily="Space Grotesk">outer</text>
-          <text x={actualPx * 4.5 + perimeterGap} y="130" textAnchor="middle" fill={colors.muted} fontSize="11" fontFamily="Space Grotesk">inner</text>
+          <text x={actualPx * 1.5} y="130" textAnchor="middle" fill={colors.skyBlue} fontSize="11" fontFamily="Space Grotesk">outer</text>
+          <text x={actualPx * 4.5 + perimeterGap} y="130" textAnchor="middle" fill={colors.skyBlue} fontSize="11" fontFamily="Space Grotesk">inner</text>
         </g>
 
         {/* Total wall thickness */}
         <g transform="translate(380, 20)">
-          <text x="0" y="15" fill={colors.muted} fontSize="13" fontFamily="Space Grotesk">Total wall:</text>
+          <text x="0" y="15" fill={colors.skyBlue} fontSize="13" fontFamily="Space Grotesk">Total wall:</text>
           <text x="0" y="40" fill={zoneColor} fontSize="22" fontWeight="bold" fontFamily="Space Grotesk">
             {(actualWall * 4 + (actualWall * perimeterGap / targetPx) * 3).toFixed(2)}mm
           </text>
-          <text x="0" y="60" fill={colors.muted} fontSize="12" fontFamily="Space Grotesk">
+          <text x="0" y="60" fill={colors.skyBlue} fontSize="12" fontFamily="Space Grotesk">
             target: {(targetWall * 4).toFixed(2)}mm
           </text>
           <text x="0" y="85" fill={zoneColor} fontSize="14" fontFamily="Space Grotesk">

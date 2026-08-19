@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import logoIcon from "../assets/logos/optimized/logo-icon.svg";
+import { brandCss } from "../lib/brand";
 
 interface Props {
   title: string;
@@ -15,7 +17,9 @@ const {
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo-icon.svg" />
+    {/* Canonical brand palette (src/lib/brand.ts) as CSS variables */}
+    <style is:inline set:html={brandCss()}></style>
+    <link rel="icon" type="image/svg+xml" href={logoIcon.src} />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />

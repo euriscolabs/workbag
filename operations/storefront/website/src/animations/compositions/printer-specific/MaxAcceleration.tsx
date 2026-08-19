@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate, useCurrentFrame } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: Toolhead moving along a path with speed ramp.
@@ -72,7 +72,7 @@ const AccelDiagram: React.FC<{ value: number }> = ({ value }) => {
   return (
     <svg width="700" height="550" viewBox="0 0 700 550">
       {/* Speed profile graph */}
-      <text x={gx + graphWidth / 2} y="40" textAnchor="middle" fill={colors.muted} fontSize="16" fontFamily="Space Grotesk">
+      <text x={gx + graphWidth / 2} y="40" textAnchor="middle" fill={colors.skyBlue} fontSize="16" fontFamily="Space Grotesk">
         Speed profile
       </text>
 
@@ -82,8 +82,8 @@ const AccelDiagram: React.FC<{ value: number }> = ({ value }) => {
       <polyline points={speedPoints.join(" ")} fill="none" stroke={zoneColor} strokeWidth="3" strokeLinejoin="round" />
 
       {/* Max speed label */}
-      <line x1={gx} y1={gy} x2={gx + graphWidth} y2={gy} stroke={colors.muted + "33"} strokeWidth="1" strokeDasharray="4,4" />
-      <text x={gx - 8} y={gy + 5} textAnchor="end" fill={colors.muted} fontSize="12" fontFamily="Space Grotesk">
+      <line x1={gx} y1={gy} x2={gx + graphWidth} y2={gy} stroke={colors.skyBlue + "33"} strokeWidth="1" strokeDasharray="4,4" />
+      <text x={gx - 8} y={gy + 5} textAnchor="end" fill={colors.skyBlue} fontSize="12" fontFamily="Space Grotesk">
         500
       </text>
 
@@ -109,15 +109,15 @@ const AccelDiagram: React.FC<{ value: number }> = ({ value }) => {
       </text>
 
       {/* Accel value */}
-      <text x={gx + graphWidth + 8} y={gy + graphHeight - 5} fill={colors.muted} fontSize="12" fontFamily="Space Grotesk">
+      <text x={gx + graphWidth + 8} y={gy + graphHeight - 5} fill={colors.skyBlue} fontSize="12" fontFamily="Space Grotesk">
         {accel.toFixed(0)} mm/s²
       </text>
 
       {/* Axes labels */}
-      <text x={gx + graphWidth / 2} y={gy + graphHeight + 20} textAnchor="middle" fill={colors.muted} fontSize="12" fontFamily="Space Grotesk">
+      <text x={gx + graphWidth / 2} y={gy + graphHeight + 20} textAnchor="middle" fill={colors.skyBlue} fontSize="12" fontFamily="Space Grotesk">
         Time →
       </text>
-      <text x={gx - 30} y={gy + graphHeight / 2} textAnchor="middle" fill={colors.muted} fontSize="12" fontFamily="Space Grotesk" transform={`rotate(-90, ${gx - 30}, ${gy + graphHeight / 2})`}>
+      <text x={gx - 30} y={gy + graphHeight / 2} textAnchor="middle" fill={colors.skyBlue} fontSize="12" fontFamily="Space Grotesk" transform={`rotate(-90, ${gx - 30}, ${gy + graphHeight / 2})`}>
         Speed (mm/s)
       </text>
 
@@ -130,12 +130,12 @@ const AccelDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Print path with quality */}
       <g transform="translate(0, 20)">
-        <text x="250" y="280" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="250" y="280" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Print result
         </text>
 
         {/* Ideal path */}
-        <path d={`M ${pathStartX},${pathStartY} L ${pathMidX},${pathStartY} L ${pathEndX},${pathEndY}`} fill="none" stroke={colors.correct + "33"} strokeWidth="2" strokeDasharray="6,4" />
+        <path d={`M ${pathStartX},${pathStartY} L ${pathMidX},${pathStartY} L ${pathEndX},${pathEndY}`} fill="none" stroke={calibration.correct + "33"} strokeWidth="2" strokeDasharray="6,4" />
 
         {/* Actual printed layers (stacked, with potential shift) */}
         {Array.from({ length: 5 }, (_, i) => {
@@ -154,14 +154,14 @@ const AccelDiagram: React.FC<{ value: number }> = ({ value }) => {
 
         {/* Layer shift warning */}
         {layerShift > 3 && (
-          <text x={pathMidX + 20} y={pathStartY - 20} fill={colors.tooHigh} fontSize="14" fontWeight="bold" fontFamily="Space Grotesk">
+          <text x={pathMidX + 20} y={pathStartY - 20} fill={calibration.tooHigh} fontSize="14" fontWeight="bold" fontFamily="Space Grotesk">
             layer shift!
           </text>
         )}
 
         {/* "Too slow" indicator */}
         {value < 0.2 && (
-          <text x={pathMidX - 100} y={pathStartY - 40} fill={colors.tooLow} fontSize="14" fontFamily="Space Grotesk">
+          <text x={pathMidX - 100} y={pathStartY - 40} fill={calibration.tooLow} fontSize="14" fontFamily="Space Grotesk">
             unnecessarily slow...
           </text>
         )}
@@ -170,7 +170,7 @@ const AccelDiagram: React.FC<{ value: number }> = ({ value }) => {
   );
 };
 
-export const MaxAccelVelocity: React.FC = () => (
+export const MaxAcceleration: React.FC = () => (
   <CalibrationVar
     index={10}
     category="Printer-Specific"

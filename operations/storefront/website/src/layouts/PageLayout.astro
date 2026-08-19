@@ -9,7 +9,6 @@
 import BaseLayout from "./BaseLayout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import { breadcrumbsFor, titleFromSegment } from "../lib/content";
-import { proseClasses } from "../lib/prose";
 
 const { frontmatter } = Astro.props;
 const url = frontmatter.url || Astro.url.pathname;
@@ -83,14 +82,19 @@ function badgeColor(level: string): string {
               </span>
             )}
             {frontmatter.tags?.map((tag: string) => (
-              <span class="text-xs text-muted border border-gray-200 px-2 py-0.5 rounded">
+              <span class="text-xs text-muted border border-border px-2 py-0.5 rounded">
                 {tag}
               </span>
             ))}
           </div>
         )}
 
-        <div class:list={[frontmatter.cards && "moc-body", proseClasses]}>
+        <div
+          class:list={[
+            frontmatter.cards && "moc-body",
+            "prose prose-sm max-w-none border-t border-border pt-8",
+          ]}
+        >
           <slot />
         </div>
       </main>

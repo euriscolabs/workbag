@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: Cross-section of a direct-drive extruder.
@@ -28,14 +28,14 @@ const ExtruderDiagram: React.FC<{ value: number }> = ({ value }) => {
   return (
     <svg width="700" height="600" viewBox="0 0 700 600">
       {/* Filament spool hint (top) */}
-      <text x="350" y="30" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+      <text x="350" y="30" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
         FILAMENT (1.75mm)
       </text>
       <line x1="350" y1="38" x2="350" y2="80" stroke={colors.lightBlue} strokeWidth="4" />
 
       {/* Extruder body */}
-      <rect x="290" y="80" width="120" height="140" rx="10" fill={colors.darkBlue} stroke={colors.muted + "44"} strokeWidth="2" />
-      <text x="350" y="105" textAnchor="middle" fill={colors.muted} fontSize="13" fontFamily="Space Grotesk">
+      <rect x="290" y="80" width="120" height="140" rx="10" fill={colors.darkBlue} stroke={colors.skyBlue + "44"} strokeWidth="2" />
+      <text x="350" y="105" textAnchor="middle" fill={colors.skyBlue} fontSize="13" fontFamily="Space Grotesk">
         EXTRUDER
       </text>
 
@@ -57,7 +57,7 @@ const ExtruderDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Idler gear (right) */}
       <g transform={`translate(385, 155) rotate(${-gearRotation})`}>
-        <circle r="18" fill="none" stroke={colors.muted + "88"} strokeWidth="2" />
+        <circle r="18" fill="none" stroke={colors.skyBlue + "88"} strokeWidth="2" />
         {[0, 60, 120, 180, 240, 300].map((a) => (
           <line
             key={a}
@@ -65,7 +65,7 @@ const ExtruderDiagram: React.FC<{ value: number }> = ({ value }) => {
             y1={Math.sin((a * Math.PI) / 180) * 12}
             x2={Math.cos((a * Math.PI) / 180) * 18}
             y2={Math.sin((a * Math.PI) / 180) * 18}
-            stroke={colors.muted + "88"}
+            stroke={colors.skyBlue + "88"}
             strokeWidth="2"
           />
         ))}
@@ -82,8 +82,8 @@ const ExtruderDiagram: React.FC<{ value: number }> = ({ value }) => {
       <rect x="347" y="140" width="6" height={filamentSpeed} fill={zoneColor} opacity="0.6" />
 
       {/* Heatbreak */}
-      <rect x="335" y="220" width="30" height="40" rx="4" fill={colors.muted + "44"} stroke={colors.muted + "66"} strokeWidth="1" />
-      <text x="420" y="245" fill={colors.muted} fontSize="12" fontFamily="Space Grotesk">
+      <rect x="335" y="220" width="30" height="40" rx="4" fill={colors.skyBlue + "44"} stroke={colors.skyBlue + "66"} strokeWidth="1" />
+      <text x="420" y="245" fill={colors.skyBlue} fontSize="12" fontFamily="Space Grotesk">
         HEATBREAK
       </text>
 
@@ -91,7 +91,7 @@ const ExtruderDiagram: React.FC<{ value: number }> = ({ value }) => {
       <rect x="347" y="220" width="6" height="40" fill={colors.lightBlue} />
 
       {/* Heater block */}
-      <rect x="320" y="260" width="60" height="50" rx="6" fill={colors.tooHigh + "88"} stroke={colors.tooHigh} strokeWidth="2" />
+      <rect x="320" y="260" width="60" height="50" rx="6" fill={calibration.tooHigh + "88"} stroke={calibration.tooHigh} strokeWidth="2" />
       <text x="350" y="290" textAnchor="middle" fill={colors.white} fontSize="13" fontWeight="bold" fontFamily="Space Grotesk">
         HEATER
       </text>
@@ -102,7 +102,7 @@ const ExtruderDiagram: React.FC<{ value: number }> = ({ value }) => {
           key={i}
           d={`M${390 + i * 14},268 Q${396 + i * 14},278 ${390 + i * 14},288 Q${384 + i * 14},298 ${390 + i * 14},308`}
           fill="none"
-          stroke={colors.tooHigh + "44"}
+          stroke={calibration.tooHigh + "44"}
           strokeWidth="2"
         />
       ))}
@@ -114,13 +114,13 @@ const ExtruderDiagram: React.FC<{ value: number }> = ({ value }) => {
       {/* Nozzle */}
       <polygon
         points="330,310 370,310 358,340 342,340"
-        fill={colors.muted + "88"}
-        stroke={colors.muted}
+        fill={colors.skyBlue + "88"}
+        stroke={colors.skyBlue}
         strokeWidth="2"
       />
 
       {/* Nozzle opening */}
-      <rect x={350 - flowWidth / 2} y="340" width={flowWidth} height="6" rx="2" fill={colors.muted} />
+      <rect x={350 - flowWidth / 2} y="340" width={flowWidth} height="6" rx="2" fill={colors.skyBlue} />
 
       {/* Extruded material coming out */}
       <rect
@@ -134,7 +134,7 @@ const ExtruderDiagram: React.FC<{ value: number }> = ({ value }) => {
       />
 
       {/* Bed surface */}
-      <rect x="200" y="420" width="300" height="8" rx="4" fill={colors.muted + "44"} />
+      <rect x="200" y="420" width="300" height="8" rx="4" fill={colors.skyBlue + "44"} />
 
       {/* Deposited line on bed — shows layer quality */}
       <g>
@@ -146,7 +146,7 @@ const ExtruderDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Layer cross-section detail */}
       <g transform="translate(350, 480)">
-        <text x="0" y="-5" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="0" y="-5" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Layer cross-section
         </text>
         {/* Three stacked layers */}
@@ -168,13 +168,13 @@ const ExtruderDiagram: React.FC<{ value: number }> = ({ value }) => {
         })}
         {/* Gap indicator for under-extrusion */}
         {value < 0.3 && (
-          <text x="60" y="35" fill={colors.tooLow} fontSize="12" fontFamily="Space Grotesk">
+          <text x="60" y="35" fill={calibration.tooLow} fontSize="12" fontFamily="Space Grotesk">
             gaps!
           </text>
         )}
         {/* Squish indicator for over-extrusion */}
         {value > 0.7 && (
-          <text x="60" y="35" fill={colors.tooHigh} fontSize="12" fontFamily="Space Grotesk">
+          <text x="60" y="35" fill={calibration.tooHigh} fontSize="12" fontFamily="Space Grotesk">
             squished!
           </text>
         )}

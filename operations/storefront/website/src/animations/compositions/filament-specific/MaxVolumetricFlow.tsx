@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate, useCurrentFrame } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: Flow rate gauge showing actual vs. commanded extrusion.
@@ -33,31 +33,31 @@ const MaxVolFlowDiagram: React.FC<{ value: number }> = ({ value }) => {
     <svg width="700" height="580" viewBox="0 0 700 580">
       {/* Flow rate display */}
       <g transform="translate(350, 25)">
-        <text x="-120" y="0" textAnchor="middle" fill={colors.muted} fontSize="13" fontFamily="Space Grotesk">COMMANDED</text>
+        <text x="-120" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="13" fontFamily="Space Grotesk">COMMANDED</text>
         <text x="-120" y="24" textAnchor="middle" fill={zoneColor} fontSize="24" fontWeight="bold" fontFamily="Space Grotesk">
           {commandedFlow.toFixed(1)} mm³/s
         </text>
-        <text x="120" y="0" textAnchor="middle" fill={colors.muted} fontSize="13" fontFamily="Space Grotesk">ACTUAL</text>
-        <text x="120" y="24" textAnchor="middle" fill={deficit > 0.5 ? colors.tooHigh : colors.correct} fontSize="24" fontWeight="bold" fontFamily="Space Grotesk">
+        <text x="120" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="13" fontFamily="Space Grotesk">ACTUAL</text>
+        <text x="120" y="24" textAnchor="middle" fill={deficit > 0.5 ? calibration.tooHigh : calibration.correct} fontSize="24" fontWeight="bold" fontFamily="Space Grotesk">
           {actualFlow.toFixed(1)} mm³/s
         </text>
       </g>
 
       {/* Flow gauge bar */}
       <g transform="translate(140, 75)">
-        <text x={gaugeWidth / 2} y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x={gaugeWidth / 2} y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Volumetric flow
         </text>
 
         {/* Background */}
-        <rect x="0" y="15" width={gaugeWidth} height="35" rx="6" fill={colors.deepBlue} stroke={colors.muted + "33"} strokeWidth="1" />
+        <rect x="0" y="15" width={gaugeWidth} height="35" rx="6" fill={colors.deepBlue} stroke={colors.skyBlue + "33"} strokeWidth="1" />
 
         {/* Actual flow bar */}
         <rect x="0" y="15" width={actualWidth} height="35" rx="6" fill={zoneColor + "55"} />
 
         {/* Commanded flow bar (outline only if exceeding actual) */}
         {deficit > 0.5 && (
-          <rect x={actualWidth} y="15" width={commandedWidth - actualWidth} height="35" rx="6" fill={colors.tooHigh + "22"} stroke={colors.tooHigh} strokeWidth="1.5" strokeDasharray="4,3" />
+          <rect x={actualWidth} y="15" width={commandedWidth - actualWidth} height="35" rx="6" fill={calibration.tooHigh + "22"} stroke={calibration.tooHigh} strokeWidth="1.5" strokeDasharray="4,3" />
         )}
 
         {/* Max flow line */}
@@ -69,14 +69,14 @@ const MaxVolFlowDiagram: React.FC<{ value: number }> = ({ value }) => {
         {/* Scale ticks */}
         {[0, 5, 10, 15, 20, 25].map((v) => (
           <g key={v}>
-            <line x1={(v / 25) * gaugeWidth} y1="50" x2={(v / 25) * gaugeWidth} y2="58" stroke={colors.muted + "44"} strokeWidth="1" />
-            <text x={(v / 25) * gaugeWidth} y="70" textAnchor="middle" fill={colors.muted + "66"} fontSize="10" fontFamily="Space Grotesk">{v}</text>
+            <line x1={(v / 25) * gaugeWidth} y1="50" x2={(v / 25) * gaugeWidth} y2="58" stroke={colors.skyBlue + "44"} strokeWidth="1" />
+            <text x={(v / 25) * gaugeWidth} y="70" textAnchor="middle" fill={colors.skyBlue + "66"} fontSize="10" fontFamily="Space Grotesk">{v}</text>
           </g>
         ))}
 
         {/* Deficit label */}
         {deficit > 0.5 && (
-          <text x={(actualWidth + commandedWidth) / 2} y="37" textAnchor="middle" fill={colors.tooHigh} fontSize="12" fontWeight="bold" fontFamily="Space Grotesk">
+          <text x={(actualWidth + commandedWidth) / 2} y="37" textAnchor="middle" fill={calibration.tooHigh} fontSize="12" fontWeight="bold" fontFamily="Space Grotesk">
             −{deficit.toFixed(1)}
           </text>
         )}
@@ -84,12 +84,12 @@ const MaxVolFlowDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Extruder with roller encoder */}
       <g transform="translate(180, 180)">
-        <text x="160" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="160" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Extruder gear + roller encoder
         </text>
 
         {/* Extruder body */}
-        <rect x="100" y="20" width="120" height="130" rx="8" fill={colors.darkBlue} stroke={colors.muted + "44"} strokeWidth="1.5" />
+        <rect x="100" y="20" width="120" height="130" rx="8" fill={colors.darkBlue} stroke={colors.skyBlue + "44"} strokeWidth="1.5" />
 
         {/* Drive gear with potential skipping */}
         <g transform={`translate(140, 70) rotate(${frame * 3 + skipAngle})`}>
@@ -104,10 +104,10 @@ const MaxVolFlowDiagram: React.FC<{ value: number }> = ({ value }) => {
 
         {/* Roller encoder (monitoring actual movement) */}
         <g transform="translate(185, 60)">
-          <circle r="12" fill="none" stroke={colors.correct} strokeWidth="2" />
-          <text x="0" y="4" textAnchor="middle" fill={colors.correct} fontSize="8" fontFamily="Space Grotesk">ENC</text>
-          <line x1="12" y1="0" x2="30" y2="0" stroke={colors.correct} strokeWidth="1.5" strokeDasharray="3,3" />
-          <text x="35" y="4" fill={colors.correct} fontSize="10" fontFamily="Space Grotesk">
+          <circle r="12" fill="none" stroke={calibration.correct} strokeWidth="2" />
+          <text x="0" y="4" textAnchor="middle" fill={calibration.correct} fontSize="8" fontFamily="Space Grotesk">ENC</text>
+          <line x1="12" y1="0" x2="30" y2="0" stroke={calibration.correct} strokeWidth="1.5" strokeDasharray="3,3" />
+          <text x="35" y="4" fill={calibration.correct} fontSize="10" fontFamily="Space Grotesk">
             {actualFlow.toFixed(1)}
           </text>
         </g>
@@ -115,12 +115,12 @@ const MaxVolFlowDiagram: React.FC<{ value: number }> = ({ value }) => {
         {/* Skipping indicator */}
         {skipping > 0.3 && (
           <g>
-            <text x="160" y="165" textAnchor="middle" fill={colors.tooHigh} fontSize="14" fontWeight="bold" fontFamily="Space Grotesk">
+            <text x="160" y="165" textAnchor="middle" fill={calibration.tooHigh} fontSize="14" fontWeight="bold" fontFamily="Space Grotesk">
               GEAR SKIPPING
             </text>
             {/* Click marks */}
             {[0, 1, 2].map((i) => (
-              <line key={i} x1={130 + i * 20} y1="170" x2={135 + i * 20} y2="180" stroke={colors.tooHigh} strokeWidth="2" />
+              <line key={i} x1={130 + i * 20} y1="170" x2={135 + i * 20} y2="180" stroke={calibration.tooHigh} strokeWidth="2" />
             ))}
           </g>
         )}
@@ -128,7 +128,7 @@ const MaxVolFlowDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Print quality comparison */}
       <g transform="translate(100, 430)">
-        <text x="250" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="250" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Deposited layers (cross-section)
         </text>
 
@@ -155,12 +155,12 @@ const MaxVolFlowDiagram: React.FC<{ value: number }> = ({ value }) => {
         })}
 
         {deficit > 1 && (
-          <text x="250" y="130" textAnchor="middle" fill={colors.tooHigh} fontSize="13" fontFamily="Space Grotesk">
+          <text x="250" y="130" textAnchor="middle" fill={calibration.tooHigh} fontSize="13" fontFamily="Space Grotesk">
             inconsistent layers — extruder can't keep up
           </text>
         )}
         {value < 0.2 && (
-          <text x="250" y="130" textAnchor="middle" fill={colors.tooLow} fontSize="13" fontFamily="Space Grotesk">
+          <text x="250" y="130" textAnchor="middle" fill={calibration.tooLow} fontSize="13" fontFamily="Space Grotesk">
             consistent but printing much slower than needed
           </text>
         )}

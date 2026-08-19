@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate, useCurrentFrame } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: Camera view of a print bed with anomaly detection overlays.
@@ -38,7 +38,7 @@ const AnomalyDetectionDiagram: React.FC<{ value: number }> = ({ value }) => {
     <svg width="700" height="580" viewBox="0 0 700 580">
       {/* Title */}
       <g transform="translate(350, 25)">
-        <text x="0" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="0" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           ANOMALY DETECTION
         </text>
         <text x="0" y="28" textAnchor="middle" fill={zoneColor} fontSize="26" fontWeight="bold" fontFamily="Space Grotesk">
@@ -48,16 +48,16 @@ const AnomalyDetectionDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Camera view frame */}
       <g transform="translate(100, 70)">
-        <rect x="0" y="0" width="500" height="280" rx="8" fill={colors.deepBlue} stroke={colors.muted + "44"} strokeWidth="2" />
+        <rect x="0" y="0" width="500" height="280" rx="8" fill={colors.deepBlue} stroke={colors.skyBlue + "44"} strokeWidth="2" />
 
         {/* Camera label */}
-        <circle cx="25" cy="20" r="6" fill={detected || falsePositive ? colors.tooLow : colors.correct} />
-        <text x="38" y="24" fill={colors.muted} fontSize="12" fontFamily="Space Grotesk">
+        <circle cx="25" cy="20" r="6" fill={detected || falsePositive ? calibration.tooLow : calibration.correct} />
+        <text x="38" y="24" fill={colors.skyBlue} fontSize="12" fontFamily="Space Grotesk">
           CAM — {current.name}
         </text>
 
         {/* Print bed */}
-        <rect x="50" y="180" width="400" height="60" rx="4" fill={colors.muted + "11"} stroke={colors.muted + "22"} strokeWidth="1" />
+        <rect x="50" y="180" width="400" height="60" rx="4" fill={colors.skyBlue + "11"} stroke={colors.skyBlue + "22"} strokeWidth="1" />
 
         {/* Printed part (normal state) */}
         <rect x="150" y="100" width="200" height="80" rx="4" fill={colors.lightBlue + "22"} stroke={colors.lightBlue + "44"} strokeWidth="1.5" />
@@ -76,14 +76,14 @@ const AnomalyDetectionDiagram: React.FC<{ value: number }> = ({ value }) => {
                   key={i}
                   d={`M ${x1},${y1} Q ${(x1 + x2) / 2 + Math.sin(i) * 20},${(y1 + y2) / 2} ${x2},${y2}`}
                   fill="none"
-                  stroke={colors.tooLow + "88"}
+                  stroke={calibration.tooLow + "88"}
                   strokeWidth="2"
                 />
               );
             })}
             {/* Detection box */}
             {detected && (
-              <rect x="130" y="50" width="240" height="130" rx="4" fill="none" stroke={colors.tooLow} strokeWidth="3" strokeDasharray="8,4" />
+              <rect x="130" y="50" width="240" height="130" rx="4" fill="none" stroke={calibration.tooLow} strokeWidth="3" strokeDasharray="8,4" />
             )}
           </g>
         )}
@@ -92,12 +92,12 @@ const AnomalyDetectionDiagram: React.FC<{ value: number }> = ({ value }) => {
           <g>
             {/* Shifted layers */}
             <rect x="150" y="140" width="200" height="40" rx="2" fill={colors.lightBlue + "22"} stroke={colors.lightBlue + "44"} strokeWidth="1" />
-            <rect x="170" y="100" width="200" height="40" rx="2" fill={colors.tooLow + "22"} stroke={colors.tooLow + "66"} strokeWidth="1.5" />
+            <rect x="170" y="100" width="200" height="40" rx="2" fill={calibration.tooLow + "22"} stroke={calibration.tooLow + "66"} strokeWidth="1.5" />
             {/* Shift arrow */}
-            <line x1="155" y1="120" x2="175" y2="120" stroke={colors.tooLow} strokeWidth="2" />
-            <polygon points="173,115 180,120 173,125" fill={colors.tooLow} />
+            <line x1="155" y1="120" x2="175" y2="120" stroke={calibration.tooLow} strokeWidth="2" />
+            <polygon points="173,115 180,120 173,125" fill={calibration.tooLow} />
             {detected && (
-              <rect x="140" y="90" width="240" height="100" rx="4" fill="none" stroke={colors.tooLow} strokeWidth="3" strokeDasharray="8,4" />
+              <rect x="140" y="90" width="240" height="100" rx="4" fill="none" stroke={calibration.tooLow} strokeWidth="3" strokeDasharray="8,4" />
             )}
           </g>
         )}
@@ -105,12 +105,12 @@ const AnomalyDetectionDiagram: React.FC<{ value: number }> = ({ value }) => {
         {current.type === "warping" && (
           <g>
             {/* Warped corner */}
-            <path d="M 150,180 Q 140,160 150,140" fill="none" stroke={colors.tooLow} strokeWidth="3" />
-            <path d="M 350,180 Q 360,160 350,140" fill="none" stroke={colors.tooLow} strokeWidth="3" />
+            <path d="M 150,180 Q 140,160 150,140" fill="none" stroke={calibration.tooLow} strokeWidth="3" />
+            <path d="M 350,180 Q 360,160 350,140" fill="none" stroke={calibration.tooLow} strokeWidth="3" />
             {detected && (
               <>
-                <circle cx="150" cy="160" r="25" fill="none" stroke={colors.tooLow} strokeWidth="2.5" strokeDasharray="6,4" />
-                <circle cx="350" cy="160" r="25" fill="none" stroke={colors.tooLow} strokeWidth="2.5" strokeDasharray="6,4" />
+                <circle cx="150" cy="160" r="25" fill="none" stroke={calibration.tooLow} strokeWidth="2.5" strokeDasharray="6,4" />
+                <circle cx="350" cy="160" r="25" fill="none" stroke={calibration.tooLow} strokeWidth="2.5" strokeDasharray="6,4" />
               </>
             )}
           </g>
@@ -119,8 +119,8 @@ const AnomalyDetectionDiagram: React.FC<{ value: number }> = ({ value }) => {
         {/* False positive overlay for over-sensitive */}
         {falsePositive && (
           <g>
-            <rect x="140" y="90" width="220" height="100" rx="4" fill="none" stroke={colors.tooHigh} strokeWidth="3" strokeDasharray="8,4" />
-            <text x="250" y="85" textAnchor="middle" fill={colors.tooHigh} fontSize="14" fontWeight="bold" fontFamily="Space Grotesk">
+            <rect x="140" y="90" width="220" height="100" rx="4" fill="none" stroke={calibration.tooHigh} strokeWidth="3" strokeDasharray="8,4" />
+            <text x="250" y="85" textAnchor="middle" fill={calibration.tooHigh} fontSize="14" fontWeight="bold" fontFamily="Space Grotesk">
               FALSE ALARM
             </text>
           </g>
@@ -128,14 +128,14 @@ const AnomalyDetectionDiagram: React.FC<{ value: number }> = ({ value }) => {
 
         {/* Status bar */}
         <rect x="0" y="250" width="500" height="30" rx="0 0 8 8" fill={
-          detected ? colors.tooLow + "33"
-          : falsePositive ? colors.tooHigh + "33"
-          : colors.correct + "18"
+          detected ? calibration.tooLow + "33"
+          : falsePositive ? calibration.tooHigh + "33"
+          : calibration.correct + "18"
         } />
         <text x="250" y="270" textAnchor="middle" fill={
-          detected ? colors.tooLow
-          : falsePositive ? colors.tooHigh
-          : colors.correct
+          detected ? calibration.tooLow
+          : falsePositive ? calibration.tooHigh
+          : calibration.correct
         } fontSize="14" fontWeight="bold" fontFamily="Space Grotesk">
           {detected ? "ANOMALY DETECTED — PAUSING PRINT"
            : falsePositive ? "FALSE POSITIVE — UNNECESSARY PAUSE"
@@ -146,7 +146,7 @@ const AnomalyDetectionDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Action matrix */}
       <g transform="translate(60, 380)">
-        <text x="290" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="290" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Detection → Action
         </text>
 
@@ -161,16 +161,16 @@ const AnomalyDetectionDiagram: React.FC<{ value: number }> = ({ value }) => {
             <g key={i} transform={`translate(${i * 140}, 15)`}>
               <rect x="0" y="0" width="130" height="55" rx="6"
                 fill={active ? zoneColor + "12" : colors.deepBlue}
-                stroke={active ? zoneColor + "33" : colors.muted + "22"}
+                stroke={active ? zoneColor + "33" : colors.skyBlue + "22"}
                 strokeWidth="1"
               />
-              <text x="65" y="20" textAnchor="middle" fill={colors.text} fontSize="12" fontWeight="600" fontFamily="Space Grotesk">
+              <text x="65" y="20" textAnchor="middle" fill={colors.white} fontSize="12" fontWeight="600" fontFamily="Space Grotesk">
                 {item.anomaly}
               </text>
-              <text x="65" y="38" textAnchor="middle" fill={colors.muted} fontSize="10" fontFamily="Space Grotesk">
+              <text x="65" y="38" textAnchor="middle" fill={colors.skyBlue} fontSize="10" fontFamily="Space Grotesk">
                 {item.action}
               </text>
-              <text x="65" y="50" textAnchor="middle" fill={item.severity === "critical" ? colors.tooLow : item.severity === "correctable" ? colors.accentAmber : colors.muted} fontSize="9" fontFamily="Space Grotesk">
+              <text x="65" y="50" textAnchor="middle" fill={item.severity === "critical" ? calibration.tooLow : item.severity === "correctable" ? colors.accentAmber : colors.skyBlue} fontSize="9" fontFamily="Space Grotesk">
                 {item.severity}
               </text>
             </g>
@@ -188,7 +188,7 @@ const AnomalyDetectionDiagram: React.FC<{ value: number }> = ({ value }) => {
             ? "False pauses interrupt good prints — you stop trusting the system and disable it"
             : "Real problems caught early, normal variation ignored — saves hours and material"}
         </text>
-        <text x="290" y="33" textAnchor="middle" fill={colors.muted} fontSize="11" fontFamily="Space Grotesk">
+        <text x="290" y="33" textAnchor="middle" fill={colors.skyBlue} fontSize="11" fontFamily="Space Grotesk">
           {value < 0.3 ? "No detection = gambling on every long print"
            : value > 0.7 ? "The boy who cried wolf — over-alerting causes alert fatigue"
            : "Trust the system — it only interrupts when it matters"}

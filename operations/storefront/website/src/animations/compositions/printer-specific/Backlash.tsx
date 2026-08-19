@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate, useCurrentFrame } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: Gear teeth with mechanical play.
@@ -26,7 +26,7 @@ const BacklashDiagram: React.FC<{ value: number }> = ({ value }) => {
   return (
     <svg width="700" height="550" viewBox="0 0 700 550">
       {/* Title */}
-      <text x="350" y="35" textAnchor="middle" fill={colors.muted} fontSize="16" fontFamily="Space Grotesk">
+      <text x="350" y="35" textAnchor="middle" fill={colors.skyBlue} fontSize="16" fontFamily="Space Grotesk">
         Gear engagement — direction reversal
       </text>
 
@@ -52,7 +52,7 @@ const BacklashDiagram: React.FC<{ value: number }> = ({ value }) => {
         })}
         <circle r="15" fill={colors.darkBlue} />
       </g>
-      <text x="250" y="230" textAnchor="middle" fill={colors.muted} fontSize="13" fontFamily="Space Grotesk">
+      <text x="250" y="230" textAnchor="middle" fill={colors.skyBlue} fontSize="13" fontFamily="Space Grotesk">
         DRIVE (motor)
       </text>
 
@@ -73,18 +73,18 @@ const BacklashDiagram: React.FC<{ value: number }> = ({ value }) => {
         ))}
         <circle r="15" fill={colors.darkBlue} />
       </g>
-      <text x={370 + gapSize} y="230" textAnchor="middle" fill={colors.muted} fontSize="13" fontFamily="Space Grotesk">
+      <text x={370 + gapSize} y="230" textAnchor="middle" fill={colors.skyBlue} fontSize="13" fontFamily="Space Grotesk">
         DRIVEN (axis)
       </text>
 
       {/* Dead zone indicator */}
       {gapSize > 2 && (
         <g>
-          <line x1="310" y1="140" x2={310 + gapSize} y2="140" stroke={colors.tooLow} strokeWidth="2" />
-          <text x={310 + gapSize / 2} y="130" textAnchor="middle" fill={colors.tooLow} fontSize="14" fontWeight="bold" fontFamily="Space Grotesk">
+          <line x1="310" y1="140" x2={310 + gapSize} y2="140" stroke={calibration.tooLow} strokeWidth="2" />
+          <text x={310 + gapSize / 2} y="130" textAnchor="middle" fill={calibration.tooLow} fontSize="14" fontWeight="bold" fontFamily="Space Grotesk">
             dead zone
           </text>
-          <text x={310 + gapSize / 2} y="115" textAnchor="middle" fill={colors.tooLow} fontSize="12" fontFamily="Space Grotesk">
+          <text x={310 + gapSize / 2} y="115" textAnchor="middle" fill={calibration.tooLow} fontSize="12" fontFamily="Space Grotesk">
             {(gapSize * 0.008).toFixed(2)}mm
           </text>
         </g>
@@ -92,14 +92,14 @@ const BacklashDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Over-compensation indicator */}
       {gapSize < -2 && (
-        <text x="330" y="115" textAnchor="middle" fill={colors.tooHigh} fontSize="14" fontWeight="bold" fontFamily="Space Grotesk">
+        <text x="330" y="115" textAnchor="middle" fill={calibration.tooHigh} fontSize="14" fontWeight="bold" fontFamily="Space Grotesk">
           JAM — teeth overlap!
         </text>
       )}
 
       {/* Direction reversal indicator */}
       <g transform="translate(350, 270)">
-        <text x="0" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="0" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           On direction reversal:
         </text>
         <text x="0" y="22" textAnchor="middle" fill={zoneColor} fontSize="14" fontFamily="Space Grotesk">
@@ -113,12 +113,12 @@ const BacklashDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Circle print test */}
       <g transform="translate(350, 380)">
-        <text x="0" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="0" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Circle print test
         </text>
 
         {/* Target circle */}
-        <circle cx="0" cy="75" r="55" fill="none" stroke={colors.correct + "33"} strokeWidth="2" strokeDasharray="6,4" />
+        <circle cx="0" cy="75" r="55" fill="none" stroke={calibration.correct + "33"} strokeWidth="2" strokeDasharray="6,4" />
 
         {/* Actual circle (oval if backlash) */}
         <ellipse

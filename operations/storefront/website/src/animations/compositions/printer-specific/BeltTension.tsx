@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate, useCurrentFrame } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: Belt between two pulleys, vibrating.
@@ -43,16 +43,16 @@ const BeltDiagram: React.FC<{ value: number }> = ({ value }) => {
   return (
     <svg width="700" height="550" viewBox="0 0 700 550">
       {/* Left pulley (motor) */}
-      <circle cx={pulleyL} cy={beltY} r={pulleyR_radius} fill="none" stroke={colors.muted} strokeWidth="3" />
+      <circle cx={pulleyL} cy={beltY} r={pulleyR_radius} fill="none" stroke={colors.skyBlue} strokeWidth="3" />
       <circle cx={pulleyL} cy={beltY} r="8" fill={colors.darkBlue} />
-      <text x={pulleyL} y={beltY + 50} textAnchor="middle" fill={colors.muted} fontSize="13" fontFamily="Space Grotesk">
+      <text x={pulleyL} y={beltY + 50} textAnchor="middle" fill={colors.skyBlue} fontSize="13" fontFamily="Space Grotesk">
         MOTOR
       </text>
 
       {/* Right pulley (idler) */}
-      <circle cx={pulleyR} cy={beltY} r={pulleyR_radius} fill="none" stroke={colors.muted} strokeWidth="3" />
-      <circle cx={pulleyR} cy={beltY} r="6" fill={colors.muted + "88"} />
-      <text x={pulleyR} y={beltY + 50} textAnchor="middle" fill={colors.muted} fontSize="13" fontFamily="Space Grotesk">
+      <circle cx={pulleyR} cy={beltY} r={pulleyR_radius} fill="none" stroke={colors.skyBlue} strokeWidth="3" />
+      <circle cx={pulleyR} cy={beltY} r="6" fill={colors.skyBlue + "88"} />
+      <text x={pulleyR} y={beltY + 50} textAnchor="middle" fill={colors.skyBlue} fontSize="13" fontFamily="Space Grotesk">
         IDLER
       </text>
 
@@ -71,13 +71,13 @@ const BeltDiagram: React.FC<{ value: number }> = ({ value }) => {
         y1={beltY + pulleyR_radius * 2}
         x2={pulleyR}
         y2={beltY + pulleyR_radius * 2}
-        stroke={colors.muted + "33"}
+        stroke={colors.skyBlue + "33"}
         strokeWidth="3"
       />
 
       {/* Frequency indicator */}
       <g transform={`translate(350, ${beltY - 60})`}>
-        <text x="0" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="0" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Resonant frequency
         </text>
         <text x="0" y="24" textAnchor="middle" fill={zoneColor} fontSize="22" fontWeight="bold" fontFamily="Space Grotesk">
@@ -88,7 +88,7 @@ const BeltDiagram: React.FC<{ value: number }> = ({ value }) => {
       {/* Motor strain warning for too-tight */}
       {motorStrain > 0 && (
         <g opacity={motorStrain}>
-          <text x={pulleyL} y={beltY + 75} textAnchor="middle" fill={colors.tooHigh} fontSize="12" fontFamily="Space Grotesk">
+          <text x={pulleyL} y={beltY + 75} textAnchor="middle" fill={calibration.tooHigh} fontSize="12" fontFamily="Space Grotesk">
             STRAIN
           </text>
           {/* Stress lines around motor */}
@@ -101,7 +101,7 @@ const BeltDiagram: React.FC<{ value: number }> = ({ value }) => {
                 y1={beltY + Math.sin(angle) * 38}
                 x2={pulleyL + Math.cos(angle) * 48}
                 y2={beltY + Math.sin(angle) * 48}
-                stroke={colors.tooHigh}
+                stroke={calibration.tooHigh}
                 strokeWidth="2"
               />
             );
@@ -111,12 +111,12 @@ const BeltDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Print quality comparison */}
       <g transform="translate(150, 320)">
-        <text x="200" y="0" textAnchor="middle" fill={colors.muted} fontSize="16" fontFamily="Space Grotesk">
+        <text x="200" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="16" fontFamily="Space Grotesk">
           Print corner quality
         </text>
 
         {/* Target square (outline) */}
-        <rect x="120" y="20" width="160" height="120" fill="none" stroke={colors.correct + "33"} strokeWidth="2" strokeDasharray="6,4" rx="2" />
+        <rect x="120" y="20" width="160" height="120" fill="none" stroke={calibration.correct + "33"} strokeWidth="2" strokeDasharray="6,4" rx="2" />
 
         {/* Actual printed square */}
         <rect
@@ -141,12 +141,12 @@ const BeltDiagram: React.FC<{ value: number }> = ({ value }) => {
                 width="160"
                 height="120"
                 fill="none"
-                stroke={colors.tooLow + (30 - i * 8).toString(16)}
+                stroke={calibration.tooLow + (30 - i * 8).toString(16)}
                 strokeWidth="1"
                 rx={cornerRound}
               />
             ))}
-            <text x="200" y="160" textAnchor="middle" fill={colors.tooLow} fontSize="13" fontFamily="Space Grotesk">
+            <text x="200" y="160" textAnchor="middle" fill={calibration.tooLow} fontSize="13" fontFamily="Space Grotesk">
               ← ghosting / ringing
             </text>
           </>
@@ -154,7 +154,7 @@ const BeltDiagram: React.FC<{ value: number }> = ({ value }) => {
 
         {/* Clean corners label for correct */}
         {value > 0.35 && value < 0.65 && (
-          <text x="200" y="160" textAnchor="middle" fill={colors.correct} fontSize="13" fontFamily="Space Grotesk">
+          <text x="200" y="160" textAnchor="middle" fill={calibration.correct} fontSize="13" fontFamily="Space Grotesk">
             sharp, clean corners
           </text>
         )}

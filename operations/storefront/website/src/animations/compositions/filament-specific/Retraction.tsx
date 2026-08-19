@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate, useCurrentFrame } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: Two print towers with travel move between them.
@@ -34,11 +34,11 @@ const RetractionDiagram: React.FC<{ value: number }> = ({ value }) => {
     <svg width="700" height="580" viewBox="0 0 700 580">
       {/* Retraction values display */}
       <g transform="translate(350, 25)">
-        <text x="-100" y="0" textAnchor="middle" fill={colors.muted} fontSize="13" fontFamily="Space Grotesk">DISTANCE</text>
+        <text x="-100" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="13" fontFamily="Space Grotesk">DISTANCE</text>
         <text x="-100" y="22" textAnchor="middle" fill={zoneColor} fontSize="22" fontWeight="bold" fontFamily="Space Grotesk">
           {retractionDist.toFixed(1)}mm
         </text>
-        <text x="100" y="0" textAnchor="middle" fill={colors.muted} fontSize="13" fontFamily="Space Grotesk">SPEED</text>
+        <text x="100" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="13" fontFamily="Space Grotesk">SPEED</text>
         <text x="100" y="22" textAnchor="middle" fill={zoneColor} fontSize="22" fontWeight="bold" fontFamily="Space Grotesk">
           {retractionSpeed.toFixed(0)}mm/s
         </text>
@@ -46,15 +46,15 @@ const RetractionDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Left tower */}
       <rect x={towerL - 25} y={towerTop} width="50" height={towerBottom - towerTop} rx="4" fill={colors.lightBlue + "33"} stroke={colors.lightBlue + "88"} strokeWidth="2" />
-      <text x={towerL} y={towerBottom + 20} textAnchor="middle" fill={colors.muted} fontSize="12" fontFamily="Space Grotesk">Tower A</text>
+      <text x={towerL} y={towerBottom + 20} textAnchor="middle" fill={colors.skyBlue} fontSize="12" fontFamily="Space Grotesk">Tower A</text>
 
       {/* Right tower */}
       <rect x={towerR - 25} y={towerTop} width="50" height={towerBottom - towerTop} rx="4" fill={colors.lightBlue + "33"} stroke={colors.lightBlue + "88"} strokeWidth="2" />
-      <text x={towerR} y={towerBottom + 20} textAnchor="middle" fill={colors.muted} fontSize="12" fontFamily="Space Grotesk">Tower B</text>
+      <text x={towerR} y={towerBottom + 20} textAnchor="middle" fill={colors.skyBlue} fontSize="12" fontFamily="Space Grotesk">Tower B</text>
 
       {/* Travel move (dashed line) */}
-      <line x1={towerL + 25} y1={towerTop + 20} x2={towerR - 25} y2={towerTop + 20} stroke={colors.muted + "44"} strokeWidth="1.5" strokeDasharray="8,6" />
-      <text x={(towerL + towerR) / 2} y={towerTop + 10} textAnchor="middle" fill={colors.muted} fontSize="12" fontFamily="Space Grotesk">
+      <line x1={towerL + 25} y1={towerTop + 20} x2={towerR - 25} y2={towerTop + 20} stroke={colors.skyBlue + "44"} strokeWidth="1.5" strokeDasharray="8,6" />
+      <text x={(towerL + towerR) / 2} y={towerTop + 10} textAnchor="middle" fill={colors.skyBlue} fontSize="12" fontFamily="Space Grotesk">
         travel move
       </text>
 
@@ -67,7 +67,7 @@ const RetractionDiagram: React.FC<{ value: number }> = ({ value }) => {
             key={i}
             d={`M ${towerL + 25},${y} Q ${(towerL + towerR) / 2},${y + sag + Math.random() * 10} ${towerR - 25},${y + 5}`}
             fill="none"
-            stroke={colors.tooLow + "aa"}
+            stroke={calibration.tooLow + "aa"}
             strokeWidth={interpolate(value, [0, 0.3], [2.5, 0.5], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
           />
         );
@@ -75,14 +75,14 @@ const RetractionDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Blob at start of right tower (no retraction) */}
       {value < 0.25 && (
-        <circle cx={towerR - 25} cy={towerTop + 30} r={8} fill={colors.tooLow + "88"} />
+        <circle cx={towerR - 25} cy={towerTop + 30} r={8} fill={calibration.tooLow + "88"} />
       )}
 
       {/* Gap after retraction (too much — under-extrusion on restart) */}
       {gapAfter > 3 && (
         <g>
-          <rect x={towerR - 25} y={towerTop + 25} width="50" height={gapAfter} fill={colors.background} stroke={colors.tooHigh + "88"} strokeWidth="1.5" strokeDasharray="4,3" />
-          <text x={towerR + 35} y={towerTop + 25 + gapAfter / 2} fill={colors.tooHigh} fontSize="12" fontFamily="Space Grotesk">
+          <rect x={towerR - 25} y={towerTop + 25} width="50" height={gapAfter} fill={colors.deepBlue} stroke={calibration.tooHigh + "88"} strokeWidth="1.5" strokeDasharray="4,3" />
+          <text x={towerR + 35} y={towerTop + 25 + gapAfter / 2} fill={calibration.tooHigh} fontSize="12" fontFamily="Space Grotesk">
             gap (starved)
           </text>
         </g>
@@ -90,12 +90,12 @@ const RetractionDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Extruder cutaway showing retraction mechanism */}
       <g transform="translate(270, 380)">
-        <text x="80" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="80" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Extruder during travel
         </text>
 
         {/* Extruder body */}
-        <rect x="40" y="20" width="80" height="100" rx="6" fill={colors.darkBlue} stroke={colors.muted + "44"} strokeWidth="1.5" />
+        <rect x="40" y="20" width="80" height="100" rx="6" fill={colors.darkBlue} stroke={colors.skyBlue + "44"} strokeWidth="1.5" />
 
         {/* Gear */}
         <circle cx="80" cy="55" r="14" fill="none" stroke={colors.accentAmber} strokeWidth="2.5" />
@@ -115,13 +115,13 @@ const RetractionDiagram: React.FC<{ value: number }> = ({ value }) => {
         )}
 
         {/* Nozzle */}
-        <polygon points="55,120 105,120 95,140 65,140" fill={colors.muted + "88"} stroke={colors.muted} strokeWidth="1.5" />
+        <polygon points="55,120 105,120 95,140 65,140" fill={colors.skyBlue + "88"} stroke={colors.skyBlue} strokeWidth="1.5" />
 
         {/* Molten chamber — pressure release */}
         <rect x="72" y="100" width="16" height="20" rx="3" fill={colors.accentAmber + (value > 0.3 ? "44" : "aa")} />
 
         {/* Pressure indicator */}
-        <text x="130" y="115" fill={colors.muted} fontSize="12" fontFamily="Space Grotesk">
+        <text x="130" y="115" fill={colors.skyBlue} fontSize="12" fontFamily="Space Grotesk">
           pressure: {value < 0.2 ? "HIGH" : value > 0.7 ? "EMPTY" : "released"}
         </text>
 
@@ -135,11 +135,11 @@ const RetractionDiagram: React.FC<{ value: number }> = ({ value }) => {
                 y1="48"
                 x2={99 + i * 4}
                 y2="62"
-                stroke={colors.tooHigh}
+                stroke={calibration.tooHigh}
                 strokeWidth="2"
               />
             ))}
-            <text x="115" y="58" fill={colors.tooHigh} fontSize="11" fontWeight="bold" fontFamily="Space Grotesk">
+            <text x="115" y="58" fill={calibration.tooHigh} fontSize="11" fontWeight="bold" fontFamily="Space Grotesk">
               GRINDING
             </text>
           </g>

@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: Hotend cross-section with temperature gradient.
@@ -33,7 +33,7 @@ const ExtrusionTempDiagram: React.FC<{ value: number }> = ({ value }) => {
     <svg width="700" height="580" viewBox="0 0 700 580">
       {/* Temperature display */}
       <g transform="translate(350, 30)">
-        <text x="0" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="0" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           HOTEND TEMPERATURE
         </text>
         <text x="0" y="32" textAnchor="middle" fill={zoneColor} fontSize="36" fontWeight="bold" fontFamily="Space Grotesk">
@@ -44,21 +44,21 @@ const ExtrusionTempDiagram: React.FC<{ value: number }> = ({ value }) => {
       {/* Hotend cross-section */}
       <g transform="translate(200, 80)">
         {/* Heat sink (top, cool) */}
-        <rect x="60" y="0" width="80" height="50" rx="4" fill={colors.darkBlue} stroke={colors.muted + "44"} strokeWidth="1.5" />
+        <rect x="60" y="0" width="80" height="50" rx="4" fill={colors.darkBlue} stroke={colors.skyBlue + "44"} strokeWidth="1.5" />
         {/* Fins */}
         {[0, 1, 2, 3].map((i) => (
-          <rect key={i} x="50" y={5 + i * 12} width="100" height="6" rx="2" fill={colors.darkBlue} stroke={colors.muted + "33"} strokeWidth="1" />
+          <rect key={i} x="50" y={5 + i * 12} width="100" height="6" rx="2" fill={colors.darkBlue} stroke={colors.skyBlue + "33"} strokeWidth="1" />
         ))}
-        <text x="100" y="42" textAnchor="middle" fill={colors.muted} fontSize="11" fontFamily="Space Grotesk">HEATSINK</text>
+        <text x="100" y="42" textAnchor="middle" fill={colors.skyBlue} fontSize="11" fontFamily="Space Grotesk">HEATSINK</text>
 
         {/* Heatbreak (transition zone) */}
-        <rect x="80" y="50" width="40" height="30" rx="3" fill={colors.muted + "33"} stroke={colors.muted + "44"} strokeWidth="1" />
-        <text x="155" y="70" fill={colors.muted} fontSize="11" fontFamily="Space Grotesk">HEATBREAK</text>
+        <rect x="80" y="50" width="40" height="30" rx="3" fill={colors.skyBlue + "33"} stroke={colors.skyBlue + "44"} strokeWidth="1" />
+        <text x="155" y="70" fill={colors.skyBlue} fontSize="11" fontFamily="Space Grotesk">HEATBREAK</text>
 
         {/* Heater block */}
         <rect x="55" y="80" width="90" height="50" rx="6"
           fill={`rgba(255, ${Math.floor(145 - heatIntensity * 100)}, ${Math.floor(64 - heatIntensity * 64)}, ${heatIntensity})`}
-          stroke={colors.tooHigh}
+          stroke={calibration.tooHigh}
           strokeWidth="2"
         />
         <text x="100" y="110" textAnchor="middle" fill={colors.white} fontSize="13" fontWeight="bold" fontFamily="Space Grotesk">
@@ -91,8 +91,8 @@ const ExtrusionTempDiagram: React.FC<{ value: number }> = ({ value }) => {
         <rect x="94" y={80 - meltZone * 0.4} width="12" height={meltZone * 0.4 + 50} fill={colors.accentAmber} rx="3" opacity="0.8" />
 
         {/* Nozzle */}
-        <polygon points="70,130 130,130 115,155 85,155" fill={colors.muted + "aa"} stroke={colors.muted} strokeWidth="2" />
-        <rect x="93" y="155" width="14" height="6" rx="2" fill={colors.muted} />
+        <polygon points="70,130 130,130 115,155 85,155" fill={colors.skyBlue + "aa"} stroke={colors.skyBlue} strokeWidth="2" />
+        <rect x="93" y="155" width="14" height="6" rx="2" fill={colors.skyBlue} />
 
         {/* Melt zone label */}
         <line x1="55" y1={80 - meltZone} x2="45" y2={80 - meltZone} stroke={zoneColor} strokeWidth="1.5" />
@@ -137,19 +137,19 @@ const ExtrusionTempDiagram: React.FC<{ value: number }> = ({ value }) => {
                   <line
                     x1={x1} y1="15"
                     x2={x2} y2={15 + stringing * 0.4}
-                    stroke={colors.tooHigh + "88"}
+                    stroke={calibration.tooHigh + "88"}
                     strokeWidth="1.5"
                   />
                   <line
                     x1={x2} y1="15"
                     x2={x1 + 15} y2={15 + stringing * 0.6}
-                    stroke={colors.tooHigh + "66"}
+                    stroke={calibration.tooHigh + "66"}
                     strokeWidth="1"
                   />
                 </g>
               );
             })}
-            <text x="100" y={30 + stringing} fill={colors.tooHigh} fontSize="12" fontFamily="Space Grotesk">
+            <text x="100" y={30 + stringing} fill={calibration.tooHigh} fontSize="12" fontFamily="Space Grotesk">
               stringing
             </text>
           </g>
@@ -158,7 +158,7 @@ const ExtrusionTempDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Layer adhesion cross-section */}
       <g transform="translate(150, 340)">
-        <text x="200" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="200" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Layer adhesion cross-section
         </text>
         {[0, 1, 2, 3].map((i) => (
@@ -176,16 +176,16 @@ const ExtrusionTempDiagram: React.FC<{ value: number }> = ({ value }) => {
         ))}
         {adhesionGap > 3 && (
           <g>
-            <text x="320" y="50" fill={colors.tooLow} fontSize="12" fontFamily="Space Grotesk">
+            <text x="320" y="50" fill={calibration.tooLow} fontSize="12" fontFamily="Space Grotesk">
               ← weak bond
             </text>
-            <text x="320" y="70" fill={colors.tooLow} fontSize="12" fontFamily="Space Grotesk">
+            <text x="320" y="70" fill={calibration.tooLow} fontSize="12" fontFamily="Space Grotesk">
               ← gaps
             </text>
           </g>
         )}
         {adhesionGap < 1 && value > 0.4 && value < 0.6 && (
-          <text x="320" y="60" fill={colors.correct} fontSize="12" fontFamily="Space Grotesk">
+          <text x="320" y="60" fill={calibration.correct} fontSize="12" fontFamily="Space Grotesk">
             ← strong bond
           </text>
         )}
@@ -193,7 +193,7 @@ const ExtrusionTempDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Temperature tower concept */}
       <g transform="translate(480, 340)">
-        <text x="60" y="0" textAnchor="middle" fill={colors.muted} fontSize="13" fontFamily="Space Grotesk">
+        <text x="60" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="13" fontFamily="Space Grotesk">
           Temp tower
         </text>
         {[0, 1, 2, 3, 4].map((i) => {
@@ -208,14 +208,14 @@ const ExtrusionTempDiagram: React.FC<{ value: number }> = ({ value }) => {
                 height="30"
                 rx="3"
                 fill={isActive ? zoneColor + "44" : colors.deepBlue}
-                stroke={isActive ? zoneColor : colors.muted + "33"}
+                stroke={isActive ? zoneColor : colors.skyBlue + "33"}
                 strokeWidth={isActive ? 2 : 1}
               />
               <text
                 x="60"
                 y={35 + i * 35}
                 textAnchor="middle"
-                fill={isActive ? zoneColor : colors.muted + "66"}
+                fill={isActive ? zoneColor : colors.skyBlue + "66"}
                 fontSize="13"
                 fontWeight={isActive ? "bold" : "normal"}
                 fontFamily="Space Grotesk"
@@ -230,7 +230,7 @@ const ExtrusionTempDiagram: React.FC<{ value: number }> = ({ value }) => {
   );
 };
 
-export const ExtrusionTemp: React.FC = () => (
+export const ExtrusionTemperature: React.FC = () => (
   <CalibrationVar
     index={1}
     category="Filament-Specific"

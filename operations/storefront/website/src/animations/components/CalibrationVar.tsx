@@ -6,7 +6,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { colors, fonts, layout } from "../brand";
+import { colors, fonts, calibration, layout } from "../../lib/brand";
 
 /**
  * Calibration variable animation layout.
@@ -66,9 +66,9 @@ function getSliderValue(frame: number): number {
 
 /** Returns the color for the current slider zone */
 function getZoneColor(value: number): string {
-  if (value < 0.3) return colors.tooLow;
-  if (value > 0.7) return colors.tooHigh;
-  return colors.correct;
+  if (value < 0.3) return calibration.tooLow;
+  if (value > 0.7) return calibration.tooHigh;
+  return calibration.correct;
 }
 
 export const CalibrationVar: React.FC<CalibrationVarProps> = ({
@@ -102,7 +102,7 @@ export const CalibrationVar: React.FC<CalibrationVarProps> = ({
   return (
     <AbsoluteFill
       style={{
-        backgroundColor: colors.background,
+        backgroundColor: colors.deepBlue,
         fontFamily: fonts.primary,
         display: "flex",
         flexDirection: "row",
@@ -141,7 +141,7 @@ export const CalibrationVar: React.FC<CalibrationVarProps> = ({
               style={{
                 fontSize: 52,
                 fontWeight: 700,
-                color: colors.heading,
+                color: colors.white,
                 marginTop: 8,
                 lineHeight: 1.1,
               }}
@@ -154,7 +154,7 @@ export const CalibrationVar: React.FC<CalibrationVarProps> = ({
               opacity: enterDesc,
               transform: `translateY(${interpolate(enterDesc, [0, 1], [15, 0])}px)`,
               fontSize: 22,
-              color: colors.muted,
+              color: colors.skyBlue,
               marginTop: 16,
               lineHeight: 1.4,
             }}
@@ -176,12 +176,12 @@ export const CalibrationVar: React.FC<CalibrationVarProps> = ({
               display: "flex",
               justifyContent: "space-between",
               fontSize: 16,
-              color: colors.muted,
+              color: colors.skyBlue,
               marginBottom: 8,
             }}
           >
             <span>{rangeLabels.min}</span>
-            <span style={{ color: colors.correct }}>{rangeLabels.correct}</span>
+            <span style={{ color: calibration.correct }}>{rangeLabels.correct}</span>
             <span>{rangeLabels.max}</span>
           </div>
 
@@ -195,9 +195,9 @@ export const CalibrationVar: React.FC<CalibrationVarProps> = ({
               display: "flex",
             }}
           >
-            <div style={{ flex: 1, backgroundColor: colors.tooLow + "44" }} />
-            <div style={{ flex: 1, backgroundColor: colors.correct + "44" }} />
-            <div style={{ flex: 1, backgroundColor: colors.tooHigh + "44" }} />
+            <div style={{ flex: 1, backgroundColor: calibration.tooLow + "44" }} />
+            <div style={{ flex: 1, backgroundColor: calibration.correct + "44" }} />
+            <div style={{ flex: 1, backgroundColor: calibration.tooHigh + "44" }} />
 
             {/* Slider thumb */}
             <div
@@ -220,7 +220,7 @@ export const CalibrationVar: React.FC<CalibrationVarProps> = ({
           <div
             style={{
               fontSize: 14,
-              color: colors.muted,
+              color: colors.skyBlue,
               marginTop: 8,
               letterSpacing: 1,
               textTransform: "uppercase",
@@ -238,7 +238,7 @@ export const CalibrationVar: React.FC<CalibrationVarProps> = ({
               borderLeft: `4px solid ${zoneColor}`,
               borderRadius: "0 8px 8px 0",
               fontSize: 20,
-              color: colors.text,
+              color: colors.white,
               lineHeight: 1.4,
               minHeight: 64,
             }}
@@ -255,7 +255,7 @@ export const CalibrationVar: React.FC<CalibrationVarProps> = ({
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
-            <span style={{ fontSize: 15, color: colors.muted, letterSpacing: 1, textTransform: "uppercase" }}>
+            <span style={{ fontSize: 15, color: colors.skyBlue, letterSpacing: 1, textTransform: "uppercase" }}>
               Depends on:
             </span>
             {dependencies.length === 0 ? (
@@ -289,7 +289,7 @@ export const CalibrationVar: React.FC<CalibrationVarProps> = ({
             )}
           </div>
           {note && (
-            <div style={{ fontSize: 15, color: colors.muted, fontStyle: "italic", marginTop: 8 }}>
+            <div style={{ fontSize: 15, color: colors.skyBlue, fontStyle: "italic", marginTop: 8 }}>
               {note}
             </div>
           )}

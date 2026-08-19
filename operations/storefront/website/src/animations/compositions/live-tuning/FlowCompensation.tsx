@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate, useCurrentFrame } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: Roller encoder monitoring filament movement in real-time.
@@ -37,7 +37,7 @@ const FlowCompDiagram: React.FC<{ value: number }> = ({ value }) => {
     <svg width="700" height="580" viewBox="0 0 700 580">
       {/* Title */}
       <g transform="translate(350, 25)">
-        <text x="0" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="0" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           FLOW COMPENSATION
         </text>
         <text x="0" y="28" textAnchor="middle" fill={zoneColor} fontSize="26" fontWeight="bold" fontFamily="Space Grotesk">
@@ -47,7 +47,7 @@ const FlowCompDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Commanded vs Actual flow graph */}
       <g>
-        <text x={graphX + graphWidth / 2} y={graphY - 8} textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x={graphX + graphWidth / 2} y={graphY - 8} textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Commanded vs. actual filament flow
         </text>
 
@@ -93,8 +93,8 @@ const FlowCompDiagram: React.FC<{ value: number }> = ({ value }) => {
           </text>
         </g>
         <g>
-          <line x1={graphX + graphWidth * 0.7} y1={graphY} x2={graphX + graphWidth * 0.7} y2={graphY + graphHeight} stroke={colors.tooHigh + "44"} strokeWidth="1" strokeDasharray="3,3" />
-          <text x={graphX + graphWidth * 0.7} y={graphY + graphHeight + 14} textAnchor="middle" fill={colors.tooHigh} fontSize="10" fontFamily="Space Grotesk">
+          <line x1={graphX + graphWidth * 0.7} y1={graphY} x2={graphX + graphWidth * 0.7} y2={graphY + graphHeight} stroke={calibration.tooHigh + "44"} strokeWidth="1" strokeDasharray="3,3" />
+          <text x={graphX + graphWidth * 0.7} y={graphY + graphHeight + 14} textAnchor="middle" fill={calibration.tooHigh} fontSize="10" fontFamily="Space Grotesk">
             partial grind
           </text>
         </g>
@@ -102,7 +102,7 @@ const FlowCompDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Encoder hardware diagram */}
       <g transform="translate(100, 240)">
-        <text x="250" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="250" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Roller encoder — inline filament monitor
         </text>
 
@@ -116,40 +116,40 @@ const FlowCompDiagram: React.FC<{ value: number }> = ({ value }) => {
             <line key={a} x1={Math.cos(a * Math.PI / 180) * 13} y1={Math.sin(a * Math.PI / 180) * 13} x2={Math.cos(a * Math.PI / 180) * 18} y2={Math.sin(a * Math.PI / 180) * 18} stroke={colors.accentAmber} strokeWidth="2" />
           ))}
         </g>
-        <text x="260" y="55" fill={colors.muted} fontSize="11" fontFamily="Space Grotesk">Drive gear</text>
-        <text x="260" y="68" fill={colors.muted} fontSize="10" fontFamily="Space Grotesk">(commanded)</text>
+        <text x="260" y="55" fill={colors.skyBlue} fontSize="11" fontFamily="Space Grotesk">Drive gear</text>
+        <text x="260" y="68" fill={colors.skyBlue} fontSize="10" fontFamily="Space Grotesk">(commanded)</text>
 
         {/* Roller encoder (below) */}
         <g transform={`translate(224, 110) rotate(${frame * 3 * (1 - slipEvent(frame / 240) - grindEvent(frame / 240))})`}>
-          <circle r="14" fill="none" stroke={colors.correct} strokeWidth="2.5" />
+          <circle r="14" fill="none" stroke={calibration.correct} strokeWidth="2.5" />
           {[0, 90, 180, 270].map((a) => (
-            <line key={a} x1={Math.cos(a * Math.PI / 180) * 8} y1={Math.sin(a * Math.PI / 180) * 8} x2={Math.cos(a * Math.PI / 180) * 14} y2={Math.sin(a * Math.PI / 180) * 14} stroke={colors.correct} strokeWidth="2" />
+            <line key={a} x1={Math.cos(a * Math.PI / 180) * 8} y1={Math.sin(a * Math.PI / 180) * 8} x2={Math.cos(a * Math.PI / 180) * 14} y2={Math.sin(a * Math.PI / 180) * 14} stroke={calibration.correct} strokeWidth="2" />
           ))}
         </g>
-        <text x="260" y="115" fill={colors.correct} fontSize="11" fontFamily="Space Grotesk">Roller encoder</text>
-        <text x="260" y="128" fill={colors.correct} fontSize="10" fontFamily="Space Grotesk">(actual movement)</text>
+        <text x="260" y="115" fill={calibration.correct} fontSize="11" fontFamily="Space Grotesk">Roller encoder</text>
+        <text x="260" y="128" fill={calibration.correct} fontSize="10" fontFamily="Space Grotesk">(actual movement)</text>
 
         {/* Comparison box */}
         <rect x="340" y="60" width="150" height="60" rx="6"
           fill={compensation > 0.3 ? zoneColor + "18" : colors.deepBlue}
-          stroke={compensation > 0.3 ? zoneColor + "44" : colors.muted + "22"}
+          stroke={compensation > 0.3 ? zoneColor + "44" : colors.skyBlue + "22"}
           strokeWidth="1.5"
         />
-        <text x="415" y="82" textAnchor="middle" fill={colors.text} fontSize="13" fontWeight="600" fontFamily="Space Grotesk">
+        <text x="415" y="82" textAnchor="middle" fill={colors.white} fontSize="13" fontWeight="600" fontFamily="Space Grotesk">
           Compare
         </text>
-        <text x="415" y="100" textAnchor="middle" fill={colors.muted} fontSize="11" fontFamily="Space Grotesk">
+        <text x="415" y="100" textAnchor="middle" fill={colors.skyBlue} fontSize="11" fontFamily="Space Grotesk">
           cmd ≠ actual → correct
         </text>
 
         {/* Arrows */}
-        <line x1="260" y1="55" x2="340" y2="80" stroke={colors.muted + "44"} strokeWidth="1.5" />
-        <line x1="260" y1="115" x2="340" y2="100" stroke={colors.muted + "44"} strokeWidth="1.5" />
+        <line x1="260" y1="55" x2="340" y2="80" stroke={colors.skyBlue + "44"} strokeWidth="1.5" />
+        <line x1="260" y1="115" x2="340" y2="100" stroke={colors.skyBlue + "44"} strokeWidth="1.5" />
       </g>
 
       {/* Print result comparison */}
       <g transform="translate(60, 430)">
-        <text x="280" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="280" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Print result during slip event
         </text>
 
@@ -168,7 +168,7 @@ const FlowCompDiagram: React.FC<{ value: number }> = ({ value }) => {
           }
 
           const layerColor = isSlipLayer
-            ? (compensation < 0.3 ? colors.tooLow : compensation > 1.5 ? colors.tooHigh : colors.correct)
+            ? (compensation < 0.3 ? calibration.tooLow : compensation > 1.5 ? calibration.tooHigh : calibration.correct)
             : zoneColor;
 
           return (
@@ -187,12 +187,12 @@ const FlowCompDiagram: React.FC<{ value: number }> = ({ value }) => {
         })}
 
         {value < 0.3 && (
-          <text x="420" y="80" fill={colors.tooLow} fontSize="12" fontFamily="Space Grotesk">
+          <text x="420" y="80" fill={calibration.tooLow} fontSize="12" fontFamily="Space Grotesk">
             ← thin layers (undetected slip)
           </text>
         )}
         {value > 0.35 && value < 0.65 && (
-          <text x="420" y="80" fill={colors.correct} fontSize="12" fontFamily="Space Grotesk">
+          <text x="420" y="80" fill={calibration.correct} fontSize="12" fontFamily="Space Grotesk">
             ← corrected in real-time
           </text>
         )}

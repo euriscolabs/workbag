@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: Temperature over time graph.
@@ -48,14 +48,14 @@ const PidDiagram: React.FC<{ value: number }> = ({ value }) => {
         y1={graphY + targetY}
         x2={graphX + graphWidth}
         y2={graphY + targetY}
-        stroke={colors.correct}
+        stroke={calibration.correct}
         strokeWidth="2"
         strokeDasharray="8,6"
       />
       <text
         x={graphX + graphWidth + 8}
         y={graphY + targetY + 5}
-        fill={colors.correct}
+        fill={calibration.correct}
         fontSize="14"
         fontFamily="Space Grotesk"
       >
@@ -68,7 +68,7 @@ const PidDiagram: React.FC<{ value: number }> = ({ value }) => {
         y={graphY + targetY - 4}
         width={graphWidth}
         height={8}
-        fill={colors.correct + "22"}
+        fill={calibration.correct + "22"}
       />
 
       {/* ±5°C band (bad PID oscillation range) */}
@@ -77,7 +77,7 @@ const PidDiagram: React.FC<{ value: number }> = ({ value }) => {
         y={graphY + targetY - 40}
         width={graphWidth}
         height={80}
-        fill={colors.tooLow + "0a"}
+        fill={calibration.tooLow + "0a"}
       />
 
       {/* Temperature curve */}
@@ -114,16 +114,16 @@ const PidDiagram: React.FC<{ value: number }> = ({ value }) => {
       )}
 
       {/* Axis labels */}
-      <text x={graphX + graphWidth / 2} y={graphY + graphHeight + 30} textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+      <text x={graphX + graphWidth / 2} y={graphY + graphHeight + 30} textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
         Time →
       </text>
-      <text x={graphX - 40} y={graphY + graphHeight / 2} textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk" transform={`rotate(-90, ${graphX - 40}, ${graphY + graphHeight / 2})`}>
+      <text x={graphX - 40} y={graphY + graphHeight / 2} textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk" transform={`rotate(-90, ${graphX - 40}, ${graphY + graphHeight / 2})`}>
         Temperature
       </text>
 
       {/* Extrusion quality indicator at bottom */}
       <g transform={`translate(${graphX + 40}, ${graphY + graphHeight + 55})`}>
-        <text x="0" y="0" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="0" y="0" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Extrusion consistency:
         </text>
         {/* Simulated extrusion line — waviness matches PID quality */}

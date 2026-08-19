@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: Nozzle depositing a line, showing pressure buildup/release.
@@ -31,7 +31,7 @@ const PressureAdvanceDiagram: React.FC<{ value: number }> = ({ value }) => {
     <svg width="700" height="580" viewBox="0 0 700 580">
       {/* PA value display */}
       <g transform="translate(350, 25)">
-        <text x="0" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="0" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           PRESSURE ADVANCE
         </text>
         <text x="0" y="30" textAnchor="middle" fill={zoneColor} fontSize="34" fontWeight="bold" fontFamily="Space Grotesk">
@@ -41,7 +41,7 @@ const PressureAdvanceDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Extrusion line — L-shape path showing line width variation */}
       <g transform="translate(60, 80)">
-        <text x="280" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="280" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Deposited line — L-shape path
         </text>
 
@@ -49,7 +49,7 @@ const PressureAdvanceDiagram: React.FC<{ value: number }> = ({ value }) => {
         <path
           d="M 50,100 L 280,100 L 280,250"
           fill="none"
-          stroke={colors.correct + "33"}
+          stroke={calibration.correct + "33"}
           strokeWidth={straightWidth}
           strokeLinejoin="round"
           strokeDasharray="8,6"
@@ -117,12 +117,12 @@ const PressureAdvanceDiagram: React.FC<{ value: number }> = ({ value }) => {
         {/* Annotations */}
         {/* Start blob/gap */}
         {value < 0.25 && (
-          <text x="60" y="80" fill={colors.tooLow} fontSize="12" fontFamily="Space Grotesk">
+          <text x="60" y="80" fill={calibration.tooLow} fontSize="12" fontFamily="Space Grotesk">
             blob at start
           </text>
         )}
         {value > 0.75 && (
-          <text x="60" y="80" fill={colors.tooHigh} fontSize="12" fontFamily="Space Grotesk">
+          <text x="60" y="80" fill={calibration.tooHigh} fontSize="12" fontFamily="Space Grotesk">
             thin / gap at start
           </text>
         )}
@@ -130,24 +130,24 @@ const PressureAdvanceDiagram: React.FC<{ value: number }> = ({ value }) => {
         {/* Corner annotation */}
         <circle cx="280" cy="100" r="4" fill={colors.accentAmber} />
         {value < 0.25 && (
-          <text x="295" y="95" fill={colors.tooLow} fontSize="12" fontFamily="Space Grotesk">
+          <text x="295" y="95" fill={calibration.tooLow} fontSize="12" fontFamily="Space Grotesk">
             bulging corner
           </text>
         )}
         {value > 0.75 && (
-          <text x="295" y="95" fill={colors.tooHigh} fontSize="12" fontFamily="Space Grotesk">
+          <text x="295" y="95" fill={calibration.tooHigh} fontSize="12" fontFamily="Space Grotesk">
             gap at corner
           </text>
         )}
 
         {/* Movement direction arrows */}
-        <polygon points="140,85 150,88 140,91" fill={colors.muted + "88"} />
-        <polygon points="295,180 292,190 289,180" fill={colors.muted + "88"} />
+        <polygon points="140,85 150,88 140,91" fill={colors.skyBlue + "88"} />
+        <polygon points="295,180 292,190 289,180" fill={colors.skyBlue + "88"} />
       </g>
 
       {/* Pressure gauge / nozzle pressure visualization */}
       <g transform="translate(420, 100)">
-        <text x="100" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="100" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Nozzle pressure
         </text>
 
@@ -159,18 +159,18 @@ const PressureAdvanceDiagram: React.FC<{ value: number }> = ({ value }) => {
           else pressure = 1 - pressureAtCorner;
 
           const barHeight = pressure * 80;
-          const barColor = pressure > 0.7 ? colors.tooLow : pressure < 0.3 ? colors.tooHigh : colors.correct;
+          const barColor = pressure > 0.7 ? calibration.tooLow : pressure < 0.3 ? calibration.tooHigh : calibration.correct;
 
           return (
             <g key={i} transform={`translate(${i * 70}, 20)`}>
               {/* Bar background */}
-              <rect x="10" y="0" width="40" height="80" rx="4" fill={colors.deepBlue} stroke={colors.muted + "33"} strokeWidth="1" />
+              <rect x="10" y="0" width="40" height="80" rx="4" fill={colors.deepBlue} stroke={colors.skyBlue + "33"} strokeWidth="1" />
               {/* Pressure fill */}
               <rect x="10" y={80 - barHeight} width="40" height={barHeight} rx="4" fill={barColor + "66"} />
               {/* Target line */}
-              <line x1="8" y1="40" x2="52" y2="40" stroke={colors.correct + "44"} strokeWidth="1" strokeDasharray="3,3" />
+              <line x1="8" y1="40" x2="52" y2="40" stroke={calibration.correct + "44"} strokeWidth="1" strokeDasharray="3,3" />
               {/* Label */}
-              <text x="30" y="98" textAnchor="middle" fill={colors.muted} fontSize="10" fontFamily="Space Grotesk">
+              <text x="30" y="98" textAnchor="middle" fill={colors.skyBlue} fontSize="10" fontFamily="Space Grotesk">
                 {label}
               </text>
             </g>
@@ -189,7 +189,7 @@ const PressureAdvanceDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* PA test pattern */}
       <g transform="translate(60, 440)">
-        <text x="280" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="280" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           PA calibration pattern — line width should be uniform
         </text>
         {Array.from({ length: 8 }, (_, i) => {
@@ -204,15 +204,15 @@ const PressureAdvanceDiagram: React.FC<{ value: number }> = ({ value }) => {
                 width={400}
                 height={w}
                 rx={w / 2}
-                fill={isActive ? colors.correct + "44" : colors.muted + "22"}
-                stroke={isActive ? colors.correct : colors.muted + "44"}
+                fill={isActive ? calibration.correct + "44" : colors.skyBlue + "22"}
+                stroke={isActive ? calibration.correct : colors.skyBlue + "44"}
                 strokeWidth="1"
               />
               <text
                 x="70"
                 y={20 + i * 16 + w / 2 + 4}
                 textAnchor="end"
-                fill={isActive ? colors.correct : colors.muted + "66"}
+                fill={isActive ? calibration.correct : colors.skyBlue + "66"}
                 fontSize="10"
                 fontFamily="Space Grotesk"
               >

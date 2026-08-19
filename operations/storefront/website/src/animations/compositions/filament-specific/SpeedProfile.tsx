@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: Different move types with individual speed bars.
@@ -31,7 +31,7 @@ const SpeedProfileDiagram: React.FC<{ value: number }> = ({ value }) => {
     <svg width="700" height="580" viewBox="0 0 700 580">
       {/* Overall speed multiplier */}
       <g transform="translate(350, 25)">
-        <text x="0" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="0" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           SPEED AGGRESSIVENESS
         </text>
         <text x="0" y="30" textAnchor="middle" fill={zoneColor} fontSize="28" fontWeight="bold" fontFamily="Space Grotesk">
@@ -46,21 +46,21 @@ const SpeedProfileDiagram: React.FC<{ value: number }> = ({ value }) => {
           const exceeded = speed > type.max;
           const barWidth = (Math.min(speed, type.max * 1.4) / globalMax) * 380;
           const maxLine = (type.max / globalMax) * 380;
-          const barColor = exceeded ? colors.tooHigh : value < 0.2 ? colors.tooLow : colors.correct;
+          const barColor = exceeded ? calibration.tooHigh : value < 0.2 ? calibration.tooLow : calibration.correct;
           const y = i * 65;
 
           return (
             <g key={i} transform={`translate(0, ${y})`}>
               {/* Move type label */}
-              <text x="0" y="15" fill={colors.text} fontSize="16" fontWeight="600" fontFamily="Space Grotesk">
+              <text x="0" y="15" fill={colors.white} fontSize="16" fontWeight="600" fontFamily="Space Grotesk">
                 {type.name}
               </text>
-              <text x="0" y="32" fill={colors.muted} fontSize="11" fontFamily="Space Grotesk">
+              <text x="0" y="32" fill={colors.skyBlue} fontSize="11" fontFamily="Space Grotesk">
                 limit: {type.ceiling}
               </text>
 
               {/* Bar background */}
-              <rect x="170" y="5" width="380" height="24" rx="4" fill={colors.deepBlue} stroke={colors.muted + "22"} strokeWidth="1" />
+              <rect x="170" y="5" width="380" height="24" rx="4" fill={colors.deepBlue} stroke={colors.skyBlue + "22"} strokeWidth="1" />
 
               {/* Speed bar */}
               <rect x="170" y="5" width={barWidth} height="24" rx="4" fill={barColor + "55"} stroke={barColor} strokeWidth="1.5" />
@@ -85,7 +85,7 @@ const SpeedProfileDiagram: React.FC<{ value: number }> = ({ value }) => {
                 <text
                   x={170 + maxLine + 5}
                   y="46"
-                  fill={colors.tooHigh}
+                  fill={calibration.tooHigh}
                   fontSize="10"
                   fontFamily="Space Grotesk"
                 >

@@ -4,7 +4,7 @@ layout: /src/layouts/PageLayout.astro
 description: "We design, build, and ship products at the intersection of software, hardware, and engineering — documented openly."
 ---
 
-![Eurisco Labs](/wordmark.svg)
+![Eurisco Labs](../assets/logos/optimized/wordmark.svg)
 
 We design, build, and ship products at the intersection of software, hardware, and engineering — documented openly.
 

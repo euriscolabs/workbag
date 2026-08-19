@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: Top-down bed surface heatmap with nozzle path.
@@ -35,15 +35,15 @@ const BedMeshDiagram: React.FC<{ value: number }> = ({ value }) => {
   // Color based on effective gap (how far nozzle is from ideal)
   const gapColor = (gap: number): string => {
     const abs = Math.abs(gap);
-    if (abs < 0.05) return colors.correct;
+    if (abs < 0.05) return calibration.correct;
     if (abs < 0.15) return colors.accentAmber;
-    return gap > 0 ? colors.tooLow : colors.tooHigh;
+    return gap > 0 ? calibration.tooLow : calibration.tooHigh;
   };
 
   return (
     <svg width="700" height="580" viewBox="0 0 700 580">
       {/* Title */}
-      <text x="350" y="40" textAnchor="middle" fill={colors.muted} fontSize="16" fontFamily="Space Grotesk">
+      <text x="350" y="40" textAnchor="middle" fill={colors.skyBlue} fontSize="16" fontFamily="Space Grotesk">
         BED SURFACE — First Layer Gap
       </text>
 
@@ -109,19 +109,19 @@ const BedMeshDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Legend */}
       <g transform={`translate(${offsetX}, ${offsetY + gridSize * cellSize + 20})`}>
-        <rect x="0" y="0" width="20" height="20" rx="3" fill={colors.correct + "33"} stroke={colors.correct} strokeWidth="1" />
-        <text x="28" y="15" fill={colors.muted} fontSize="13" fontFamily="Space Grotesk">Good contact</text>
+        <rect x="0" y="0" width="20" height="20" rx="3" fill={calibration.correct + "33"} stroke={calibration.correct} strokeWidth="1" />
+        <text x="28" y="15" fill={colors.skyBlue} fontSize="13" fontFamily="Space Grotesk">Good contact</text>
 
-        <rect x="150" y="0" width="20" height="20" rx="3" fill={colors.tooLow + "33"} stroke={colors.tooLow} strokeWidth="1" />
-        <text x="178" y="15" fill={colors.muted} fontSize="13" fontFamily="Space Grotesk">Too far (no adhesion)</text>
+        <rect x="150" y="0" width="20" height="20" rx="3" fill={calibration.tooLow + "33"} stroke={calibration.tooLow} strokeWidth="1" />
+        <text x="178" y="15" fill={colors.skyBlue} fontSize="13" fontFamily="Space Grotesk">Too far (no adhesion)</text>
 
-        <rect x="360" y="0" width="20" height="20" rx="3" fill={colors.tooHigh + "33"} stroke={colors.tooHigh} strokeWidth="1" />
-        <text x="388" y="15" fill={colors.muted} fontSize="13" fontFamily="Space Grotesk">Too close (squished)</text>
+        <rect x="360" y="0" width="20" height="20" rx="3" fill={calibration.tooHigh + "33"} stroke={calibration.tooHigh} strokeWidth="1" />
+        <text x="388" y="15" fill={colors.skyBlue} fontSize="13" fontFamily="Space Grotesk">Too close (squished)</text>
       </g>
 
       {/* Side cross-section */}
       <g transform={`translate(${offsetX}, ${offsetY + gridSize * cellSize + 60})`}>
-        <text x="0" y="0" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="0" y="0" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Side view — nozzle height across bed
         </text>
         {/* Bed surface (wavy) */}
@@ -140,12 +140,12 @@ const BedMeshDiagram: React.FC<{ value: number }> = ({ value }) => {
           }
           return (
             <>
-              <polyline points={bedPoints.join(" ")} fill="none" stroke={colors.muted + "88"} strokeWidth="3" transform="translate(0, 20)" />
+              <polyline points={bedPoints.join(" ")} fill="none" stroke={colors.skyBlue + "88"} strokeWidth="3" transform="translate(0, 20)" />
               <polyline points={nozzlePoints.join(" ")} fill="none" stroke={zoneColor} strokeWidth="2" strokeDasharray="6,4" transform="translate(0, 20)" />
             </>
           );
         })()}
-        <text x={gridSize * cellSize + 10} y="50" fill={colors.muted + "88"} fontSize="11" fontFamily="Space Grotesk">bed</text>
+        <text x={gridSize * cellSize + 10} y="50" fill={colors.skyBlue + "88"} fontSize="11" fontFamily="Space Grotesk">bed</text>
         <text x={gridSize * cellSize + 10} y="35" fill={zoneColor} fontSize="11" fontFamily="Space Grotesk">nozzle</text>
       </g>
     </svg>

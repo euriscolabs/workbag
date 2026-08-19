@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: Side view of a belt-driven axis.
@@ -27,7 +27,7 @@ const AxisDiagram: React.FC<{ value: number }> = ({ value }) => {
   return (
     <svg width="700" height="600" viewBox="0 0 700 600">
       {/* Rail */}
-      <rect x="60" y="280" width="580" height="8" rx="4" fill={colors.muted + "44"} />
+      <rect x="60" y="280" width="580" height="8" rx="4" fill={colors.skyBlue + "44"} />
 
       {/* Rail ticks (mm markers) */}
       {Array.from({ length: 13 }, (_, i) => (
@@ -37,7 +37,7 @@ const AxisDiagram: React.FC<{ value: number }> = ({ value }) => {
             y1="295"
             x2={60 + i * 48.3}
             y2={i % 5 === 0 ? 315 : 305}
-            stroke={colors.muted + "66"}
+            stroke={colors.skyBlue + "66"}
             strokeWidth="2"
           />
           {i % 5 === 0 && (
@@ -45,7 +45,7 @@ const AxisDiagram: React.FC<{ value: number }> = ({ value }) => {
               x={60 + i * 48.3}
               y="332"
               textAnchor="middle"
-              fill={colors.muted}
+              fill={colors.skyBlue}
               fontSize="14"
               fontFamily="Space Grotesk"
             >
@@ -56,8 +56,8 @@ const AxisDiagram: React.FC<{ value: number }> = ({ value }) => {
       ))}
 
       {/* Target position marker */}
-      <line x1={targetX} y1="240" x2={targetX} y2="275" stroke={colors.correct} strokeWidth="2" strokeDasharray="6,4" />
-      <text x={targetX} y="232" textAnchor="middle" fill={colors.correct} fontSize="16" fontFamily="Space Grotesk">
+      <line x1={targetX} y1="240" x2={targetX} y2="275" stroke={calibration.correct} strokeWidth="2" strokeDasharray="6,4" />
+      <text x={targetX} y="232" textAnchor="middle" fill={calibration.correct} fontSize="16" fontFamily="Space Grotesk">
         TARGET
       </text>
 
@@ -72,8 +72,8 @@ const AxisDiagram: React.FC<{ value: number }> = ({ value }) => {
       />
 
       {/* Motor (left side) */}
-      <rect x="20" y="350" width="80" height="80" rx="8" fill={colors.darkBlue} stroke={colors.muted + "44"} strokeWidth="2" />
-      <text x="60" y="385" textAnchor="middle" fill={colors.muted} fontSize="12" fontFamily="Space Grotesk">
+      <rect x="20" y="350" width="80" height="80" rx="8" fill={colors.darkBlue} stroke={colors.skyBlue + "44"} strokeWidth="2" />
+      <text x="60" y="385" textAnchor="middle" fill={colors.skyBlue} fontSize="12" fontFamily="Space Grotesk">
         MOTOR
       </text>
 
@@ -93,14 +93,14 @@ const AxisDiagram: React.FC<{ value: number }> = ({ value }) => {
       </g>
 
       {/* Belt connecting motor to toolhead */}
-      <line x1="78" y1="410" x2={actualX} y2="280" stroke={colors.muted + "66"} strokeWidth="2" strokeDasharray="4,4" />
+      <line x1="78" y1="410" x2={actualX} y2="280" stroke={colors.skyBlue + "66"} strokeWidth="2" strokeDasharray="4,4" />
 
       {/* Distance error indicator */}
       {Math.abs(offset) > 5 && (
         <g>
           {/* Error bracket */}
           <line x1={targetX} y1="360" x2={actualX} y2="360" stroke={zoneColor} strokeWidth="2" />
-          <line x1={targetX} y1="355" x2={targetX} y2="365" stroke={colors.correct} strokeWidth="2" />
+          <line x1={targetX} y1="355" x2={targetX} y2="365" stroke={calibration.correct} strokeWidth="2" />
           <line x1={actualX} y1="355" x2={actualX} y2="365" stroke={zoneColor} strokeWidth="2" />
           <text
             x={(targetX + actualX) / 2}
@@ -118,11 +118,11 @@ const AxisDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Result cube preview */}
       <g transform="translate(350, 450)">
-        <text x="0" y="-10" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="0" y="-10" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           20mm calibration cube
         </text>
         {/* Target cube (outline) */}
-        <rect x="-50" y="0" width="100" height="100" fill="none" stroke={colors.correct + "44"} strokeWidth="2" strokeDasharray="6,4" />
+        <rect x="-50" y="0" width="100" height="100" fill="none" stroke={calibration.correct + "44"} strokeWidth="2" strokeDasharray="6,4" />
         {/* Actual cube (filled, scaled by error) */}
         <rect
           x={-50 + offset * 0.6}

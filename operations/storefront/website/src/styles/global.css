@@ -1,12 +1,66 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-@theme {
-  --font-sans: "Space Grotesk", system-ui, sans-serif;
-  --color-navy: #0d47a1;
-  --color-blue: #1a73e8;
-  --color-light-blue: #4fc3f7;
-  --color-orange: #ffab40;
-  --color-muted: #5a5a7a;
+/* Typography plugin, mapped onto the brand palette (src/lib/brand.ts).
+   Markdown bodies get `prose prose-sm` from PageLayout; everything below
+   only re-points the plugin's color variables at brand tokens and trims
+   its defaults to the site's look. No literal colors here. */
+.prose {
+  --tw-prose-body: var(--brand-muted);
+  --tw-prose-headings: var(--brand-dark-blue);
+  --tw-prose-lead: var(--brand-muted);
+  --tw-prose-links: var(--brand-primary-blue);
+  --tw-prose-bold: var(--brand-dark-blue);
+  --tw-prose-counters: var(--brand-sky-blue);
+  --tw-prose-bullets: var(--brand-sky-blue);
+  --tw-prose-hr: var(--brand-border);
+  --tw-prose-quotes: var(--brand-dark-blue);
+  --tw-prose-quote-borders: var(--brand-light-blue);
+  --tw-prose-captions: var(--brand-muted);
+  --tw-prose-kbd: var(--brand-dark-blue);
+  --tw-prose-code: var(--brand-dark-blue);
+  --tw-prose-pre-code: var(--brand-white);
+  --tw-prose-pre-bg: var(--brand-deep-blue);
+  --tw-prose-th-borders: var(--brand-border);
+  --tw-prose-td-borders: var(--brand-border-light);
+
+  /* Space Grotesk ships 400–700; the plugin's 800 headings would be
+     faux-bolded, so pin them to semibold. */
+  h1, h2, h3, h4 {
+    font-weight: 600;
+  }
+
+  /* Inline code as a soft chip instead of the plugin's `backticks`. */
+  code {
+    background: var(--brand-border-light);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+  }
+  code::before,
+  code::after {
+    content: none;
+  }
+  pre code {
+    background: transparent;
+    padding: 0;
+  }
+}
+
+/* All values come from the canonical brand palette (src/lib/brand.ts),
+   injected as --brand-* variables on :root by BaseLayout.astro. This block
+   only aliases them to Tailwind utility tokens (text-navy, bg-blue/10, …) —
+   never put a literal color here. */
+@theme inline {
+  --font-sans: var(--brand-font-sans);
+  --color-navy: var(--brand-dark-blue);
+  --color-blue: var(--brand-primary-blue);
+  --color-light-blue: var(--brand-light-blue);
+  --color-sky-blue: var(--brand-sky-blue);
+  --color-deep-blue: var(--brand-deep-blue);
+  --color-orange: var(--brand-accent-amber);
+  --color-muted: var(--brand-muted);
+  --color-border: var(--brand-border);
+  --color-border-light: var(--brand-border-light);
 }
 
 /* (semibold 600 / regular 400)*/
@@ -35,7 +89,7 @@
     text-align: center;
     font-size: 1.25rem;
     line-height: 1.6;
-    color: var(--color-muted);
+    color: var(--brand-muted);
     max-width: 42rem;
     margin: 2rem auto 4rem;
   }
@@ -46,8 +100,8 @@
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--color-muted);
-    border-top: 1px solid #e5e7eb;
+    color: var(--brand-muted);
+    border-top: 1px solid var(--brand-border);
     padding-top: 3rem;
     margin: 0 0 2rem;
   }
@@ -69,13 +123,13 @@
     > li {
       font-size: 0.875rem;
       line-height: 1.625;
-      color: var(--color-muted);
+      color: var(--brand-muted);
 
       > strong:first-child {
         display: block;
         font-size: 1rem;
         font-weight: 600;
-        color: var(--color-navy);
+        color: var(--brand-dark-blue);
         margin-bottom: 0.5rem;
       }
     }
@@ -100,19 +154,19 @@
   > li {
     position: relative;
     margin: 0;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--brand-border);
     border-radius: 0.5rem;
     padding: 1.25rem;
     font-size: 0.875rem;
     line-height: 1.55;
-    color: var(--color-muted);
+    color: var(--brand-muted);
     transition:
       border-color 0.2s ease,
       transform 0.2s ease,
       box-shadow 0.2s ease;
 
     &:hover {
-      border-color: var(--color-blue);
+      border-color: var(--brand-primary-blue);
       transform: translateY(-2px);
       box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.07);
     }
@@ -121,7 +175,7 @@
       display: block;
       font-size: 1rem;
       font-weight: 600;
-      color: var(--color-navy);
+      color: var(--brand-dark-blue);
       text-decoration: none;
       margin-bottom: 0.3rem;
       transition: color 0.2s ease;
@@ -135,7 +189,7 @@
     }
 
     &:hover > a:first-child {
-      color: var(--color-blue);
+      color: var(--brand-primary-blue);
     }
   }
 }

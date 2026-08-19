@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate, useCurrentFrame } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: Toolhead changing direction at a corner.
@@ -47,7 +47,7 @@ const InputShaperDiagram: React.FC<{ value: number }> = ({ value }) => {
   return (
     <svg width="700" height="550" viewBox="0 0 700 550">
       {/* Print path visualization */}
-      <text x="350" y="40" textAnchor="middle" fill={colors.muted} fontSize="16" fontFamily="Space Grotesk">
+      <text x="350" y="40" textAnchor="middle" fill={colors.skyBlue} fontSize="16" fontFamily="Space Grotesk">
         Toolhead path at corner
       </text>
 
@@ -72,7 +72,7 @@ const InputShaperDiagram: React.FC<{ value: number }> = ({ value }) => {
         y1="250"
         x2="550"
         y2="250"
-        stroke={colors.correct + "33"}
+        stroke={calibration.correct + "33"}
         strokeWidth="2"
         strokeDasharray="6,4"
       />
@@ -93,7 +93,7 @@ const InputShaperDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Print result — corner detail */}
       <g transform="translate(100, 160)">
-        <text x="75" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="75" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Printed corner
         </text>
 
@@ -122,12 +122,12 @@ const InputShaperDiagram: React.FC<{ value: number }> = ({ value }) => {
         })}
 
         {/* Target corner (ideal 90°) */}
-        <path d="M 20,140 L 20,20 L 130,20" fill="none" stroke={colors.correct + "33"} strokeWidth="1.5" strokeDasharray="4,4" />
+        <path d="M 20,140 L 20,20 L 130,20" fill="none" stroke={calibration.correct + "33"} strokeWidth="1.5" strokeDasharray="4,4" />
       </g>
 
       {/* Acceleration profile graph */}
       <g>
-        <text x="350" y="385" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="350" y="385" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Acceleration command at corner
         </text>
         <rect x="100" y="395" width="500" height="80" rx="6" fill={colors.deepBlue + "88"} />
@@ -138,15 +138,15 @@ const InputShaperDiagram: React.FC<{ value: number }> = ({ value }) => {
           strokeWidth="2.5"
         />
         {/* Baseline */}
-        <line x1="100" y1="430" x2="600" y2="430" stroke={colors.muted + "44"} strokeWidth="1" />
+        <line x1="100" y1="430" x2="600" y2="430" stroke={colors.skyBlue + "44"} strokeWidth="1" />
 
         {value > 0.35 && value < 0.65 && (
-          <text x="500" y="420" fill={colors.correct} fontSize="12" fontFamily="Space Grotesk">
+          <text x="500" y="420" fill={calibration.correct} fontSize="12" fontFamily="Space Grotesk">
             shaped ✓
           </text>
         )}
         {value < 0.2 && (
-          <text x="500" y="420" fill={colors.tooLow} fontSize="12" fontFamily="Space Grotesk">
+          <text x="500" y="420" fill={calibration.tooLow} fontSize="12" fontFamily="Space Grotesk">
             uncompensated
           </text>
         )}

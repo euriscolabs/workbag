@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate } from "remotion";
 import { CalibrationVar, getZoneColor } from "../../components/CalibrationVar";
-import { colors } from "../../brand";
+import { colors, calibration } from "../../../lib/brand";
 
 /**
  * Diagram: Part on heated bed, showing adhesion and warping.
@@ -30,7 +30,7 @@ const BedTempDiagram: React.FC<{ value: number }> = ({ value }) => {
     <svg width="700" height="580" viewBox="0 0 700 580">
       {/* Temperature display */}
       <g transform="translate(350, 25)">
-        <text x="0" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="0" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           BED TEMPERATURE
         </text>
         <text x="0" y="32" textAnchor="middle" fill={zoneColor} fontSize="36" fontWeight="bold" fontFamily="Space Grotesk">
@@ -42,8 +42,8 @@ const BedTempDiagram: React.FC<{ value: number }> = ({ value }) => {
       <g>
         {/* Bed */}
         <rect x="120" y={bedY} width="460" height="16" rx="4"
-          fill={interpolate(value, [0, 0.5, 1], [0.2, 0.5, 0.9]) > 0.5 ? colors.tooHigh + "44" : colors.muted + "33"}
-          stroke={colors.muted + "66"}
+          fill={interpolate(value, [0, 0.5, 1], [0.2, 0.5, 0.9]) > 0.5 ? calibration.tooHigh + "44" : colors.skyBlue + "33"}
+          stroke={colors.skyBlue + "66"}
           strokeWidth="1.5"
         />
         {/* Heater coils inside bed */}
@@ -54,13 +54,13 @@ const BedTempDiagram: React.FC<{ value: number }> = ({ value }) => {
             y1={bedY + 25}
             x2={200 + i * 85}
             y2={bedY + 25}
-            stroke={interpolate(value, [0, 1], [0.2, 1]) > 0.5 ? colors.tooHigh + "66" : colors.muted + "33"}
+            stroke={interpolate(value, [0, 1], [0.2, 1]) > 0.5 ? calibration.tooHigh + "66" : colors.skyBlue + "33"}
             strokeWidth="3"
             strokeLinecap="round"
           />
         ))}
-        <rect x="120" y={bedY + 16} width="460" height="25" rx="4" fill={colors.deepBlue} stroke={colors.muted + "22"} strokeWidth="1" />
-        <text x="350" y={bedY + 55} textAnchor="middle" fill={colors.muted + "66"} fontSize="12" fontFamily="Space Grotesk">
+        <rect x="120" y={bedY + 16} width="460" height="25" rx="4" fill={colors.deepBlue} stroke={colors.skyBlue + "22"} strokeWidth="1" />
+        <text x="350" y={bedY + 55} textAnchor="middle" fill={colors.skyBlue + "66"} fontSize="12" fontFamily="Space Grotesk">
           HEATED BED
         </text>
 
@@ -86,16 +86,16 @@ const BedTempDiagram: React.FC<{ value: number }> = ({ value }) => {
                 M ${partX},${bedY}
                 Q ${partX + elephantFoot / 2},${bedY - 8} ${partX + elephantFoot},${bedY - 15}
               `}
-              fill="none" stroke={colors.tooHigh} strokeWidth="2"
+              fill="none" stroke={calibration.tooHigh} strokeWidth="2"
             />
             <path
               d={`
                 M ${partX + partWidth},${bedY}
                 Q ${partX + partWidth - elephantFoot / 2},${bedY - 8} ${partX + partWidth - elephantFoot},${bedY - 15}
               `}
-              fill="none" stroke={colors.tooHigh} strokeWidth="2"
+              fill="none" stroke={calibration.tooHigh} strokeWidth="2"
             />
-            <text x={partX - 15} y={bedY - 5} textAnchor="end" fill={colors.tooHigh} fontSize="12" fontFamily="Space Grotesk">
+            <text x={partX - 15} y={bedY - 5} textAnchor="end" fill={calibration.tooHigh} fontSize="12" fontFamily="Space Grotesk">
               elephant foot
             </text>
           </>
@@ -107,17 +107,17 @@ const BedTempDiagram: React.FC<{ value: number }> = ({ value }) => {
             {/* Left corner lifting */}
             <path
               d={`M ${partX},${bedY} Q ${partX + 20},${bedY - warpAmount} ${partX + 50},${bedY - warpAmount * 0.3}`}
-              fill="none" stroke={colors.tooLow} strokeWidth="2.5"
+              fill="none" stroke={calibration.tooLow} strokeWidth="2.5"
             />
             {/* Right corner lifting */}
             <path
               d={`M ${partX + partWidth},${bedY} Q ${partX + partWidth - 20},${bedY - warpAmount} ${partX + partWidth - 50},${bedY - warpAmount * 0.3}`}
-              fill="none" stroke={colors.tooLow} strokeWidth="2.5"
+              fill="none" stroke={calibration.tooLow} strokeWidth="2.5"
             />
             {/* Warp arrows */}
-            <polygon points={`${partX + 10},${bedY - warpAmount - 5} ${partX + 5},${bedY - warpAmount + 5} ${partX + 15},${bedY - warpAmount + 5}`} fill={colors.tooLow} />
-            <polygon points={`${partX + partWidth - 10},${bedY - warpAmount - 5} ${partX + partWidth - 15},${bedY - warpAmount + 5} ${partX + partWidth - 5},${bedY - warpAmount + 5}`} fill={colors.tooLow} />
-            <text x="350" y={bedY - warpAmount - 15} textAnchor="middle" fill={colors.tooLow} fontSize="14" fontWeight="bold" fontFamily="Space Grotesk">
+            <polygon points={`${partX + 10},${bedY - warpAmount - 5} ${partX + 5},${bedY - warpAmount + 5} ${partX + 15},${bedY - warpAmount + 5}`} fill={calibration.tooLow} />
+            <polygon points={`${partX + partWidth - 10},${bedY - warpAmount - 5} ${partX + partWidth - 15},${bedY - warpAmount + 5} ${partX + partWidth - 5},${bedY - warpAmount + 5}`} fill={calibration.tooLow} />
+            <text x="350" y={bedY - warpAmount - 15} textAnchor="middle" fill={calibration.tooLow} fontSize="14" fontWeight="bold" fontFamily="Space Grotesk">
               WARPING
             </text>
           </>
@@ -126,18 +126,18 @@ const BedTempDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Adhesion indicator */}
       <g transform="translate(120, 400)">
-        <text x="230" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="230" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Bed adhesion
         </text>
-        <rect x="0" y="15" width="460" height="20" rx="6" fill={colors.deepBlue} stroke={colors.muted + "33"} strokeWidth="1" />
+        <rect x="0" y="15" width="460" height="20" rx="6" fill={colors.deepBlue} stroke={colors.skyBlue + "33"} strokeWidth="1" />
         <rect x="0" y="15" width={460 * adhesion} height="20" rx="6" fill={zoneColor + "55"} />
         {/* Labels */}
-        <text x="5" y="50" fill={colors.muted} fontSize="11" fontFamily="Space Grotesk">none</text>
-        <text x="230" y="50" textAnchor="middle" fill={colors.muted} fontSize="11" fontFamily="Space Grotesk">good</text>
-        <text x="455" y="50" textAnchor="end" fill={colors.muted} fontSize="11" fontFamily="Space Grotesk">permanent</text>
+        <text x="5" y="50" fill={colors.skyBlue} fontSize="11" fontFamily="Space Grotesk">none</text>
+        <text x="230" y="50" textAnchor="middle" fill={colors.skyBlue} fontSize="11" fontFamily="Space Grotesk">good</text>
+        <text x="455" y="50" textAnchor="end" fill={colors.skyBlue} fontSize="11" fontFamily="Space Grotesk">permanent</text>
 
         {value > 0.85 && (
-          <text x="230" y="72" textAnchor="middle" fill={colors.tooHigh} fontSize="12" fontFamily="Space Grotesk">
+          <text x="230" y="72" textAnchor="middle" fill={calibration.tooHigh} fontSize="12" fontFamily="Space Grotesk">
             part fused to bed — damage risk on removal
           </text>
         )}
@@ -145,7 +145,7 @@ const BedTempDiagram: React.FC<{ value: number }> = ({ value }) => {
 
       {/* Temperature gradient through part */}
       <g transform="translate(120, 490)">
-        <text x="230" y="0" textAnchor="middle" fill={colors.muted} fontSize="14" fontFamily="Space Grotesk">
+        <text x="230" y="0" textAnchor="middle" fill={colors.skyBlue} fontSize="14" fontFamily="Space Grotesk">
           Temperature gradient through part
         </text>
         {Array.from({ length: 6 }, (_, i) => {
@@ -163,14 +163,14 @@ const BedTempDiagram: React.FC<{ value: number }> = ({ value }) => {
             />
           );
         })}
-        <text x="395" y="30" fill={colors.muted} fontSize="11" fontFamily="Space Grotesk">← bed (hot)</text>
-        <text x="395" y="78" fill={colors.muted} fontSize="11" fontFamily="Space Grotesk">← top (cool)</text>
+        <text x="395" y="30" fill={colors.skyBlue} fontSize="11" fontFamily="Space Grotesk">← bed (hot)</text>
+        <text x="395" y="78" fill={colors.skyBlue} fontSize="11" fontFamily="Space Grotesk">← top (cool)</text>
       </g>
     </svg>
   );
 };
 
-export const BedTemp: React.FC = () => (
+export const BedTemperature: React.FC = () => (
   <CalibrationVar
     index={6}
     category="Filament-Specific"
