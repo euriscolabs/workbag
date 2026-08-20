@@ -1,7 +1,8 @@
 // React island embedding a Remotion composition via <Player>.
+// Compositions are colocated with the content pages they illustrate.
 // Usage in MDX (path is root-relative, so editors can ctrl-click it):
 //   import AnimationPlayer from "/src/components/AnimationPlayer";
-//   <AnimationPlayer src="/src/animations/compositions/printer-specific/ESteps.tsx" client:visible />
+//   <AnimationPlayer src="/src/pages/manufacturing/3d-printing/calibration/_ESteps.tsx" client:visible />
 import { useMemo } from "react";
 import type { ComponentType } from "react";
 import { Player } from "@remotion/player";
@@ -9,9 +10,10 @@ import { layout } from "../lib/brand";
 
 // Build-time table of every composition, keyed by its source path. The
 // glob makes Vite compile each file into its own lazy-loadable chunk;
-// nothing is fetched until the player hydrates on screen.
+// nothing is fetched until the player hydrates on screen. Compositions
+// are underscore-prefixed so Astro's pages scanner ignores them.
 const modules = import.meta.glob<Record<string, ComponentType>>(
-  "/src/animations/compositions/**/*.tsx",
+  "/src/pages/**/*.tsx",
 );
 
 interface Props {
