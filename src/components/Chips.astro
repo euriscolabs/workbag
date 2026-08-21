@@ -1,0 +1,49 @@
+---
+// Metadata chips shared by page headers and project cards:
+// severity / priority badges, the category, and tags.
+interface Props {
+  severity?: string;
+  priority?: string;
+  category?: string;
+  tags?: string[];
+  class?: string;
+}
+const { severity, priority, category, tags = [], class: className } = Astro.props;
+const any = severity || priority || category || tags.length > 0;
+
+function badgeColor(level: string): string {
+  switch (level) {
+    case "Critical":
+      return "text-red-700 bg-red-100";
+    case "High":
+      return "text-orange-700 bg-orange-100";
+    case "Medium":
+      return "text-yellow-700 bg-yellow-100";
+    default:
+      return "text-gray-700 bg-gray-100";
+  }
+}
+---
+
+{
+  any && (
+    <div class:list={["flex flex-wrap gap-2", className]}>
+      {severity && (
+        <span class={`text-xs font-medium px-2 py-0.5 rounded ${badgeColor(severity)}`}>
+          {severity} severity
+        </span>
+      )}
+      {priority && (
+        <span class={`text-xs font-medium px-2 py-0.5 rounded ${badgeColor(priority)}`}>
+          {priority} priority
+        </span>
+      )}
+      {category && (
+        <span class="text-xs font-medium text-navy bg-navy/10 px-2 py-0.5 rounded">{category}</span>
+      )}
+      {tags.map((tag) => (
+        <span class="text-xs text-muted border border-border px-2 py-0.5 rounded">{tag}</span>
+      ))}
+    </div>
+  )
+}

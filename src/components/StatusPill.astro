@@ -1,0 +1,22 @@
+---
+// Status pill shared by page headers and project cards.
+import { statusTone } from "../lib/status";
+
+interface Props {
+  status?: string;
+}
+const { status } = Astro.props;
+---
+
+{
+  status && (
+    <span
+      class:list={[
+        "text-xs font-medium px-3 py-1 rounded-full whitespace-nowrap w-fit",
+        statusTone(status),
+      ]}
+    >
+      {status}
+    </span>
+  )
+}

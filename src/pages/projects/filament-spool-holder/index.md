@@ -3,6 +3,7 @@ layout: /src/layouts/PageLayout.astro
 title: "Filament Spool Holder"
 description: "An all-in-one filament management system — dry storage, inline cleaning, and jam-safety cutter in a single spool holder."
 status: "Design"
+featured: true
 category: "Manufacturing"
 tags: ["3D Printing", "Hardware", "Filament Management"]
 reasons: ["increase parts quality"]

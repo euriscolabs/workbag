@@ -8,6 +8,8 @@
 //     whenever present
 import BaseLayout from "./BaseLayout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import StatusPill from "../components/StatusPill.astro";
+import Chips from "../components/Chips.astro";
 import { breadcrumbsFor, titleFromSegment } from "../lib/content";
 
 const { frontmatter } = Astro.props;
@@ -17,24 +19,6 @@ const title =
   frontmatter.title ?? titleFromSegment(url.split("/").filter(Boolean).pop() ?? "");
 const description = frontmatter.description || "";
 const breadcrumbs = breadcrumbsFor(url, title);
-const hasChips =
-  frontmatter.severity ||
-  frontmatter.priority ||
-  frontmatter.category ||
-  frontmatter.tags?.length > 0;
-
-function badgeColor(level: string): string {
-  switch (level) {
-    case "Critical":
-      return "text-red-700 bg-red-100";
-    case "High":
-      return "text-orange-700 bg-orange-100";
-    case "Medium":
-      return "text-yellow-700 bg-yellow-100";
-    default:
-      return "text-gray-700 bg-gray-100";
-  }
-}
 ---
 
 {
@@ -51,43 +35,18 @@ function badgeColor(level: string): string {
 
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
           <h1 class="text-2xl sm:text-3xl font-bold text-navy">{title}</h1>
-          {frontmatter.status && (
-            <span class="text-xs font-medium text-blue bg-blue/10 px-3 py-1 rounded-full w-fit">
-              {frontmatter.status}
-            </span>
-          )}
+          <StatusPill status={frontmatter.status} />
         </div>
         {description && (
           <p class="text-muted leading-relaxed mb-6">{description}</p>
         )}
-        {hasChips && (
-          <div class="flex flex-wrap gap-2 mb-8">
-            {frontmatter.severity && (
-              <span
-                class={`text-xs font-medium px-2 py-0.5 rounded ${badgeColor(frontmatter.severity)}`}
-              >
-                {frontmatter.severity} severity
-              </span>
-            )}
-            {frontmatter.priority && (
-              <span
-                class={`text-xs font-medium px-2 py-0.5 rounded ${badgeColor(frontmatter.priority)}`}
-              >
-                {frontmatter.priority} priority
-              </span>
-            )}
-            {frontmatter.category && (
-              <span class="text-xs font-medium text-navy bg-navy/10 px-2 py-0.5 rounded">
-                {frontmatter.category}
-              </span>
-            )}
-            {frontmatter.tags?.map((tag: string) => (
-              <span class="text-xs text-muted border border-border px-2 py-0.5 rounded">
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+        <Chips
+          severity={frontmatter.severity}
+          priority={frontmatter.priority}
+          category={frontmatter.category}
+          tags={frontmatter.tags}
+          class="mb-8"
+        />
 
         <div
           class:list={[

@@ -1,0 +1,63 @@
+---
+// Home. The category map and Current Projects are generated from the pages
+// tree: every top-level folder's index.md is a category (title +
+// description from its frontmatter), and projects opt into Current
+// Projects with `featured: true`. The markup mirrors what the markdown
+// version produced, so the structure-driven .home-body styles in
+// global.css apply unchanged (hero = image-only paragraph, values grid =
+// bold-led list, card grids = link-led lists, button = link-only paragraph).
+import PageLayout from "../layouts/PageLayout.astro";
+import wordmark from "../assets/logos/optimized/wordmark.svg";
+import { categories, featuredProjects } from "../lib/content";
+
+const tagline =
+  "We design, build, and ship products at the intersection of software, hardware, and engineering — documented openly.";
+const frontmatter = { title: "Home", description: tagline };
+
+const current = featuredProjects(4);
+const map = categories();
+---
+
+<PageLayout frontmatter={frontmatter}>
+  <p>
+    <img src={wordmark.src} width={wordmark.width} height={wordmark.height} alt="Eurisco Labs" />
+  </p>
+
+  <p>{tagline}</p>
+
+  <h2>What we believe</h2>
+
+  <ul>
+    <li>
+      <strong>Build openly</strong> Every project is documented from first sketch to final product — process, mistakes, and all.
+    </li>
+    <li>
+      <strong>Research first</strong> We start with the science. Open lab notebooks, preprints, and accessible explanations.
+    </li>
+    <li>
+      <strong>Made to last</strong> Functional, durable, repairable. No planned obsolescence, no dark patterns.
+    </li>
+  </ul>
+
+  <h2>Current Projects</h2>
+
+  <ul>
+    {current.map((p) => (
+      <li>
+        <a href={p.url}>{p.title}</a>{" "}{p.description}
+      </li>
+    ))}
+  </ul>
+
+  <p><a href="/projects">See all projects →</a></p>
+
+  <h2>What we're working on</h2>
+
+  <ul>
+    {map.map((c) => (
+      <li>
+        <a href={c.url}>{c.title}</a>{" "}{c.description}
+      </li>
+    ))}
+  </ul>
+</PageLayout>

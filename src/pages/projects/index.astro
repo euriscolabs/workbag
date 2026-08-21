@@ -1,0 +1,182 @@
+---
+// All projects, generated from the pages tree. One full-width card per
+// project with its status pill and tag chips, sorted by status (In Progress
+// → Design → Planning → Idea; see STATUS_ORDER in lib/content.ts), then
+// by `order` / title within a status.
+//
+// The toolbar filters client-side: free-text search, one status at a time,
+// and any number of tags (a card must carry all selected tags). Filters are
+// mirrored into the URL (?q=&status=&tags=) so a filtered view can be shared.
+import PageLayout from "../../layouts/PageLayout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import { projectsByStatus } from "../../lib/content";
+import { statusTone } from "../../lib/status";
+
+const frontmatter = {
+  title: "Projects",
+  description:
+    "Everything we're building, from active builds down to first ideas. Browse by category from the home page, or search and filter the full list here.",
+};
+
+const groups = projectsByStatus();
+const items = groups.flatMap((group) => group.items);
+const statuses = groups.map((group) => group.status);
+
+// Tags by usage; tags used by a single project stay behind a "more" toggle
+const tagCounts = new Map<string, number>();
+for (const p of items) for (const tag of p.tags) tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+const tags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+const rareTagCount = tags.filter(([, n]) => n < 2).length;
+---
+
+<PageLayout frontmatter={frontmatter}>
+  <div class="not-prose flex flex-col gap-4 mb-6" id="project-filters">
+    <label class="sr-only" for="project-search">Search projects</label>
+    <input
+      id="project-search"
+      type="search"
+      placeholder="Search projects…"
+      autocomplete="off"
+      class="w-full rounded-lg border border-border bg-white px-4 py-2.5 text-sm placeholder:text-muted focus:outline-none focus:border-blue focus:ring-2 focus:ring-blue/20"
+    />
+
+    <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by status">
+      {
+        statuses.map((status) => (
+          <button
+            type="button"
+            data-filter-status={status}
+            aria-pressed="false"
+            class:list={[
+              "text-xs font-medium px-3 py-1 rounded-full transition opacity-60 hover:opacity-100",
+              "aria-pressed:opacity-100 aria-pressed:ring-2 aria-pressed:ring-blue/40",
+              statusTone(status),
+            ]}
+          >
+            {status}
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by tag">
+      {
+        tags.map(([tag, n]) => (
+          <button
+            type="button"
+            data-filter-tag={tag}
+            data-rare={n < 2 ? "true" : undefined}
+            hidden={n < 2}
+            aria-pressed="false"
+            class="text-xs text-muted border border-border px-2.5 py-1 rounded-full transition hover:border-blue hover:text-blue aria-pressed:bg-navy aria-pressed:border-navy aria-pressed:text-white"
+          >
+            {tag}
+          </button>
+        ))
+      }
+      {
+        rareTagCount > 0 && (
+          <button
+            type="button"
+            id="project-more-tags"
+            aria-expanded="false"
+            class="text-xs text-blue px-2 py-1 rounded-full hover:underline"
+          >
+            +{rareTagCount} more
+          </button>
+        )
+      }
+    </div>
+
+    <div class="flex items-center justify-between text-xs text-muted">
+      <span>Showing <span id="project-count">{items.length}</span> of {items.length}</span>
+      <button type="button" id="project-clear" hidden class="text-blue hover:underline">Clear filters</button>
+    </div>
+  </div>
+
+  <ul id="project-list" class="not-prose list-none m-0 p-0 flex flex-col gap-4">
+    {items.map((p) => <ProjectCard project={p} />)}
+  </ul>
+  <p id="project-empty" hidden class="not-prose text-sm text-muted text-center py-10">
+    No projects match these filters.
+  </p>
+</PageLayout>
+
+<script>
+  const cards = [...document.querySelectorAll<HTMLLIElement>("#project-list > li")];
+  const search = document.querySelector<HTMLInputElement>("#project-search")!;
+  const statusButtons = [...document.querySelectorAll<HTMLButtonElement>("[data-filter-status]")];
+  const tagButtons = [...document.querySelectorAll<HTMLButtonElement>("[data-filter-tag]")];
+  const moreTags = document.querySelector<HTMLButtonElement>("#project-more-tags");
+  const count = document.querySelector<HTMLElement>("#project-count")!;
+  const empty = document.querySelector<HTMLElement>("#project-empty")!;
+  const clear = document.querySelector<HTMLButtonElement>("#project-clear")!;
+
+  let status = "";
+  const tags = new Set<string>();
+
+  function apply() {
+    const q = search.value.trim().toLowerCase();
+    let shown = 0;
+    for (const card of cards) {
+      const cardTags = (card.dataset.tags ?? "").split("|");
+      const ok =
+        (!status || card.dataset.status === status) &&
+        [...tags].every((t) => cardTags.includes(t)) &&
+        (!q || (card.dataset.search ?? "").includes(q));
+      card.hidden = !ok;
+      if (ok) shown++;
+    }
+    count.textContent = String(shown);
+    empty.hidden = shown > 0;
+    clear.hidden = !(status || tags.size || q);
+    for (const b of statusButtons) b.setAttribute("aria-pressed", String(b.dataset.filterStatus === status));
+    for (const b of tagButtons) {
+      const active = tags.has(b.dataset.filterTag!);
+      b.setAttribute("aria-pressed", String(active));
+      if (active) b.hidden = false; // a selected rare tag stays visible
+    }
+
+    const params = new URLSearchParams();
+    if (q) params.set("q", q);
+    if (status) params.set("status", status);
+    if (tags.size) params.set("tags", [...tags].join(","));
+    const qs = params.toString();
+    history.replaceState(null, "", qs ? `?${qs}` : location.pathname);
+  }
+
+  search.addEventListener("input", apply);
+  for (const b of statusButtons) {
+    b.addEventListener("click", () => {
+      status = status === b.dataset.filterStatus ? "" : b.dataset.filterStatus!;
+      apply();
+    });
+  }
+  for (const b of tagButtons) {
+    b.addEventListener("click", () => {
+      const tag = b.dataset.filterTag!;
+      if (tags.has(tag)) tags.delete(tag);
+      else tags.add(tag);
+      apply();
+    });
+  }
+  moreTags?.addEventListener("click", () => {
+    const expand = moreTags.getAttribute("aria-expanded") !== "true";
+    moreTags.setAttribute("aria-expanded", String(expand));
+    for (const b of tagButtons) if (b.dataset.rare) b.hidden = !expand && !tags.has(b.dataset.filterTag!);
+    moreTags.textContent = expand ? "Fewer tags" : `+${tagButtons.filter((b) => b.dataset.rare).length} more`;
+  });
+  clear.addEventListener("click", () => {
+    search.value = "";
+    status = "";
+    tags.clear();
+    apply();
+  });
+
+  // Restore state from the URL (shared/bookmarked filtered views)
+  const initial = new URLSearchParams(location.search);
+  search.value = initial.get("q") ?? "";
+  status = initial.get("status") ?? "";
+  for (const t of (initial.get("tags") ?? "").split(",").filter(Boolean)) tags.add(t);
+  apply();
+</script>

@@ -94,6 +94,32 @@
     margin: 2rem auto 4rem;
   }
 
+  /* call to action: a paragraph containing only a link becomes a
+     full-width button (e.g. "See all projects" under Current Projects) */
+  > p:has(> a:only-child) {
+    margin: 0;
+
+    > a {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 0.875rem 1.25rem;
+      border-radius: 0.5rem;
+      background: var(--brand-primary-blue);
+      color: var(--brand-white);
+      font-weight: 600;
+      text-decoration: none;
+      transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+
+      &:hover {
+        background: var(--brand-dark-blue);
+        transform: translateY(-1px);
+      }
+    }
+  }
+
   /* section labels */
   > h2 {
     font-size: 0.875rem;
