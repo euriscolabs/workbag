@@ -1,8 +1,11 @@
 ---
 layout: /src/layouts/PageLayout.astro
+title: "EV Battery Innovation"
+description: "A battery-swap station network for EVs — standardized packs, grid-aware charging, and full lifecycle recycling, built up in three phases."
+status: "Idea"
+category: "Energy"
+tags: ["Energy", "EV", "Batteries", "Infrastructure"]
 ---
-
-# EV Battery Innovation
 
 ## Phase One
 - Buy replacement batteries for all EV manufacturers.

@@ -15,19 +15,26 @@ We design, build, and ship products at the intersection of software, hardware, a
 - **Made to last** Functional, durable, repairable. No planned obsolescence, no dark patterns.
 
 ## Current Projects
-- [Smart Filament Box](projects/filament-spool-holder/index.md)
+
+- [Filament Spool Holder](projects/filament-spool-holder/index.md) All-in-one drybox, inline cleaner, and jam-safety cutter.
+- [Full-Spectrum Therapy Lamp](projects/full-spectrum-therapy-lamp/index.md) Light therapy hardware built on circadian science.
+- [Modular Storage System](projects/storage-system/index.md) Parametric, 3D-printable workshop storage on a 25mm grid.
 
 See [all projects](projects/index.md).
 
 ## What we're working on
 
-- [Education](education/index.md) Learning techniques and educational games.
-- [Electronics](electronics/index.md) Cyberdeck, EV battery experiments, and small hardware builds.
+- [Manufacturing](manufacturing/index.md) 3D printing knowledge, scanning, and machines that improve the process itself.
 - [Engineering](engineering/index.md) Reference library of mechanical joints and design fundamentals.
-- [Food](food/index.md) — Recipes and food processing — high protein, sugar-free, homemade.
-- [Health](health/index.md) — Light therapy hardware and wellbeing experiments.
-- [Kitchen Garden](projects/kitchen-garden/index.md) — Growing food from seed — onions, tomatoes, herbs.
-- [Lidar Bot](projects/lidar-bot/index.md) — An autonomous vacuum and mop robot, phase by phase.
-- [Manufacturing](manufacturing/index.md) — 3D printing research, calibration knowledge, and automation projects.
-- [Software](software/index.md) — Tools, experiments, and notes on how software gets made.
-- [Workshop](workshop/index.md) — The modular storage system and shop infrastructure.
+- [Electronics](electronics/index.md) Cyberdeck, storage phone case, and small hardware builds.
+- [Energy](energy/index.md) EV battery infrastructure and ideas for where heat and power should come from.
+- [Robotics](robotics/index.md) Autonomous machines for the home and the building site.
+- [Software](software/index.md) AI notes, systems and languages, apps and games.
+- [Health](health/index.md) Light therapy hardware and wellbeing experiments.
+- [Fitness](fitness/index.md) Purpose-built training equipment and the app that plans the workouts.
+- [Food](food/index.md) Recipes, food processing machines, and the kitchen garden.
+- [Household](household/index.md) Water, heat, furniture, and keeping the place clean.
+- [Construction](construction/index.md) Automation for the building site.
+- [Art](art/index.md) Sketches, textiles, and 3D character work.
+- [Workshop](workshop/index.md) The modular storage system and shop infrastructure.
+- [Education](education/index.md) Learning techniques and educational games.

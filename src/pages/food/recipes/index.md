@@ -60,5 +60,5 @@ sauce base for all kind of condiments
 
 ## Map
 
-- [Oat Bar (ESN-Style, Sugar-Free)](oat-bar.md) — Homemade protein oat bar inspired by ESN Designer Bar, with psyllium husk and sugar-free binding syrup
+- [Oat Bar (ESN-Style, Sugar-Free)](oat-bar.md) Homemade protein oat bar inspired by ESN Designer Bar, with psyllium husk and sugar-free binding syrup
 - [sports drinks](sports-drinks.md)
